@@ -1,0 +1,740 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1a2456;--navy2:#0f1a3a;--blue:#1e3a8a;--blue2:#2563eb;
+  --lb:#e8edf8;--llb:#f0f4ff;--white:#fff;--bg:#eef1f8;
+  --brd:#dde3ef;--muted:#64748b;--txt:#1e293b;--txt2:#374151;
+  --red:#ef4444;--green:#16a34a;--amber:#d97706;
+  --fnt:'Inter',system-ui,sans-serif;
+}
+body{font-family:var(--fnt);background:var(--bg);margin:0;-webkit-font-smoothing:antialiased}
+.app{width:390px;min-height:844px;background:var(--bg);margin:0 auto;display:flex;flex-direction:column;overflow:hidden;position:relative}
+
+/* ── HEADER ── */
+.hdr{background:var(--white);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--brd);flex-shrink:0;height:52px}
+.hdr-left{display:flex;align-items:center;gap:9px}
+.hdr-ico{font-size:20px;color:var(--navy)}
+.hdr-name{font-size:17px;font-weight:800;color:var(--navy);letter-spacing:-.4px}
+.pro-pill{background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;letter-spacing:.4px}
+.pro-pill-out{border:2px solid var(--navy);color:var(--navy);font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:none}
+
+/* ── BOTTOM NAV ── */
+.nav{background:var(--white);border-top:1px solid var(--brd);display:flex;padding:4px 6px 10px;flex-shrink:0}
+.nb{flex:1;background:none;border:none;font-family:var(--fnt);font-size:10px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 2px;transition:color .18s}
+.nb-wrap{padding:5px 12px;border-radius:10px;display:flex;align-items:center;justify-content:center;transition:background .18s}
+.nb i{font-size:21px}
+.nb.active{color:var(--navy)}
+.nb.active .nb-wrap{background:var(--lb)}
+
+/* ── PAGES ── */
+.pg{flex:1;display:none;flex-direction:column;overflow-y:auto;overflow-x:hidden}
+.pg.on{display:flex}
+
+/* ════════════ BERANDA ════════════ */
+.brd-body{padding:18px 16px 120px;display:flex;flex-direction:column;gap:14px}
+.hero-card{background:var(--white);border-radius:16px;padding:20px 20px 18px;border:1px solid var(--brd)}
+.hero-card h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.2;margin-bottom:7px}
+.hero-card p{font-size:13px;color:var(--muted);line-height:1.65}
+.stat-list{display:flex;flex-direction:column;gap:8px}
+.stat-row{background:var(--white);border:1px solid var(--brd);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:14px}
+.stat-ic{width:38px;height:38px;background:var(--lb);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--navy);flex-shrink:0}
+.stat-meta .lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.stat-meta .val{font-size:20px;font-weight:800;color:var(--navy);line-height:1.2}
+.riwayat-card{background:var(--white);border:1px solid var(--brd);border-radius:16px;overflow:hidden}
+.riwayat-head{padding:16px 18px 10px;display:flex;align-items:center;justify-content:space-between}
+.riwayat-head h3{font-size:16px;font-weight:800;color:var(--navy)}
+.riwayat-empty{padding:24px 20px 28px;text-align:center}
+.r-empty-thumb{width:130px;height:82px;background:var(--llb);border-radius:10px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:36px;color:var(--navy);opacity:.25}
+.riwayat-empty h4{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:7px}
+.riwayat-empty p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:18px}
+.btn-row{display:flex;gap:10px}
+.btn-solid{flex:1;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:13px 10px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .18s}
+.btn-solid:hover{opacity:.88}
+.btn-outline{flex:1;background:var(--white);color:var(--navy);border:1.5px solid var(--brd);border-radius:10px;padding:12px 10px;font-family:var(--fnt);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .18s}
+.btn-outline:hover{border-color:var(--navy)}
+.hist-row{padding:11px 18px;border-top:1px solid var(--brd);display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .14s}
+.hist-row:hover{background:var(--llb)}
+.h-ic{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.h-ic.cv{background:var(--lb);color:var(--navy)}
+.h-ic.up{background:#f0fdf4;color:var(--green)}
+.h-ic.cp{background:#fffbeb;color:var(--amber)}
+.h-name{font-size:13px;font-weight:600;color:var(--txt)}
+.h-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.h-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;margin-left:auto;flex-shrink:0}
+.h-badge.cv{background:var(--lb);color:var(--navy)}
+.h-badge.up{background:#f0fdf4;color:var(--green)}
+.h-badge.cp{background:#fffbeb;color:var(--amber)}
+
+/* ════════════ BUAT CV ════════════ */
+.cv-shell{display:flex;flex-direction:column;height:100%;min-height:0}
+/* Toolbar 1 – template + export */
+.cvt1{background:var(--white);border-bottom:1px solid var(--brd);padding:8px 12px;display:flex;align-items:center;gap:7px;flex-shrink:0;flex-wrap:wrap}
+.cv-sel{border:1.5px solid var(--brd);border-radius:8px;padding:6px 9px;font-size:11px;font-family:var(--fnt);color:var(--navy);background:#fff;cursor:pointer;font-weight:600;outline:none}
+.cv-sel:focus{border-color:var(--blue2)}
+.cv-gap{flex:1}
+.btn-exp{border:none;border-radius:8px;padding:7px 12px;font-family:var(--fnt);font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:opacity .15s}
+.btn-exp.pdf{background:var(--navy);color:#fff}
+.btn-exp.word{background:var(--blue2);color:#fff}
+.btn-exp:hover{opacity:.86}
+.btn-exp i{font-size:13px}
+/* Toolbar 2 – format */
+.cvt2{background:var(--white);border-bottom:1px solid var(--brd);padding:5px 12px;display:flex;align-items:center;gap:2px;flex-wrap:wrap;flex-shrink:0}
+.f2b{background:none;border:1px solid transparent;border-radius:5px;padding:4px 6px;cursor:pointer;font-size:11px;color:var(--txt2);font-family:var(--fnt);display:flex;align-items:center;gap:2px;transition:all .12s}
+.f2b:hover{background:var(--llb);border-color:var(--brd)}
+.f2b i{font-size:13px}
+.f2sep{width:1px;height:15px;background:var(--brd);margin:0 2px}
+.f2sel{border:1px solid var(--brd);border-radius:5px;padding:3px 5px;font-size:11px;font-family:var(--fnt);color:var(--txt);background:#fff;cursor:pointer;outline:none}
+.f2col{width:20px;height:20px;border-radius:4px;border:1px solid var(--brd);cursor:pointer;padding:0}
+/* Toolbar 3 – tools */
+.cvt3{background:var(--white);border-bottom:1px solid var(--brd);padding:6px 12px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;flex-shrink:0}
+.cv-tool{background:var(--llb);border:1px solid var(--brd);border-radius:8px;padding:5px 9px;font-size:10px;font-weight:700;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:4px;font-family:var(--fnt);transition:all .14s;white-space:nowrap}
+.cv-tool:hover{background:var(--lb);border-color:#93c5fd}
+.cv-tool.on{background:var(--lb);border-color:#93c5fd}
+.cv-tool i{font-size:12px}
+/* Grid panel */
+.cvgp{background:#f7f9ff;border-bottom:1px solid var(--brd);padding:9px 13px;display:none;flex-shrink:0}
+.cvgp-lbl{font-size:9px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.7px;margin-bottom:7px}
+.cvgp-row{display:flex;gap:5px;flex-wrap:wrap}
+.gopt{border:1px solid var(--brd);border-radius:7px;padding:4px 8px;cursor:pointer;font-size:9px;font-weight:700;color:var(--navy);background:#fff;display:flex;align-items:center;gap:3px;font-family:var(--fnt);transition:all .13s}
+.gopt:hover{border-color:var(--blue2);background:var(--llb)}
+.gopt i{font-size:11px}
+/* Canvas */
+.cv-canvas{flex:1;overflow-y:auto;background:#d8dff0;display:flex;flex-direction:column;align-items:center;padding:14px 0 36px;min-height:0}
+.cv-plr{width:330px;display:flex;align-items:center;justify-content:space-between;margin-top:16px;margin-bottom:5px}
+.cv-plabel{font-size:11px;font-weight:600;color:#5a6a80}
+.cv-pdel{background:none;border:none;cursor:pointer;font-size:11px;font-weight:700;color:var(--red);display:flex;align-items:center;gap:3px;font-family:var(--fnt);padding:0}
+.cv-pdel i{font-size:12px}
+.cv-page{background:#fff;width:330px;min-height:460px;padding:30px 32px;border:1px solid #bfcbe0;box-shadow:0 2px 12px rgba(0,0,0,.07);position:relative;flex-shrink:0}
+.cv-content{outline:none;min-height:380px;font-size:11.5px;line-height:1.9;color:#1e293b;font-family:'Times New Roman',serif;word-wrap:break-word}
+.cv-content:empty::before{content:'Mulai ketik di sini — CV, surat lamaran, atau berkas...';color:#c0c5d0;pointer-events:none;font-style:italic}
+/* status */
+.cv-stat-bar{background:var(--white);border-top:1px solid var(--brd);padding:7px 14px;display:flex;justify-content:center;flex-shrink:0}
+.cv-stat-pill{background:var(--llb);border:1px solid var(--brd);border-radius:20px;padding:5px 16px;font-size:10px;color:var(--muted);font-weight:500}
+/* frame foto */
+.img-frame{display:inline-block;vertical-align:top;position:relative;margin:3px}
+.img-frame-inner{overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f4ff,#e8eef8);border:1.5px dashed #bfdbfe;position:relative;cursor:pointer;transition:border-color .15s}
+.img-frame-inner:hover{border-color:var(--blue2)}
+.img-frame-inner.hi{border:1.5px solid #bfdbfe;background:#000}
+.img-frame-inner img{width:100%;height:100%;object-fit:cover;display:block}
+.fdel{position:absolute;top:-8px;right:-8px;width:18px;height:18px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:15;font-size:10px;color:#fff;font-weight:700;border:1.5px solid #fff;line-height:1;transition:transform .14s}
+.fdel:hover{transform:scale(1.18)}
+.fph{display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none}
+.fph i{font-size:18px;color:#93c5fd}
+.fph span{font-size:8px;text-align:center;line-height:1.4;color:#93c5fd}
+.ftb{position:absolute;top:-25px;left:0;background:var(--navy2);border-radius:5px;display:flex;opacity:0;transition:opacity .14s;z-index:10;overflow:hidden}
+.img-frame:hover .ftb{opacity:1}
+.ftb button{background:none;border:none;color:rgba(255,255,255,.85);padding:3px 7px;cursor:pointer;font-size:9px;font-family:var(--fnt);display:flex;align-items:center;gap:2px}
+.ftb button:hover{background:rgba(255,255,255,.14);color:#fff}
+.frsz{position:absolute;bottom:0;right:0;width:11px;height:11px;background:var(--blue2);cursor:se-resize;display:flex;align-items:center;justify-content:center;border-radius:2px 0 0 0}
+.frsz i{font-size:7px;color:#fff}
+
+/* ════════════ UPLOAD ════════════ */
+.upl-body{padding:18px 16px 120px}
+.page-title{font-size:27px;font-weight:900;color:var(--navy);line-height:1.2;margin-bottom:5px}
+.page-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px}
+.upl-tabs{display:flex;background:var(--white);border:1px solid var(--brd);border-radius:11px;padding:4px;margin-bottom:16px}
+.utab{flex:1;padding:8px;border-radius:8px;border:none;font-family:var(--fnt);font-size:13px;font-weight:600;cursor:pointer;color:var(--muted);background:none;transition:all .18s}
+.utab.on{background:var(--white);color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,.09)}
+.dropzone{border:2px dashed #c4cfe0;border-radius:14px;padding:26px 18px;text-align:center;background:var(--white);margin-bottom:20px;cursor:pointer;transition:all .18s}
+.dropzone:hover{border-color:var(--blue2);background:var(--llb)}
+.dz-icon-wrap{width:52px;height:52px;background:var(--lb);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;color:var(--navy)}
+.dz-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.dz-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.55}
+.btn-pilih{background:var(--navy);color:#fff;border:none;border-radius:10px;padding:11px 24px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s}
+.btn-pilih:hover{opacity:.88}
+.upl-fhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.upl-fhdr h3{font-size:16px;font-weight:800;color:var(--navy)}
+.count-badge{background:var(--lb);color:var(--navy);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fthumb{background:var(--white);border:1px solid var(--brd);border-radius:10px;padding:8px;text-align:center;position:relative}
+.fthumb img{width:100%;height:50px;object-fit:cover;border-radius:6px;margin-bottom:4px}
+.fthumb-ic{width:100%;height:50px;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.fthumb p{font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.frem{position:absolute;top:-5px;right:-5px;width:16px;height:16px;background:var(--red);border-radius:50%;border:1.5px solid #fff;color:#fff;font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;line-height:1;transition:transform .14s}
+.frem:hover{transform:scale(1.15)}
+.upl-empty{text-align:center;padding:28px 0;color:var(--muted)}
+.upl-empty i{font-size:36px;color:#c4cfe0;display:block;margin-bottom:7px}
+.upl-empty p{font-size:12px}
+.btn-gabung{width:100%;margin-top:12px;padding:14px;background:var(--navy);color:#fff;border:none;border-radius:13px;font-family:var(--fnt);font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:opacity .15s}
+.btn-gabung:hover{opacity:.88}
+.btn-gabung i{font-size:16px}
+
+/* ════════════ KOMPRES ════════════ */
+.cmp-body{padding:18px 16px 120px;display:flex;flex-direction:column;gap:14px}
+.cmp-ai-banner{background:var(--navy);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden}
+.cmp-ai-banner::after{content:'★';position:absolute;right:14px;top:50%;transform:translateY(-50%) rotate(15deg);font-size:70px;color:rgba(255,255,255,.05);pointer-events:none}
+.cab-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.cab-ico{font-size:16px;color:#93c5fd}
+.cab-title{font-size:15px;font-weight:800;color:#fff}
+.cab-free{background:#16a34a;color:#fff;font-size:9px;font-weight:800;padding:3px 8px;border-radius:20px;letter-spacing:.3px}
+.cab-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.6}
+.cmp-drop-card{background:var(--white);border:2px dashed #c4cfe0;border-radius:14px;padding:22px 18px;text-align:center;cursor:pointer;transition:all .18s}
+.cmp-drop-card:hover{border-color:var(--blue2);background:var(--llb)}
+.cmp-drop-ico{font-size:26px;color:var(--navy);margin-bottom:10px;display:block}
+.cmp-drop-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.cmp-drop-sub{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:14px}
+.btn-telusuri{border:2px solid var(--navy);color:var(--navy);border-radius:9px;padding:9px 20px;font-family:var(--fnt);font-size:12px;font-weight:700;cursor:pointer;background:#fff;transition:all .18s}
+.btn-telusuri:hover{background:var(--navy);color:#fff}
+.cmp-finfo{background:var(--llb);border:1px solid var(--brd);border-radius:10px;padding:11px 14px;display:none;align-items:center;gap:10px}
+.cfi-ic{width:30px;height:30px;background:var(--lb);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--navy);flex-shrink:0}
+.cfi-name{font-size:12px;font-weight:700;color:var(--txt)}
+.cfi-size{font-size:10px;color:var(--muted);margin-top:1px}
+.lvl-card{background:var(--white);border:1px solid var(--brd);border-radius:14px;padding:16px}
+.lvl-card h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:12px}
+.lvl-lbl-row{display:flex;justify-content:space-between;font-size:10px;font-weight:700;margin-bottom:7px}
+.lvl-lbl-row .l1{color:var(--muted)}
+.lvl-lbl-row .l2{color:var(--navy)}
+.lvl-lbl-row .l3{color:var(--red)}
+input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:10px;cursor:pointer}
+.pct-big{font-size:34px;font-weight:900;color:var(--navy);text-align:center;line-height:1;margin-bottom:3px}
+.pct-note{font-size:11px;color:var(--muted);text-align:center}
+.ai-think{background:var(--llb);border:1px solid var(--brd);border-radius:10px;padding:12px;display:none;text-align:center}
+.dots{display:flex;gap:4px;justify-content:center;margin-bottom:5px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--navy);animation:pu 1.2s ease infinite}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+@keyframes pu{0%,100%{opacity:.25;transform:scale(.75)}50%{opacity:1;transform:scale(1)}}
+.ai-think p{font-size:11px;color:var(--muted)}
+.btn-kompres{width:100%;padding:15px;background:var(--navy);color:#fff;border:none;border-radius:14px;font-family:var(--fnt);font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s}
+.btn-kompres:hover{opacity:.88}
+.btn-kompres:disabled{opacity:.45;cursor:not-allowed}
+.btn-kompres i{font-size:16px}
+.cmp-result-card{background:var(--white);border:1px solid var(--brd);border-radius:14px;padding:16px;display:none}
+.cmp-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:12px}
+.szbox{text-align:center;padding:12px;border-radius:10px}
+.szbox.bef{background:#fef2f2;border:1px solid #fecaca}
+.szbox.aft{background:#f0fdf4;border:1px solid #bbf7d0}
+.sznum{font-size:17px;font-weight:800}
+.sznum.bef{color:var(--red)}.sznum.aft{color:var(--green)}
+.szlbl{font-size:9px;color:var(--muted);margin-top:2px;font-weight:600}
+.sav-strip{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:9px;text-align:center;font-size:13px;font-weight:800;color:#065f46;margin-bottom:10px}
+.btn-dl{width:100%;padding:12px;background:var(--green);color:#fff;border:none;border-radius:10px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:opacity .15s}
+.btn-dl:hover{opacity:.88}
+.feat-list{display:flex;flex-direction:column;gap:8px}
+.feat-item{background:var(--white);border:1px solid var(--brd);border-radius:12px;padding:13px 14px;display:flex;align-items:flex-start;gap:12px}
+.feat-ic{width:32px;height:32px;background:var(--lb);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--navy);flex-shrink:0;margin-top:1px}
+.feat-title{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.feat-desc{font-size:11px;color:var(--muted);line-height:1.55}
+
+/* modal */
+.modal-bg{display:none;position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,18,38,.55);z-index:300;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:16px;padding:20px;width:320px;box-shadow:0 20px 60px rgba(0,0,0,.22)}
+.modal-title{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.modal-title i{color:var(--blue2)}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+.mgopt{border:1.5px solid var(--brd);border-radius:10px;padding:10px 6px;cursor:pointer;text-align:center;background:#fafafa;font-family:var(--fnt);transition:all .15s}
+.mgopt:hover,.mgopt.sel{border-color:var(--blue2);background:var(--llb)}
+.mgopt i{font-size:20px;display:block;margin-bottom:4px;color:var(--navy)}
+.mgopt span{font-size:10px;color:var(--txt);font-weight:700}
+.mrow{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.mrow label{font-size:11px;color:var(--muted);font-weight:700;width:52px;flex-shrink:0}
+.mrow input{border:1px solid var(--brd);border-radius:7px;padding:6px 9px;font-size:12px;flex:1;font-family:var(--fnt);outline:none}
+.mrow input:focus{border-color:var(--blue2)}
+.mbtns{display:flex;gap:8px;margin-top:8px}
+.mb-c{flex:1;background:#f5f7fb;border:1px solid var(--brd);border-radius:8px;padding:10px;font-family:var(--fnt);font-size:12px;cursor:pointer;color:var(--muted);font-weight:600}
+.mb-ok{flex:2;background:var(--navy);border:none;border-radius:8px;padding:10px;font-family:var(--fnt);font-size:12px;font-weight:800;color:#fff;cursor:pointer}
+</style>
+
+<h2 class="sr-only">CV Builder Pro – Buat CV, Upload Berkas, dan Kompres File</h2>
+
+<input type="file" id="imgUp" accept="image/*" style="display:none" onchange="handleImgUp(this)">
+<input type="file" id="uplFilesIn" multiple style="display:none" onchange="handleUplFiles(this.files)">
+<input type="file" id="cmpIn" accept=".pdf,.docx,.jpg,.jpeg,.png" style="display:none" onchange="loadCmpFile(this)">
+
+<div class="app" id="app">
+
+  <!-- HEADER -->
+  <div class="hdr" id="app-hdr">
+    <div class="hdr-left">
+      <i class="ti ti-file-description hdr-ico" aria-hidden="true"></i>
+      <span class="hdr-name">CV Builder Pro</span>
+    </div>
+    <span class="pro-pill" id="pro-badge">PRO</span>
+  </div>
+
+  <!-- ═══════ BERANDA ═══════ -->
+  <div class="pg on" id="pg-beranda">
+    <div class="brd-body">
+      <div class="hero-card">
+        <h2>Selamat Pagi,<br>Profesional!</h2>
+        <p>Siap untuk meningkatkan karir Anda hari ini? Lanjutkan mengedit CV terakhir Anda atau buat yang baru dari awal.</p>
+      </div>
+      <div class="stat-list">
+        <div class="stat-row"><div class="stat-ic"><i class="ti ti-file-description" aria-hidden="true"></i></div><div class="stat-meta"><div class="lbl">CV DIBUAT</div><div class="val" id="st-cv">0</div></div></div>
+        <div class="stat-row"><div class="stat-ic"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div><div class="stat-meta"><div class="lbl">FILE UPLOAD</div><div class="val" id="st-up">0</div></div></div>
+        <div class="stat-row"><div class="stat-ic"><i class="ti ti-file-zip" aria-hidden="true"></i></div><div class="stat-meta"><div class="lbl">DIKOMPRES</div><div class="val" id="st-cp">0</div></div></div>
+      </div>
+      <div class="riwayat-card">
+        <div class="riwayat-head"><h3>Riwayat Dokumen</h3></div>
+        <div id="hist-list">
+          <div class="riwayat-empty">
+            <div class="r-empty-thumb"><i class="ti ti-files" aria-hidden="true"></i></div>
+            <h4>Belum ada dokumen</h4>
+            <p>Mulai buat CV profesional Anda yang pertama atau upload berkas yang sudah ada untuk dikelola di sini.</p>
+            <div class="btn-row">
+              <button class="btn-solid" onclick="goPage('create')"><i class="ti ti-plus" aria-hidden="true"></i> Buat CV</button>
+              <button class="btn-outline" onclick="goPage('upload')"><i class="ti ti-upload" aria-hidden="true"></i> Upload</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ BUAT CV ═══════ -->
+  <div class="pg" id="pg-create">
+    <div class="cv-shell">
+
+      <!-- T1: template + export -->
+      <div class="cvt1">
+        <select class="cv-sel" id="docType" onchange="applyTmpl(this.value)">
+          <option value="cv">Curriculum Vitae</option>
+          <option value="lamaran">Surat Lamaran</option>
+          <option value="berkas">Berkas Pendukung</option>
+          <option value="kosong">Halaman Kosong</option>
+        </select>
+        <div class="cv-gap"></div>
+        <button class="btn-exp pdf" onclick="exportPDF()"><i class="ti ti-file-type-pdf" aria-hidden="true"></i> Export PDF</button>
+        <button class="btn-exp word" onclick="exportWord()"><i class="ti ti-file-type-doc" aria-hidden="true"></i> Export Word</button>
+      </div>
+
+      <!-- T2: format teks -->
+      <div class="cvt2">
+        <select class="f2sel" style="width:88px" onchange="ef('fontName',this.value)">
+          <option value="Times New Roman">Times New Roman</option>
+          <option value="Arial">Arial</option>
+          <option value="Calibri">Calibri</option>
+          <option value="Georgia">Georgia</option>
+        </select>
+        <select class="f2sel" style="width:40px" onchange="ef('fontSize',this.value)">
+          <option value="2">10</option><option value="3" selected>12</option>
+          <option value="4">14</option><option value="5">18</option><option value="6">24</option>
+        </select>
+        <div class="f2sep"></div>
+        <button class="f2b" onclick="ef('bold')"><i class="ti ti-bold" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('italic')"><i class="ti ti-italic" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('underline')"><i class="ti ti-underline" aria-hidden="true"></i></button>
+        <div class="f2sep"></div>
+        <button class="f2b" onclick="ef('justifyLeft')"><i class="ti ti-align-left" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('justifyCenter')"><i class="ti ti-align-center" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('justifyRight')"><i class="ti ti-align-right" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('justifyFull')"><i class="ti ti-align-justified" aria-hidden="true"></i></button>
+        <div class="f2sep"></div>
+        <input type="color" class="f2col" value="#1e293b" onchange="ef('foreColor',this.value)" title="Warna teks">
+      </div>
+
+      <!-- T3: tools -->
+      <div class="cvt3">
+        <button class="cv-tool" onclick="addPage()"><i class="ti ti-plus" aria-hidden="true"></i> Halaman</button>
+        <button class="cv-tool" onclick="showFrmModal()"><i class="ti ti-photo-plus" aria-hidden="true"></i> Frame Foto</button>
+        <button class="cv-tool" id="gridBtn" onclick="toggleGrid()"><i class="ti ti-layout-grid" aria-hidden="true"></i> Grid</button>
+        <button class="cv-tool" onclick="ef('insertUnorderedList')"><i class="ti ti-list" aria-hidden="true"></i></button>
+        <button class="cv-tool" onclick="ef('insertOrderedList')"><i class="ti ti-list-numbers" aria-hidden="true"></i></button>
+        <button class="cv-tool" onclick="insHR()"><i class="ti ti-minus" aria-hidden="true"></i></button>
+        <button class="cv-tool" onclick="insTbl()"><i class="ti ti-table" aria-hidden="true"></i></button>
+      </div>
+
+      <!-- Grid panel -->
+      <div class="cvgp" id="gridPanel">
+        <div class="cvgp-lbl">Pilih layout grid foto</div>
+        <div class="cvgp-row">
+          <button class="gopt" onclick="insGrid(1,1,100,130)"><i class="ti ti-square" aria-hidden="true"></i> 1×1</button>
+          <button class="gopt" onclick="insGrid(2,1,90,112)"><i class="ti ti-layout-columns" aria-hidden="true"></i> 2 kolom</button>
+          <button class="gopt" onclick="insGrid(3,1,72,95)"><i class="ti ti-columns-3" aria-hidden="true"></i> 3 kolom</button>
+          <button class="gopt" onclick="insGrid(2,2,90,85)"><i class="ti ti-layout-grid" aria-hidden="true"></i> 2×2</button>
+          <button class="gopt" onclick="insSingle(78,104,'rect')"><i class="ti ti-id" aria-hidden="true"></i> KTP 3×4</button>
+          <button class="gopt" onclick="insSingle(96,136,'rect')"><i class="ti ti-user" aria-hidden="true"></i> Pas Foto</button>
+          <button class="gopt" onclick="insSingle(96,96,'circle')"><i class="ti ti-circle" aria-hidden="true"></i> Bulat</button>
+        </div>
+      </div>
+
+      <!-- Canvas halaman -->
+      <div class="cv-canvas" id="cvCanvas">
+        <div class="cv-plr" id="plr-1">
+          <span class="cv-plabel">Halaman 1</span>
+          <button class="cv-pdel" onclick="delPage(1)" aria-label="Hapus halaman 1"><i class="ti ti-trash" aria-hidden="true"></i> Hapus</button>
+        </div>
+        <div class="cv-page" id="docpage-1">
+          <div class="cv-content" id="doccontent-1" contenteditable="true" onkeyup="updStat()" onclick="curPg=1;updStat()"></div>
+        </div>
+      </div>
+
+      <div class="cv-stat-bar">
+        <div class="cv-stat-pill" id="cv-stat">0 kata · Halaman 1 dari 1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ UPLOAD ═══════ -->
+  <div class="pg" id="pg-upload">
+    <div class="upl-body">
+      <div class="page-title">Unggah Berkas</div>
+      <div class="page-sub">Tambahkan foto profil atau dokumen pendukung untuk melengkapi CV Anda.</div>
+      <div class="upl-tabs">
+        <button class="utab on" id="utab-foto" onclick="switchUTab('foto',this)">Foto</button>
+        <button class="utab" id="utab-file" onclick="switchUTab('file',this)">File</button>
+      </div>
+      <div class="dropzone" onclick="document.getElementById('uplFilesIn').click()">
+        <div class="dz-icon-wrap"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div>
+        <div class="dz-title">Klik atau seret file ke sini</div>
+        <div class="dz-sub" id="upl-hint">Format: JPG, PNG, PDF — maks 10MB per file</div>
+        <button class="btn-pilih" onclick="event.stopPropagation();document.getElementById('uplFilesIn').click()">Pilih File</button>
+      </div>
+      <div class="upl-fhdr">
+        <h3>File Terupload</h3>
+        <span class="count-badge" id="file-count">0</span>
+      </div>
+      <div class="fgrid" id="file-grid"></div>
+      <div class="upl-empty" id="upl-empty">
+        <i class="ti ti-folder-open" aria-hidden="true"></i>
+        <p>Belum ada file yang diupload</p>
+      </div>
+      <button class="btn-gabung" id="btn-gabung" style="display:none" onclick="doMerge()">
+        <i class="ti ti-git-merge" aria-hidden="true"></i> Jadikan Satu Berkas &amp; Download
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════ KOMPRES ═══════ -->
+  <div class="pg" id="pg-compress">
+    <div class="cmp-body">
+      <div class="page-title">Kompresi AI</div>
+      <div class="page-sub">Kecilkan ukuran file CV Anda secara cerdas tanpa kehilangan kualitas teks yang penting.</div>
+      <div class="cmp-ai-banner">
+        <div class="cab-top">
+          <i class="ti ti-sparkles cab-ico" aria-hidden="true"></i>
+          <span class="cab-title">AI Compress</span>
+          <span class="cab-free">GRATIS</span>
+        </div>
+        <div class="cab-desc">Algoritma AI kami menganalisis dan mengoptimalkan file PDF Anda untuk ukuran terkecil dengan retensi kualitas terbaik.</div>
+      </div>
+      <div class="cmp-drop-card" onclick="document.getElementById('cmpIn').click()">
+        <i class="ti ti-file-upload cmp-drop-ico" aria-hidden="true"></i>
+        <div class="cmp-drop-title">Pilih File CV Anda</div>
+        <div class="cmp-drop-sub">Seret dan jatuhkan file PDF Anda ke sini, atau klik untuk menelusuri komputer Anda. Maksimal 10MB.</div>
+        <button class="btn-telusuri" onclick="event.stopPropagation();document.getElementById('cmpIn').click()">Telusuri File</button>
+      </div>
+      <div class="cmp-finfo" id="cmp-info">
+        <div class="cfi-ic"><i class="ti ti-file" id="cfi-ico" aria-hidden="true"></i></div>
+        <div><div class="cfi-name" id="cfi-name">—</div><div class="cfi-size" id="cfi-size">—</div></div>
+      </div>
+      <div class="lvl-card">
+        <h3>Tingkat Kompresi</h3>
+        <div class="lvl-lbl-row"><span class="l1">Ringan</span><span class="l2">Sedang (Rekomendasi)</span><span class="l3">Ekstrem</span></div>
+        <input type="range" class="cmp-slider" min="1" max="3" step="1" value="2" oninput="updCmpLvl(this.value)">
+        <div class="pct-big" id="cmp-pct">60%</div>
+        <div class="pct-note">Estimasi pengurangan ukuran file.</div>
+      </div>
+      <div class="ai-think" id="ai-think">
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <p id="think-msg">Menganalisis file...</p>
+      </div>
+      <div class="cmp-result-card" id="cmp-result">
+        <div class="cmp-compare">
+          <div class="szbox bef"><div class="sznum bef" id="sz-bef">—</div><div class="szlbl">Ukuran asli</div></div>
+          <i class="ti ti-arrow-right" style="font-size:16px;color:var(--muted)" aria-hidden="true"></i>
+          <div class="szbox aft"><div class="sznum aft" id="sz-aft">—</div><div class="szlbl">Setelah kompres</div></div>
+        </div>
+        <div class="sav-strip" id="sav-strip">—</div>
+        <button class="btn-dl" onclick="dlCompressed()"><i class="ti ti-download" aria-hidden="true"></i> Download File Terkompres</button>
+      </div>
+      <button class="btn-kompres" id="btn-kompres" onclick="startCompress()">
+        <i class="ti ti-file-zip" aria-hidden="true"></i> Kompres Sekarang
+      </button>
+      <div class="feat-list">
+        <div class="feat-item"><div class="feat-ic"><i class="ti ti-settings-2" aria-hidden="true"></i></div><div><div class="feat-title">Analisis AI</div><div class="feat-desc">AI secara pintar membedakan antara teks penting dan elemen dekoratif untuk optimasi yang presisi.</div></div></div>
+        <div class="feat-item"><div class="feat-ic"><i class="ti ti-adjustments-horizontal" aria-hidden="true"></i></div><div><div class="feat-title">Optimasi Otomatis</div><div class="feat-desc">Gambar dikompresi tanpa pecah, font disematkan ulang, memastikan keterbacaan sempurna oleh sistem ATS.</div></div></div>
+        <div class="feat-item"><div class="feat-ic"><i class="ti ti-lock" aria-hidden="true"></i></div><div><div class="feat-title">Aman &amp; Privat</div><div class="feat-desc">File Anda diproses langsung di browser atau dihapus instan dari server kami. Privasi data terjamin.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR BAWAH -->
+  <div class="nav">
+    <button class="nb active" id="nb-beranda" onclick="goPage('beranda')">
+      <div class="nb-wrap"><i class="ti ti-home" aria-hidden="true"></i></div>
+      <span>Beranda</span>
+    </button>
+    <button class="nb" id="nb-create" onclick="goPage('create')">
+      <div class="nb-wrap"><i class="ti ti-pencil" aria-hidden="true"></i></div>
+      <span>Buat CV</span>
+    </button>
+    <button class="nb" id="nb-upload" onclick="goPage('upload')">
+      <div class="nb-wrap"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div>
+      <span>Upload</span>
+    </button>
+    <button class="nb" id="nb-compress" onclick="goPage('compress')">
+      <div class="nb-wrap"><i class="ti ti-file-zip" aria-hidden="true"></i></div>
+      <span>Kompres</span>
+    </button>
+  </div>
+
+  <!-- MODAL FRAME -->
+  <div class="modal-bg" id="frmModal">
+    <div class="modal">
+      <div class="modal-title"><i class="ti ti-photo-plus" aria-hidden="true"></i> Tambah Frame Foto</div>
+      <div class="mgrid">
+        <button class="mgopt sel" id="ms-rect" onclick="selShape('rect',this)"><i class="ti ti-rectangle" aria-hidden="true"></i><span>Persegi panjang</span></button>
+        <button class="mgopt" id="ms-sq" onclick="selShape('square',this)"><i class="ti ti-square" aria-hidden="true"></i><span>Kotak</span></button>
+        <button class="mgopt" id="ms-ci" onclick="selShape('circle',this)"><i class="ti ti-circle" aria-hidden="true"></i><span>Lingkaran</span></button>
+        <button class="mgopt" id="ms-ktp" onclick="selShape('ktp',this)"><i class="ti ti-id" aria-hidden="true"></i><span>KTP 3×4</span></button>
+      </div>
+      <div class="mrow"><label>Lebar (px)</label><input type="number" id="frm-w" value="100" min="40" max="280"></div>
+      <div class="mrow"><label>Tinggi (px)</label><input type="number" id="frm-h" value="130" min="40" max="400"></div>
+      <div class="mbtns">
+        <button class="mb-c" onclick="closeFrmModal()">Batal</button>
+        <button class="mb-ok" onclick="confirmFrame()">Tambah Frame</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const TMPL={
+  cv:`<div style="text-align:center;margin-bottom:14px"><strong style="font-size:16px">NAMA LENGKAP</strong><br><span style="font-size:11px;color:#555">Posisi yang Dilamar</span><br><span style="font-size:10px;color:#777">email@email.com | 08xxxxxxxxxx | Kota, Indonesia</span></div><hr style="border:0;border-top:1.5px solid #1e3a8a;margin:10px 0"><strong>RINGKASAN PROFIL</strong><br><br>Tulis ringkasan profil profesional Anda di sini...<br><br><strong>PENGALAMAN KERJA</strong><br><br>• <strong>Posisi</strong> – Nama Perusahaan (Tahun–kini)<br>&nbsp;&nbsp;Deskripsi singkat pekerjaan dan pencapaian.<br><br><strong>PENDIDIKAN</strong><br><br>• <strong>S1 Nama Jurusan</strong> – Universitas (Tahun)<br><br><strong>KEAHLIAN</strong><br><br>• Keahlian 1 • Keahlian 2 • Keahlian 3`,
+  lamaran:`<div style="text-align:right;margin-bottom:18px">Jakarta, [Tanggal Bulan Tahun]</div>Kepada Yth.,<br>HRD / Manajer Rekrutmen<br>[Nama Perusahaan]<br>di tempat<br><br>Dengan hormat,<br><br>Saya yang bertanda tangan di bawah ini:<br>Nama&nbsp;&nbsp;&nbsp;&nbsp;: <strong>[Nama Lengkap]</strong><br>TTL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Kota, Tanggal Lahir]<br>No. HP&nbsp;: [Nomor Telepon]<br><br>Dengan ini mengajukan lamaran untuk posisi <strong>[Posisi yang Dilamar]</strong>.<br><br>Saya siap memberikan kontribusi terbaik bagi perusahaan Bapak/Ibu.<br><br>Demikian surat ini saya buat. Atas perhatiannya, terima kasih.<br><br><br>Hormat saya,<br><br><br>[Nama Lengkap]`,
+  berkas:`<div style="text-align:center;margin-bottom:14px"><strong style="font-size:14px">DAFTAR BERKAS PENDUKUNG</strong></div><table style="width:100%;border-collapse:collapse;font-size:11px"><tr style="background:#eff6ff"><td style="border:1px solid #bfdbfe;padding:5px 8px;font-weight:700">No.</td><td style="border:1px solid #bfdbfe;padding:5px 8px;font-weight:700">Nama Berkas</td><td style="border:1px solid #bfdbfe;padding:5px 8px;font-weight:700">Keterangan</td></tr><tr><td style="border:1px solid #bfdbfe;padding:5px 8px">1.</td><td style="border:1px solid #bfdbfe;padding:5px 8px">KTP</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Fotokopi</td></tr><tr><td style="border:1px solid #bfdbfe;padding:5px 8px">2.</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Ijazah</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Fotokopi</td></tr><tr><td style="border:1px solid #bfdbfe;padding:5px 8px">3.</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Transkrip Nilai</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Fotokopi</td></tr><tr><td style="border:1px solid #bfdbfe;padding:5px 8px">4.</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Pas Foto 3×4</td><td style="border:1px solid #bfdbfe;padding:5px 8px">2 lembar</td></tr></table>`,
+  kosong:''
+};
+const PCTS={1:'20%',2:'60%',3:'85%'};
+const RATIOS={1:.82,2:.60,3:.38};
+let curPg=1,pgCount=1,activeFrame=null,pendingShape='rect',cmpLvl=2,cmpFile=null;
+let uplFiles=[],histItems=[];
+
+function goPage(p){
+  document.querySelectorAll('.pg').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pg-'+p).classList.add('on');
+  document.getElementById('nb-'+p).classList.add('active');
+  const badge=document.getElementById('pro-badge');
+  badge.className=(p==='beranda'||p==='compress')?'pro-pill':'pro-pill-out';
+  if(p==='create'){setTimeout(()=>{const c=document.getElementById('doccontent-1');if(c&&!c.innerHTML.trim())c.focus();},80);}
+}
+
+function applyTmpl(v){const el=document.getElementById('doccontent-'+curPg);if(el){el.innerHTML=TMPL[v]||'';updStat();}}
+function ef(cmd,val){document.execCommand(cmd,false,val||null);}
+function updStat(){
+  const el=document.getElementById('doccontent-'+curPg);if(!el)return;
+  const w=(el.innerText||'').trim().split(/\s+/).filter(Boolean).length;
+  document.getElementById('cv-stat').textContent=w+' kata · Halaman '+curPg+' dari '+pgCount;
+}
+
+function addPage(){
+  pgCount++;const id=pgCount;
+  const canvas=document.getElementById('cvCanvas');
+  const lr=document.createElement('div');lr.className='cv-plr';lr.id='plr-'+id;lr.style.marginTop='20px';
+  lr.innerHTML=`<span class="cv-plabel">Halaman ${id}</span><button class="cv-pdel" onclick="delPage(${id})" aria-label="Hapus halaman ${id}"><i class="ti ti-trash" aria-hidden="true"></i> Hapus</button>`;
+  const pg=document.createElement('div');pg.className='cv-page';pg.id='docpage-'+id;
+  const ct=document.createElement('div');ct.className='cv-content';ct.id='doccontent-'+id;
+  ct.contentEditable='true';ct.onkeyup=updStat;ct.onclick=()=>{curPg=id;updStat();};
+  pg.appendChild(ct);canvas.appendChild(lr);canvas.appendChild(pg);
+  curPg=id;ct.focus();updStat();
+}
+
+function delPage(id){
+  if(pgCount<=1){alert('Minimal harus ada 1 halaman!');return;}
+  const lr=document.getElementById('plr-'+id);const pg=document.getElementById('docpage-'+id);
+  if(lr)lr.remove();if(pg)pg.remove();pgCount--;if(curPg===id)curPg=1;updStat();
+}
+
+function toggleGrid(){
+  const gp=document.getElementById('gridPanel'),btn=document.getElementById('gridBtn');
+  const show=gp.style.display!=='block';gp.style.display=show?'block':'none';btn.classList.toggle('on',show);
+}
+
+function insGrid(cols,rows,w,h){
+  const el=document.getElementById('doccontent-'+curPg);if(!el)return;el.focus();
+  const wrap=document.createElement('div');wrap.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin:5px 0;line-height:0';
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)wrap.appendChild(buildFrm(w,h,'rect'));
+  insNode(wrap);insNode(document.createElement('br'));
+}
+function insSingle(w,h,shape){
+  const el=document.getElementById('doccontent-'+curPg);if(!el)return;el.focus();
+  insNode(buildFrm(w,h,shape));insNode(document.createElement('br'));
+}
+function buildFrm(w,h,shape){
+  const wr=document.createElement('span');wr.className='img-frame';
+  wr.style.cssText=`width:${w}px;height:${h}px;display:inline-block;vertical-align:top;position:relative;margin:3px`;
+  wr.setAttribute('data-shape',shape);
+  const inner=document.createElement('span');inner.className='img-frame-inner';
+  const br=shape==='circle'?'50%':'5px';
+  inner.style.cssText=`width:${w}px;height:${h}px;border-radius:${br};overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f4ff,#e8eef8);border:1.5px dashed #bfdbfe;position:relative;cursor:pointer`;
+  const ph=document.createElement('span');ph.className='fph';
+  ph.innerHTML='<i class="ti ti-camera-plus" aria-hidden="true"></i><span>Klik tambah<br>foto</span>';
+  inner.appendChild(ph);
+  inner.onclick=(e)=>{e.stopPropagation();activeFrame=inner;document.getElementById('imgUp').click();};
+  const fdel=document.createElement('button');fdel.className='fdel';fdel.innerHTML='✕';
+  fdel.setAttribute('aria-label','Hapus frame');fdel.onclick=(e)=>{e.stopPropagation();wr.remove();};
+  wr.appendChild(fdel);
+  const rsz=document.createElement('span');rsz.className='frsz';rsz.innerHTML='<i class="ti ti-arrows-diagonal" aria-hidden="true"></i>';
+  rsz.onmousedown=(e)=>doResize(e,wr,inner,shape);
+  inner.appendChild(rsz);
+  const tb=document.createElement('span');tb.className='ftb';
+  tb.innerHTML='<button onclick="repImg(this)"><i class="ti ti-photo"></i> Ganti</button>';
+  wr.appendChild(tb);wr.appendChild(inner);return wr;
+}
+function doResize(e,wr,inner,shape){
+  e.preventDefault();
+  const sx=e.clientX,sy=e.clientY,sw=parseInt(wr.style.width),sh=parseInt(wr.style.height);
+  const mv=(ev)=>{const nw=Math.max(40,sw+(ev.clientX-sx)),nh=Math.max(40,sh+(ev.clientY-sy));wr.style.width=nw+'px';wr.style.height=nh+'px';inner.style.width=nw+'px';inner.style.height=nh+'px';};
+  const up=()=>{document.removeEventListener('mousemove',mv);document.removeEventListener('mouseup',up);};
+  document.addEventListener('mousemove',mv);document.addEventListener('mouseup',up);
+}
+function repImg(btn){activeFrame=btn.closest('.img-frame').querySelector('.img-frame-inner');document.getElementById('imgUp').click();}
+function handleImgUp(input){
+  if(!input.files||!input.files[0])return;
+  const url=URL.createObjectURL(input.files[0]);if(!activeFrame)return;
+  const wr=activeFrame.closest('.img-frame');const shape=wr?wr.getAttribute('data-shape'):'rect';const br=shape==='circle'?'50%':'5px';
+  activeFrame.innerHTML='';activeFrame.classList.add('hi');
+  activeFrame.style.cssText+=`;border-radius:${br};background:#000;border:1.5px solid #bfdbfe`;
+  const img=document.createElement('img');img.src=url;img.alt='Foto';img.style.cssText='width:100%;height:100%;object-fit:cover;display:block';
+  const rsz=document.createElement('span');rsz.className='frsz';rsz.innerHTML='<i class="ti ti-arrows-diagonal"></i>';
+  rsz.onmousedown=(e)=>doResize(e,wr,activeFrame,shape);
+  activeFrame.appendChild(img);activeFrame.appendChild(rsz);
+  if(wr&&!wr.querySelector('.fdel')){const fd=document.createElement('button');fd.className='fdel';fd.innerHTML='✕';fd.setAttribute('aria-label','Hapus frame');fd.onclick=(e)=>{e.stopPropagation();wr.remove();};wr.appendChild(fd);}
+  input.value='';activeFrame=null;
+}
+function insNode(node){
+  const sel=window.getSelection();
+  if(sel&&sel.rangeCount){const r=sel.getRangeAt(0);r.deleteContents();r.insertNode(node);r.setStartAfter(node);r.collapse(true);sel.removeAllRanges();sel.addRange(r);}
+  else{const el=document.getElementById('doccontent-'+curPg);if(el)el.appendChild(node);}
+}
+function insHR(){ef('insertHTML','<hr style="border:0;border-top:1.5px solid #1e3a8a;margin:8px 0">');}
+function insTbl(){ef('insertHTML','<table style="width:100%;border-collapse:collapse;margin:6px 0;font-size:11px"><tr style="background:#eff6ff"><td style="border:1px solid #bfdbfe;padding:4px 7px">Kolom 1</td><td style="border:1px solid #bfdbfe;padding:4px 7px">Kolom 2</td><td style="border:1px solid #bfdbfe;padding:4px 7px">Kolom 3</td></tr><tr><td style="border:1px solid #bfdbfe;padding:4px 7px">&nbsp;</td><td style="border:1px solid #bfdbfe;padding:4px 7px">&nbsp;</td><td style="border:1px solid #bfdbfe;padding:4px 7px">&nbsp;</td></tr></table><br>');}
+
+function exportPDF(){
+  const pages=[];for(let i=1;i<=pgCount;i++){const el=document.getElementById('doccontent-'+i);if(el)pages.push(el.innerHTML);}
+  const body=pages.map((p,i)=>`<div class="pg">${p}</div>${i<pages.length-1?'<div style="page-break-after:always"></div>':''}`).join('');
+  const w=window.open('','_blank','width=820,height=920');
+  if(!w){alert('Izinkan pop-up untuk export PDF!');return;}
+  w.document.write(`<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>CV</title><style>*{box-sizing:border-box}body{font-family:'Times New Roman',serif;font-size:12pt;color:#000;margin:0;background:#fff}.pg{max-width:595px;margin:28px auto;padding:50px 55px}img{max-width:100%;height:auto}table{border-collapse:collapse;width:100%}td{border:1px solid #ccc;padding:5px 8px}hr{border:0;border-top:1.5px solid #1e3a8a;margin:8px 0}@media print{.pg{margin:0;padding:50px 55px}}</style></head><body>${body}<script>window.onload=()=>setTimeout(()=>window.print(),400)<\/script></body></html>`);
+  w.document.close();addHist('Dokumen_CV.pdf','cv');updStats();
+}
+function exportWord(){
+  const pages=[];for(let i=1;i<=pgCount;i++){const el=document.getElementById('doccontent-'+i);if(el)pages.push(el.innerText||'');}
+  const blob=new Blob(['\ufeff'+pages.join('\n\n--- Halaman Selanjutnya ---\n\n')],{type:'application/msword'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Dokumen_CV.doc';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+  addHist('Dokumen_CV.doc','cv');updStats();
+}
+
+// UPLOAD
+function switchUTab(t,btn){
+  document.querySelectorAll('.utab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.getElementById('upl-hint').textContent=t==='foto'?'Format: JPG, PNG — maks 10MB per file':'Format: PDF, DOCX, TXT — maks 10MB per file';
+  document.getElementById('uplFilesIn').accept=t==='foto'?'image/*':'.pdf,.docx,.txt,.doc';
+}
+function handleUplFiles(files){
+  for(const f of files){uplFiles.push(f);addHist(f.name,'up');}
+  renderFGrid();updStats();
+}
+function renderFGrid(){
+  const g=document.getElementById('file-grid');const empty=document.getElementById('upl-empty');
+  document.getElementById('file-count').textContent=uplFiles.length;
+  if(!uplFiles.length){g.innerHTML='';empty.style.display='block';document.getElementById('btn-gabung').style.display='none';return;}
+  empty.style.display='none';g.innerHTML='';
+  uplFiles.forEach((f,i)=>{
+    const ext=(f.name.split('.').pop()||'').toLowerCase();const isImg=['jpg','jpeg','png','gif','webp'].includes(ext);
+    const d=document.createElement('div');d.className='fthumb';
+    if(isImg){const url=URL.createObjectURL(f);d.innerHTML=`<img src="${url}" alt="${f.name}"><p title="${f.name}">${f.name}</p><button class="frem" onclick="remFile(${i})" aria-label="Hapus">✕</button>`;}
+    else{
+      const cls=ext==='pdf'?'background:#fef2f2;color:#ef4444':ext==='docx'||ext==='doc'?'background:#eff6ff;color:#2563eb':'background:#f0fdf4;color:#16a34a';
+      const ic=ext==='pdf'?'ti-file-type-pdf':ext==='docx'||ext==='doc'?'ti-file-type-doc':'ti-file';
+      d.innerHTML=`<div class="fthumb-ic" style="${cls}"><i class="ti ${ic}"></i></div><p title="${f.name}">${f.name}</p><button class="frem" onclick="remFile(${i})" aria-label="Hapus">✕</button>`;
+    }
+    g.appendChild(d);
+  });
+  document.getElementById('btn-gabung').style.display=uplFiles.length>1?'flex':'none';
+}
+function remFile(i){uplFiles.splice(i,1);renderFGrid();}
+function doMerge(){
+  if(uplFiles.length<2)return;
+  const m=uplFiles.map((f,i)=>`${i+1}. ${f.name} (${fmtSz(f.size)})`).join('\n');
+  const blob=new Blob([`DAFTAR BERKAS GABUNGAN\n${'='.repeat(28)}\n\n${m}\n\nTotal: ${uplFiles.length} file\nDibuat: ${new Date().toLocaleDateString('id-ID')}`],{type:'text/plain'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Berkas_Gabungan.txt';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  addHist('Berkas_Gabungan.txt','up');updStats();
+}
+
+// KOMPRES
+function fmtSz(b){if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';return(b/1048576).toFixed(1)+' MB';}
+function updCmpLvl(v){cmpLvl=parseInt(v);document.getElementById('cmp-pct').textContent=PCTS[cmpLvl];}
+function loadCmpFile(inp){
+  const f=inp.files[0];if(!f)return;cmpFile=f;
+  const ext=(f.name.split('.').pop()||'').toLowerCase();
+  const icoMap={pdf:'ti-file-type-pdf',docx:'ti-file-type-doc',doc:'ti-file-type-doc',jpg:'ti-photo',jpeg:'ti-photo',png:'ti-photo'};
+  document.getElementById('cfi-ico').className='ti '+(icoMap[ext]||'ti-file');
+  document.getElementById('cfi-name').textContent=f.name;
+  document.getElementById('cfi-size').textContent=fmtSz(f.size);
+  document.getElementById('cmp-info').style.display='flex';
+  document.getElementById('cmp-result').style.display='none';
+}
+async function startCompress(){
+  if(!cmpFile){alert('Pilih file terlebih dahulu!');return;}
+  const btn=document.getElementById('btn-kompres');btn.disabled=true;
+  const th=document.getElementById('ai-think');th.style.display='block';
+  document.getElementById('cmp-result').style.display='none';
+  const msgs=['AI menganalisis struktur file...','Mendeteksi redundansi data...','Menerapkan algoritma kompresi cerdas...','Finalisasi & verifikasi kualitas...'];
+  let mi=0;const iv=setInterval(()=>{if(mi<msgs.length)document.getElementById('think-msg').textContent=msgs[mi++];},800);
+  await new Promise(r=>setTimeout(r,3500));
+  clearInterval(iv);th.style.display='none';btn.disabled=false;
+  const ratio=RATIOS[cmpLvl];const orig=cmpFile.size;const newSz=Math.round(orig*ratio);const saved=Math.round((1-ratio)*100);
+  document.getElementById('sz-bef').textContent=fmtSz(orig);
+  document.getElementById('sz-aft').textContent=fmtSz(newSz);
+  document.getElementById('sav-strip').textContent='✓ Berhasil menghemat '+saved+'% ukuran file!';
+  document.getElementById('cmp-result').style.display='block';
+  addHist(cmpFile.name,'cp');updStats();
+  setTimeout(()=>document.getElementById('cmp-result').scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+}
+function dlCompressed(){
+  if(!cmpFile)return;
+  const reader=new FileReader();
+  reader.onload=(e)=>{const a=document.createElement('a');a.href=e.target.result;const ext=cmpFile.name.split('.').pop();a.download=cmpFile.name.replace('.'+ext,'')+'_compressed.'+ext;document.body.appendChild(a);a.click();document.body.removeChild(a);};
+  reader.readAsDataURL(cmpFile);
+}
+
+// HISTORY & STATS
+function addHist(name,type){histItems.unshift({name,type,time:new Date()});renderHist();}
+function renderHist(){
+  const el=document.getElementById('hist-list');
+  if(!histItems.length){
+    el.innerHTML=`<div class="riwayat-empty"><div class="r-empty-thumb"><i class="ti ti-files"></i></div><h4>Belum ada dokumen</h4><p>Mulai buat CV profesional Anda yang pertama atau upload berkas yang sudah ada untuk dikelola di sini.</p><div class="btn-row"><button class="btn-solid" onclick="goPage('create')"><i class="ti ti-plus"></i> Buat CV</button><button class="btn-outline" onclick="goPage('upload')"><i class="ti ti-upload"></i> Upload</button></div></div>`;return;
+  }
+  el.innerHTML='';
+  histItems.slice(0,12).forEach(h=>{
+    const isCp=h.type==='cp',isUp=h.type==='up';
+    const ic=isCp?'ti-file-zip':isUp?'ti-cloud-upload':'ti-file-type-pdf';
+    const txt=isCp?'Kompres':isUp?'Upload':'Dokumen CV';
+    const cls=isCp?'cp':isUp?'up':'cv';
+    const t=h.time.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+    const dt=h.time.toLocaleDateString('id-ID',{day:'numeric',month:'short'});
+    const c=document.createElement('div');c.className='hist-row';
+    c.innerHTML=`<div class="h-ic ${cls}"><i class="ti ${ic}"></i></div><div style="flex:1"><div class="h-name">${h.name}</div><div class="h-sub">${dt} · ${t}</div></div><span class="h-badge ${cls}">${txt}</span>`;
+    el.appendChild(c);
+  });
+}
+function updStats(){
+  document.getElementById('st-cv').textContent=histItems.filter(h=>h.type==='cv').length;
+  document.getElementById('st-up').textContent=uplFiles.length;
+  document.getElementById('st-cp').textContent=histItems.filter(h=>h.type==='cp').length;
+}
+
+// MODAL
+function showFrmModal(){document.getElementById('frmModal').classList.add('open');}
+function closeFrmModal(){document.getElementById('frmModal').classList.remove('open');}
+function selShape(s,btn){
+  pendingShape=s;document.querySelectorAll('.mgopt').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');
+  const def={rect:{w:100,h:130},square:{w:100,h:100},circle:{w:100,h:100},ktp:{w:78,h:104}};
+  document.getElementById('frm-w').value=def[s].w;document.getElementById('frm-h').value=def[s].h;
+}
+function confirmFrame(){
+  const w=parseInt(document.getElementById('frm-w').value)||100,h=parseInt(document.getElementById('frm-h').value)||130;
+  const el=document.getElementById('doccontent-'+curPg);if(el)el.focus();
+  insNode(buildFrm(w,h,pendingShape));closeFrmModal();
+}
+
+setTimeout(()=>updStat(),100);
+</script>
