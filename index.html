@@ -1,247 +1,547 @@
-
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CV Builder Pro</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   --navy:#1a2456;--navy2:#0f1a3a;--blue:#1e3a8a;--blue2:#2563eb;
   --lb:#e8edf8;--llb:#f0f4ff;--white:#fff;--bg:#eef1f8;
   --brd:#dde3ef;--muted:#64748b;--txt:#1e293b;--txt2:#374151;
   --red:#ef4444;--green:#16a34a;--amber:#d97706;
-  --fnt:'Inter',system-ui,sans-serif;
+  --fnt:'Plus Jakarta Sans',system-ui,sans-serif;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06);
+  --shadow2:0 2px 8px rgba(0,0,0,.10),0 8px 32px rgba(0,0,0,.08);
 }
-body{font-family:var(--fnt);background:var(--bg);margin:0;-webkit-font-smoothing:antialiased}
-.app{width:390px;min-height:844px;background:var(--bg);margin:0 auto;display:flex;flex-direction:column;overflow:hidden;position:relative}
+html,body{height:100%;overflow:hidden;background:#ccd3e8}
+body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center}
 
-/* ── HEADER ── */
-.hdr{background:var(--white);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--brd);flex-shrink:0;height:52px}
-.hdr-left{display:flex;align-items:center;gap:9px}
-.hdr-ico{font-size:20px;color:var(--navy)}
-.hdr-name{font-size:17px;font-weight:800;color:var(--navy);letter-spacing:-.4px}
-.pro-pill{background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;letter-spacing:.4px}
-.pro-pill-out{border:2px solid var(--navy);color:var(--navy);font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:none}
+/* ─── APP SHELL ─── */
+.app{
+  width:390px;height:844px;background:var(--bg);
+  display:flex;flex-direction:column;overflow:hidden;
+  position:relative;border-radius:36px;
+  box-shadow:0 24px 80px rgba(0,0,0,.28),0 0 0 10px #1a2456,0 0 0 11px #263060;
+}
 
-/* ── BOTTOM NAV ── */
-.nav{background:var(--white);border-top:1px solid var(--brd);display:flex;padding:4px 6px 10px;flex-shrink:0}
-.nb{flex:1;background:none;border:none;font-family:var(--fnt);font-size:10px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 2px;transition:color .18s}
-.nb-wrap{padding:5px 12px;border-radius:10px;display:flex;align-items:center;justify-content:center;transition:background .18s}
-.nb i{font-size:21px}
+/* ─── HEADER ─── */
+.hdr{
+  background:var(--white);padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--brd);flex-shrink:0;height:56px;
+  border-radius:36px 36px 0 0;
+}
+.hdr-left{display:flex;align-items:center;gap:10px}
+.hdr-ico{font-size:22px;color:var(--navy)}
+.hdr-name{font-size:18px;font-weight:900;color:var(--navy);letter-spacing:-.5px}
+.pro-pill{background:var(--navy);color:#fff;font-size:10px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:.5px}
+.pro-pill-out{border:2px solid var(--navy);color:var(--navy);font-size:10px;font-weight:800;padding:3px 11px;border-radius:20px;background:transparent}
+
+/* ─── BOTTOM NAV ─── */
+.nav{
+  background:var(--white);border-top:1px solid var(--brd);
+  display:flex;padding:6px 8px 14px;flex-shrink:0;
+  border-radius:0 0 36px 36px;
+}
+.nb{
+  flex:1;background:none;border:none;font-family:var(--fnt);
+  font-size:10px;font-weight:600;color:var(--muted);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:4px 2px;transition:color .2s;
+}
+.nb-wrap{padding:5px 14px;border-radius:12px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.nb i{font-size:22px;transition:transform .2s}
 .nb.active{color:var(--navy)}
 .nb.active .nb-wrap{background:var(--lb)}
+.nb.active i{transform:translateY(-1px)}
+.nb span{font-size:10px;font-weight:600;letter-spacing:.1px}
 
-/* ── PAGES ── */
-.pg{flex:1;display:none;flex-direction:column;overflow-y:auto;overflow-x:hidden}
+/* ─── PAGES ─── */
+.pg{flex:1;display:none;flex-direction:column;overflow-y:auto;overflow-x:hidden;min-height:0}
 .pg.on{display:flex}
+.pg::-webkit-scrollbar{width:3px}
+.pg::-webkit-scrollbar-thumb{background:var(--brd);border-radius:3px}
 
-/* ════════════ BERANDA ════════════ */
-.brd-body{padding:18px 16px 120px;display:flex;flex-direction:column;gap:14px}
-.hero-card{background:var(--white);border-radius:16px;padding:20px 20px 18px;border:1px solid var(--brd)}
-.hero-card h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.2;margin-bottom:7px}
+/* ══════════════════════════════
+   BERANDA
+══════════════════════════════ */
+.brd-body{padding:18px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.hero-card{
+  background:var(--white);border-radius:18px;padding:22px 20px 20px;
+  border:1px solid var(--brd);box-shadow:var(--shadow);
+}
+.hero-card h2{font-size:24px;font-weight:900;color:var(--navy);line-height:1.22;margin-bottom:8px}
 .hero-card p{font-size:13px;color:var(--muted);line-height:1.65}
 .stat-list{display:flex;flex-direction:column;gap:8px}
-.stat-row{background:var(--white);border:1px solid var(--brd);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:14px}
-.stat-ic{width:38px;height:38px;background:var(--lb);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--navy);flex-shrink:0}
-.stat-meta .lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.stat-meta .val{font-size:20px;font-weight:800;color:var(--navy);line-height:1.2}
-.riwayat-card{background:var(--white);border:1px solid var(--brd);border-radius:16px;overflow:hidden}
-.riwayat-head{padding:16px 18px 10px;display:flex;align-items:center;justify-content:space-between}
+.stat-row{
+  background:var(--white);border:1px solid var(--brd);border-radius:13px;
+  padding:14px 16px;display:flex;align-items:center;gap:14px;
+  box-shadow:var(--shadow);transition:transform .15s;cursor:default;
+}
+.stat-row:hover{transform:translateY(-1px)}
+.stat-ic{
+  width:40px;height:40px;background:var(--lb);border-radius:11px;
+  display:flex;align-items:center;justify-content:center;font-size:19px;color:var(--navy);flex-shrink:0;
+}
+.stat-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px}
+.stat-val{font-size:22px;font-weight:900;color:var(--navy);line-height:1}
+.riwayat-card{background:var(--white);border:1px solid var(--brd);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.riwayat-head{padding:18px 20px 12px;display:flex;align-items:center;justify-content:space-between}
 .riwayat-head h3{font-size:16px;font-weight:800;color:var(--navy)}
 .riwayat-empty{padding:24px 20px 28px;text-align:center}
-.r-empty-thumb{width:130px;height:82px;background:var(--llb);border-radius:10px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:36px;color:var(--navy);opacity:.25}
+.r-empty-thumb{
+  width:130px;height:80px;background:linear-gradient(135deg,var(--llb),#dde4f8);
+  border-radius:12px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;
+  font-size:36px;color:var(--navy);opacity:.22;
+}
 .riwayat-empty h4{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:7px}
-.riwayat-empty p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:18px}
+.riwayat-empty p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:20px}
 .btn-row{display:flex;gap:10px}
-.btn-solid{flex:1;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:13px 10px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .18s}
-.btn-solid:hover{opacity:.88}
-.btn-outline{flex:1;background:var(--white);color:var(--navy);border:1.5px solid var(--brd);border-radius:10px;padding:12px 10px;font-family:var(--fnt);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .18s}
-.btn-outline:hover{border-color:var(--navy)}
-.hist-row{padding:11px 18px;border-top:1px solid var(--brd);display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .14s}
+.btn-solid{
+  flex:1;background:var(--navy);color:#fff;border:none;border-radius:12px;
+  padding:13px 10px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .18s,transform .18s;
+}
+.btn-solid:hover{opacity:.88;transform:translateY(-1px)}
+.btn-solid:active{transform:scale(.97)}
+.btn-outline{
+  flex:1;background:var(--white);color:var(--navy);border:1.5px solid var(--brd);
+  border-radius:12px;padding:12px 10px;font-family:var(--fnt);font-size:13px;
+  font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  gap:6px;transition:all .18s;
+}
+.btn-outline:hover{border-color:var(--navy);transform:translateY(-1px)}
+.hist-row{
+  padding:12px 18px;border-top:1px solid var(--brd);
+  display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .14s;
+}
 .hist-row:hover{background:var(--llb)}
-.h-ic{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.h-ic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
 .h-ic.cv{background:var(--lb);color:var(--navy)}
 .h-ic.up{background:#f0fdf4;color:var(--green)}
 .h-ic.cp{background:#fffbeb;color:var(--amber)}
-.h-name{font-size:13px;font-weight:600;color:var(--txt)}
+.h-name{font-size:13px;font-weight:600;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
 .h-sub{font-size:10px;color:var(--muted);margin-top:2px}
-.h-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;margin-left:auto;flex-shrink:0}
+.h-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;margin-left:auto;flex-shrink:0}
 .h-badge.cv{background:var(--lb);color:var(--navy)}
 .h-badge.up{background:#f0fdf4;color:var(--green)}
 .h-badge.cp{background:#fffbeb;color:var(--amber)}
 
-/* ════════════ BUAT CV ════════════ */
+/* ══════════════════════════════
+   BUAT CV – EDITOR
+══════════════════════════════ */
 .cv-shell{display:flex;flex-direction:column;height:100%;min-height:0}
+
 /* Toolbar 1 – template + export */
-.cvt1{background:var(--white);border-bottom:1px solid var(--brd);padding:8px 12px;display:flex;align-items:center;gap:7px;flex-shrink:0;flex-wrap:wrap}
-.cv-sel{border:1.5px solid var(--brd);border-radius:8px;padding:6px 9px;font-size:11px;font-family:var(--fnt);color:var(--navy);background:#fff;cursor:pointer;font-weight:600;outline:none}
+.cvt1{
+  background:var(--white);border-bottom:1px solid var(--brd);
+  padding:9px 12px;display:flex;align-items:center;gap:7px;
+  flex-shrink:0;flex-wrap:wrap;
+}
+.cv-sel{
+  border:1.5px solid var(--brd);border-radius:8px;padding:6px 9px;
+  font-size:11px;font-family:var(--fnt);color:var(--navy);background:#fff;
+  cursor:pointer;font-weight:600;outline:none;transition:border-color .15s;
+}
 .cv-sel:focus{border-color:var(--blue2)}
 .cv-gap{flex:1}
-.btn-exp{border:none;border-radius:8px;padding:7px 12px;font-family:var(--fnt);font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:opacity .15s}
+.btn-exp{
+  border:none;border-radius:8px;padding:7px 11px;font-family:var(--fnt);
+  font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;
+  gap:4px;transition:opacity .15s,transform .15s;
+}
+.btn-exp:hover{opacity:.86;transform:translateY(-1px)}
+.btn-exp:active{transform:scale(.97)}
 .btn-exp.pdf{background:var(--navy);color:#fff}
 .btn-exp.word{background:var(--blue2);color:#fff}
-.btn-exp:hover{opacity:.86}
 .btn-exp i{font-size:13px}
+
 /* Toolbar 2 – format */
-.cvt2{background:var(--white);border-bottom:1px solid var(--brd);padding:5px 12px;display:flex;align-items:center;gap:2px;flex-wrap:wrap;flex-shrink:0}
-.f2b{background:none;border:1px solid transparent;border-radius:5px;padding:4px 6px;cursor:pointer;font-size:11px;color:var(--txt2);font-family:var(--fnt);display:flex;align-items:center;gap:2px;transition:all .12s}
+.cvt2{
+  background:var(--white);border-bottom:1px solid var(--brd);
+  padding:5px 12px;display:flex;align-items:center;gap:2px;
+  flex-wrap:wrap;flex-shrink:0;
+}
+.f2b{
+  background:none;border:1px solid transparent;border-radius:5px;
+  padding:4px 6px;cursor:pointer;font-size:11px;color:var(--txt2);
+  font-family:var(--fnt);display:flex;align-items:center;gap:2px;transition:all .12s;
+}
 .f2b:hover{background:var(--llb);border-color:var(--brd)}
-.f2b i{font-size:13px}
-.f2sep{width:1px;height:15px;background:var(--brd);margin:0 2px}
-.f2sel{border:1px solid var(--brd);border-radius:5px;padding:3px 5px;font-size:11px;font-family:var(--fnt);color:var(--txt);background:#fff;cursor:pointer;outline:none}
+.f2b i{font-size:14px}
+.f2sep{width:1px;height:15px;background:var(--brd);margin:0 2px;flex-shrink:0}
+.f2sel{
+  border:1px solid var(--brd);border-radius:5px;padding:3px 5px;
+  font-size:11px;font-family:var(--fnt);color:var(--txt);background:#fff;cursor:pointer;outline:none;
+}
 .f2col{width:20px;height:20px;border-radius:4px;border:1px solid var(--brd);cursor:pointer;padding:0}
-/* Toolbar 3 – tools */
-.cvt3{background:var(--white);border-bottom:1px solid var(--brd);padding:6px 12px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;flex-shrink:0}
-.cv-tool{background:var(--llb);border:1px solid var(--brd);border-radius:8px;padding:5px 9px;font-size:10px;font-weight:700;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:4px;font-family:var(--fnt);transition:all .14s;white-space:nowrap}
-.cv-tool:hover{background:var(--lb);border-color:#93c5fd}
+
+/* Toolbar 3 – insert tools */
+.cvt3{
+  background:var(--white);border-bottom:1px solid var(--brd);
+  padding:6px 12px;display:flex;align-items:center;gap:5px;
+  flex-wrap:wrap;flex-shrink:0;
+}
+.cv-tool{
+  background:var(--llb);border:1px solid var(--brd);border-radius:8px;
+  padding:5px 9px;font-size:10px;font-weight:700;color:var(--navy);cursor:pointer;
+  display:flex;align-items:center;gap:4px;font-family:var(--fnt);
+  transition:all .14s;white-space:nowrap;
+}
+.cv-tool:hover{background:var(--lb);border-color:#93c5fd;transform:translateY(-1px)}
 .cv-tool.on{background:var(--lb);border-color:#93c5fd}
 .cv-tool i{font-size:12px}
+
 /* Grid panel */
 .cvgp{background:#f7f9ff;border-bottom:1px solid var(--brd);padding:9px 13px;display:none;flex-shrink:0}
 .cvgp-lbl{font-size:9px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.7px;margin-bottom:7px}
 .cvgp-row{display:flex;gap:5px;flex-wrap:wrap}
-.gopt{border:1px solid var(--brd);border-radius:7px;padding:4px 8px;cursor:pointer;font-size:9px;font-weight:700;color:var(--navy);background:#fff;display:flex;align-items:center;gap:3px;font-family:var(--fnt);transition:all .13s}
-.gopt:hover{border-color:var(--blue2);background:var(--llb)}
+.gopt{
+  border:1px solid var(--brd);border-radius:7px;padding:4px 8px;cursor:pointer;
+  font-size:9px;font-weight:700;color:var(--navy);background:#fff;
+  display:flex;align-items:center;gap:3px;font-family:var(--fnt);transition:all .13s;
+}
+.gopt:hover{border-color:var(--blue2);background:var(--llb);transform:translateY(-1px)}
 .gopt i{font-size:11px}
+
 /* Canvas */
-.cv-canvas{flex:1;overflow-y:auto;background:#d8dff0;display:flex;flex-direction:column;align-items:center;padding:14px 0 36px;min-height:0}
-.cv-plr{width:330px;display:flex;align-items:center;justify-content:space-between;margin-top:16px;margin-bottom:5px}
-.cv-plabel{font-size:11px;font-weight:600;color:#5a6a80}
-.cv-pdel{background:none;border:none;cursor:pointer;font-size:11px;font-weight:700;color:var(--red);display:flex;align-items:center;gap:3px;font-family:var(--fnt);padding:0}
-.cv-pdel i{font-size:12px}
-.cv-page{background:#fff;width:330px;min-height:460px;padding:30px 32px;border:1px solid #bfcbe0;box-shadow:0 2px 12px rgba(0,0,0,.07);position:relative;flex-shrink:0}
-.cv-content{outline:none;min-height:380px;font-size:11.5px;line-height:1.9;color:#1e293b;font-family:'Times New Roman',serif;word-wrap:break-word}
-.cv-content:empty::before{content:'Mulai ketik di sini — CV, surat lamaran, atau berkas...';color:#c0c5d0;pointer-events:none;font-style:italic}
-/* status */
-.cv-stat-bar{background:var(--white);border-top:1px solid var(--brd);padding:7px 14px;display:flex;justify-content:center;flex-shrink:0}
-.cv-stat-pill{background:var(--llb);border:1px solid var(--brd);border-radius:20px;padding:5px 16px;font-size:10px;color:var(--muted);font-weight:500}
-/* frame foto */
+.cv-canvas{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  background:linear-gradient(180deg,#d5dced 0%,#c8d2e8 100%);
+  display:flex;flex-direction:column;align-items:center;
+  padding:14px 0 40px;min-height:0;
+}
+.cv-canvas::-webkit-scrollbar{width:3px}
+.cv-canvas::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:3px}
+
+.cv-plr{
+  width:326px;display:flex;align-items:center;justify-content:space-between;
+  margin-top:16px;margin-bottom:5px;
+}
+.cv-plabel{font-size:11px;font-weight:700;color:#5a6a80;letter-spacing:.2px}
+.cv-pdel{
+  background:none;border:none;cursor:pointer;font-size:11px;font-weight:700;
+  color:var(--red);display:flex;align-items:center;gap:3px;font-family:var(--fnt);
+  padding:3px 7px;border-radius:6px;transition:background .14s;
+}
+.cv-pdel:hover{background:#fef2f2}
+.cv-pdel i{font-size:13px}
+
+.cv-page{
+  background:#fff;width:326px;min-height:460px;padding:32px 34px;
+  border:1px solid #bfcbe0;
+  box-shadow:0 2px 8px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);
+  position:relative;flex-shrink:0;
+}
+.cv-content{
+  outline:none;min-height:380px;font-size:11.5px;line-height:1.9;
+  color:#1e293b;font-family:'Times New Roman',Times,serif;word-wrap:break-word;
+}
+.cv-content:empty::before{
+  content:'Mulai ketik di sini — CV, surat lamaran, atau berkas...';
+  color:#c4c8d4;pointer-events:none;font-style:italic;
+}
+
+/* Status bar */
+.cv-stat-bar{
+  background:var(--white);border-top:1px solid var(--brd);
+  padding:7px 14px;display:flex;justify-content:center;flex-shrink:0;
+}
+.cv-stat-pill{
+  background:var(--llb);border:1px solid var(--brd);border-radius:20px;
+  padding:5px 16px;font-size:10px;color:var(--muted);font-weight:600;
+}
+
+/* ── Frame Foto ── */
 .img-frame{display:inline-block;vertical-align:top;position:relative;margin:3px}
-.img-frame-inner{overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f4ff,#e8eef8);border:1.5px dashed #bfdbfe;position:relative;cursor:pointer;transition:border-color .15s}
-.img-frame-inner:hover{border-color:var(--blue2)}
+.img-frame-inner{
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#f0f4ff,#e8eef8);border:1.5px dashed #bfdbfe;
+  position:relative;cursor:pointer;transition:border-color .15s,box-shadow .15s;
+}
+.img-frame-inner:hover{border-color:var(--blue2);box-shadow:0 0 0 2px rgba(37,99,235,.1)}
 .img-frame-inner.hi{border:1.5px solid #bfdbfe;background:#000}
 .img-frame-inner img{width:100%;height:100%;object-fit:cover;display:block}
-.fdel{position:absolute;top:-8px;right:-8px;width:18px;height:18px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:15;font-size:10px;color:#fff;font-weight:700;border:1.5px solid #fff;line-height:1;transition:transform .14s}
-.fdel:hover{transform:scale(1.18)}
-.fph{display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none}
-.fph i{font-size:18px;color:#93c5fd}
+.fdel{
+  position:absolute;top:-8px;right:-8px;width:20px;height:20px;
+  background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:15;font-size:10px;color:#fff;font-weight:700;
+  border:2px solid #fff;line-height:1;transition:transform .14s;
+  box-shadow:0 2px 6px rgba(239,68,68,.3);
+}
+.fdel:hover{transform:scale(1.2)}
+.fph{display:flex;flex-direction:column;align-items:center;gap:5px;pointer-events:none}
+.fph i{font-size:20px;color:#93c5fd}
 .fph span{font-size:8px;text-align:center;line-height:1.4;color:#93c5fd}
-.ftb{position:absolute;top:-25px;left:0;background:var(--navy2);border-radius:5px;display:flex;opacity:0;transition:opacity .14s;z-index:10;overflow:hidden}
+.ftb{
+  position:absolute;top:-26px;left:0;background:rgba(15,26,58,.92);
+  border-radius:6px;display:flex;opacity:0;transition:opacity .14s;z-index:10;overflow:hidden;
+  backdrop-filter:blur(4px);
+}
 .img-frame:hover .ftb{opacity:1}
-.ftb button{background:none;border:none;color:rgba(255,255,255,.85);padding:3px 7px;cursor:pointer;font-size:9px;font-family:var(--fnt);display:flex;align-items:center;gap:2px}
-.ftb button:hover{background:rgba(255,255,255,.14);color:#fff}
-.frsz{position:absolute;bottom:0;right:0;width:11px;height:11px;background:var(--blue2);cursor:se-resize;display:flex;align-items:center;justify-content:center;border-radius:2px 0 0 0}
-.frsz i{font-size:7px;color:#fff}
+.ftb button{
+  background:none;border:none;color:rgba(255,255,255,.85);padding:4px 8px;
+  cursor:pointer;font-size:9px;font-family:var(--fnt);font-weight:600;
+  display:flex;align-items:center;gap:2px;transition:background .12s;
+}
+.ftb button:hover{background:rgba(255,255,255,.15);color:#fff}
+.frsz{
+  position:absolute;bottom:0;right:0;width:13px;height:13px;
+  background:var(--blue2);cursor:se-resize;display:flex;align-items:center;
+  justify-content:center;border-radius:3px 0 0 0;opacity:.8;
+}
+.frsz:hover{opacity:1}
+.frsz i{font-size:8px;color:#fff}
 
-/* ════════════ UPLOAD ════════════ */
-.upl-body{padding:18px 16px 120px}
-.page-title{font-size:27px;font-weight:900;color:var(--navy);line-height:1.2;margin-bottom:5px}
-.page-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px}
-.upl-tabs{display:flex;background:var(--white);border:1px solid var(--brd);border-radius:11px;padding:4px;margin-bottom:16px}
-.utab{flex:1;padding:8px;border-radius:8px;border:none;font-family:var(--fnt);font-size:13px;font-weight:600;cursor:pointer;color:var(--muted);background:none;transition:all .18s}
-.utab.on{background:var(--white);color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,.09)}
-.dropzone{border:2px dashed #c4cfe0;border-radius:14px;padding:26px 18px;text-align:center;background:var(--white);margin-bottom:20px;cursor:pointer;transition:all .18s}
+/* ══════════════════════════════
+   UPLOAD
+══════════════════════════════ */
+.upl-body{padding:20px 16px 100px}
+.page-title{font-size:28px;font-weight:900;color:var(--navy);line-height:1.2;margin-bottom:6px}
+.page-sub{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:20px}
+.upl-tabs{
+  display:flex;background:var(--white);border:1px solid var(--brd);
+  border-radius:12px;padding:4px;margin-bottom:18px;box-shadow:var(--shadow);
+}
+.utab{
+  flex:1;padding:9px;border-radius:9px;border:none;font-family:var(--fnt);
+  font-size:13px;font-weight:600;cursor:pointer;color:var(--muted);
+  background:none;transition:all .18s;
+}
+.utab.on{background:var(--white);color:var(--navy);box-shadow:0 1px 6px rgba(0,0,0,.1);font-weight:700}
+.dropzone{
+  border:2px dashed #c4cfe0;border-radius:16px;padding:28px 18px;
+  text-align:center;background:var(--white);margin-bottom:22px;cursor:pointer;
+  transition:all .18s;box-shadow:var(--shadow);
+}
 .dropzone:hover{border-color:var(--blue2);background:var(--llb)}
-.dz-icon-wrap{width:52px;height:52px;background:var(--lb);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;color:var(--navy)}
-.dz-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
-.dz-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.55}
-.btn-pilih{background:var(--navy);color:#fff;border:none;border-radius:10px;padding:11px 24px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s}
-.btn-pilih:hover{opacity:.88}
-.upl-fhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.upl-fhdr h3{font-size:16px;font-weight:800;color:var(--navy)}
-.count-badge{background:var(--lb);color:var(--navy);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
-.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.fthumb{background:var(--white);border:1px solid var(--brd);border-radius:10px;padding:8px;text-align:center;position:relative}
-.fthumb img{width:100%;height:50px;object-fit:cover;border-radius:6px;margin-bottom:4px}
-.fthumb-ic{width:100%;height:50px;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:22px}
-.fthumb p{font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
-.frem{position:absolute;top:-5px;right:-5px;width:16px;height:16px;background:var(--red);border-radius:50%;border:1.5px solid #fff;color:#fff;font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;line-height:1;transition:transform .14s}
-.frem:hover{transform:scale(1.15)}
-.upl-empty{text-align:center;padding:28px 0;color:var(--muted)}
-.upl-empty i{font-size:36px;color:#c4cfe0;display:block;margin-bottom:7px}
-.upl-empty p{font-size:12px}
-.btn-gabung{width:100%;margin-top:12px;padding:14px;background:var(--navy);color:#fff;border:none;border-radius:13px;font-family:var(--fnt);font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:opacity .15s}
-.btn-gabung:hover{opacity:.88}
-.btn-gabung i{font-size:16px}
+.dz-icon-wrap{
+  width:54px;height:54px;background:var(--lb);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;font-size:22px;color:var(--navy);
+}
+.dz-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.dz-sub{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.55}
+.btn-pilih{
+  background:var(--navy);color:#fff;border:none;border-radius:10px;
+  padding:11px 26px;font-family:var(--fnt);font-size:13px;font-weight:700;
+  cursor:pointer;transition:opacity .15s,transform .15s;
+}
+.btn-pilih:hover{opacity:.88;transform:translateY(-1px)}
+.upl-fhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.upl-fhdr h3{font-size:17px;font-weight:800;color:var(--navy)}
+.count-badge{
+  background:var(--lb);color:var(--navy);font-size:11px;font-weight:800;
+  padding:4px 11px;border-radius:20px;
+}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:4px}
+.fthumb{
+  background:var(--white);border:1px solid var(--brd);border-radius:11px;
+  padding:9px;text-align:center;position:relative;box-shadow:var(--shadow);
+  transition:transform .14s;
+}
+.fthumb:hover{transform:translateY(-2px)}
+.fthumb img{width:100%;height:52px;object-fit:cover;border-radius:7px;margin-bottom:5px}
+.fthumb-ic{
+  width:100%;height:52px;border-radius:7px;margin-bottom:5px;
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+}
+.fthumb p{font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.frem{
+  position:absolute;top:-6px;right:-6px;width:17px;height:17px;
+  background:var(--red);border-radius:50%;border:2px solid #fff;color:#fff;
+  font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-weight:700;line-height:1;transition:transform .14s;
+  box-shadow:0 2px 4px rgba(239,68,68,.25);
+}
+.frem:hover{transform:scale(1.2)}
+.upl-empty{text-align:center;padding:30px 0;color:var(--muted)}
+.upl-empty i{font-size:38px;color:#c4cfe0;display:block;margin-bottom:9px}
+.upl-empty p{font-size:12px;font-weight:500}
+.btn-gabung{
+  width:100%;margin-top:14px;padding:14px;background:var(--navy);color:#fff;
+  border:none;border-radius:14px;font-family:var(--fnt);font-size:14px;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:opacity .15s,transform .15s;box-shadow:0 4px 16px rgba(26,36,86,.25);
+}
+.btn-gabung:hover{opacity:.88;transform:translateY(-1px)}
+.btn-gabung i{font-size:17px}
 
-/* ════════════ KOMPRES ════════════ */
-.cmp-body{padding:18px 16px 120px;display:flex;flex-direction:column;gap:14px}
-.cmp-ai-banner{background:var(--navy);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden}
-.cmp-ai-banner::after{content:'★';position:absolute;right:14px;top:50%;transform:translateY(-50%) rotate(15deg);font-size:70px;color:rgba(255,255,255,.05);pointer-events:none}
-.cab-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.cab-ico{font-size:16px;color:#93c5fd}
-.cab-title{font-size:15px;font-weight:800;color:#fff}
-.cab-free{background:#16a34a;color:#fff;font-size:9px;font-weight:800;padding:3px 8px;border-radius:20px;letter-spacing:.3px}
-.cab-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.6}
-.cmp-drop-card{background:var(--white);border:2px dashed #c4cfe0;border-radius:14px;padding:22px 18px;text-align:center;cursor:pointer;transition:all .18s}
+/* ══════════════════════════════
+   KOMPRES
+══════════════════════════════ */
+.cmp-body{padding:20px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.cmp-ai-banner{
+  background:linear-gradient(135deg,var(--navy2) 0%,var(--navy) 50%,#243070 100%);
+  border-radius:16px;padding:18px 20px;position:relative;overflow:hidden;
+  box-shadow:0 4px 20px rgba(26,36,86,.3);
+}
+.cmp-ai-banner::after{
+  content:'✦';position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-size:80px;color:rgba(255,255,255,.05);pointer-events:none;
+}
+.cab-top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.cab-ico{font-size:17px;color:#93c5fd}
+.cab-title{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.2px}
+.cab-free{
+  background:#16a34a;color:#fff;font-size:9px;font-weight:800;
+  padding:3px 9px;border-radius:20px;letter-spacing:.3px;margin-left:auto;
+}
+.cab-desc{font-size:12px;color:rgba(255,255,255,.62);line-height:1.65}
+.cmp-drop-card{
+  background:var(--white);border:2px dashed #c4cfe0;border-radius:16px;
+  padding:24px 18px;text-align:center;cursor:pointer;transition:all .18s;
+  box-shadow:var(--shadow);
+}
 .cmp-drop-card:hover{border-color:var(--blue2);background:var(--llb)}
-.cmp-drop-ico{font-size:26px;color:var(--navy);margin-bottom:10px;display:block}
-.cmp-drop-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
-.cmp-drop-sub{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:14px}
-.btn-telusuri{border:2px solid var(--navy);color:var(--navy);border-radius:9px;padding:9px 20px;font-family:var(--fnt);font-size:12px;font-weight:700;cursor:pointer;background:#fff;transition:all .18s}
+.cmp-drop-ico{font-size:28px;color:var(--navy);margin-bottom:10px;display:block}
+.cmp-drop-title{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:5px}
+.cmp-drop-sub{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.btn-telusuri{
+  border:2px solid var(--navy);color:var(--navy);border-radius:9px;
+  padding:9px 22px;font-family:var(--fnt);font-size:12px;font-weight:700;
+  cursor:pointer;background:#fff;transition:all .18s;
+}
 .btn-telusuri:hover{background:var(--navy);color:#fff}
-.cmp-finfo{background:var(--llb);border:1px solid var(--brd);border-radius:10px;padding:11px 14px;display:none;align-items:center;gap:10px}
-.cfi-ic{width:30px;height:30px;background:var(--lb);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--navy);flex-shrink:0}
+.cmp-finfo{
+  background:var(--llb);border:1px solid var(--brd);border-radius:12px;
+  padding:12px 15px;display:none;align-items:center;gap:11px;box-shadow:var(--shadow);
+}
+.cfi-ic{
+  width:32px;height:32px;background:var(--lb);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--navy);flex-shrink:0;
+}
 .cfi-name{font-size:12px;font-weight:700;color:var(--txt)}
-.cfi-size{font-size:10px;color:var(--muted);margin-top:1px}
-.lvl-card{background:var(--white);border:1px solid var(--brd);border-radius:14px;padding:16px}
-.lvl-card h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:12px}
-.lvl-lbl-row{display:flex;justify-content:space-between;font-size:10px;font-weight:700;margin-bottom:7px}
+.cfi-size{font-size:10px;color:var(--muted);margin-top:2px}
+.lvl-card{
+  background:var(--white);border:1px solid var(--brd);border-radius:16px;
+  padding:18px 18px 16px;box-shadow:var(--shadow);
+}
+.lvl-card h3{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:14px}
+.lvl-lbl-row{display:flex;justify-content:space-between;font-size:10px;font-weight:700;margin-bottom:8px}
 .lvl-lbl-row .l1{color:var(--muted)}
 .lvl-lbl-row .l2{color:var(--navy)}
 .lvl-lbl-row .l3{color:var(--red)}
-input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:10px;cursor:pointer}
-.pct-big{font-size:34px;font-weight:900;color:var(--navy);text-align:center;line-height:1;margin-bottom:3px}
-.pct-note{font-size:11px;color:var(--muted);text-align:center}
-.ai-think{background:var(--llb);border:1px solid var(--brd);border-radius:10px;padding:12px;display:none;text-align:center}
-.dots{display:flex;gap:4px;justify-content:center;margin-bottom:5px}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--navy);animation:pu 1.2s ease infinite}
+.cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:12px;cursor:pointer;height:4px}
+.pct-big{font-size:36px;font-weight:900;color:var(--navy);text-align:center;line-height:1;margin-bottom:4px}
+.pct-note{font-size:11px;color:var(--muted);text-align:center;font-weight:500}
+.ai-think{
+  background:var(--llb);border:1px solid var(--brd);border-radius:12px;
+  padding:14px;display:none;text-align:center;box-shadow:var(--shadow);
+}
+.dots{display:flex;gap:5px;justify-content:center;margin-bottom:7px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--navy);animation:pu 1.2s ease infinite}
 .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
-@keyframes pu{0%,100%{opacity:.25;transform:scale(.75)}50%{opacity:1;transform:scale(1)}}
-.ai-think p{font-size:11px;color:var(--muted)}
-.btn-kompres{width:100%;padding:15px;background:var(--navy);color:#fff;border:none;border-radius:14px;font-family:var(--fnt);font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s}
-.btn-kompres:hover{opacity:.88}
-.btn-kompres:disabled{opacity:.45;cursor:not-allowed}
-.btn-kompres i{font-size:16px}
-.cmp-result-card{background:var(--white);border:1px solid var(--brd);border-radius:14px;padding:16px;display:none}
-.cmp-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:12px}
-.szbox{text-align:center;padding:12px;border-radius:10px}
+@keyframes pu{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1)}}
+.ai-think p{font-size:11px;color:var(--muted);font-weight:500}
+.btn-kompres{
+  width:100%;padding:15px;background:var(--navy);color:#fff;border:none;
+  border-radius:14px;font-family:var(--fnt);font-size:15px;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;
+  transition:opacity .15s,transform .15s;box-shadow:0 4px 20px rgba(26,36,86,.28);
+}
+.btn-kompres:hover{opacity:.88;transform:translateY(-1px)}
+.btn-kompres:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-kompres i{font-size:17px}
+.cmp-result-card{
+  background:var(--white);border:1px solid var(--brd);border-radius:16px;
+  padding:18px;display:none;box-shadow:var(--shadow);
+  animation:slideUp .3s ease;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.cmp-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:9px;align-items:center;margin-bottom:13px}
+.szbox{text-align:center;padding:13px 8px;border-radius:11px}
 .szbox.bef{background:#fef2f2;border:1px solid #fecaca}
 .szbox.aft{background:#f0fdf4;border:1px solid #bbf7d0}
-.sznum{font-size:17px;font-weight:800}
+.sznum{font-size:18px;font-weight:900;line-height:1}
 .sznum.bef{color:var(--red)}.sznum.aft{color:var(--green)}
-.szlbl{font-size:9px;color:var(--muted);margin-top:2px;font-weight:600}
-.sav-strip{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:9px;text-align:center;font-size:13px;font-weight:800;color:#065f46;margin-bottom:10px}
-.btn-dl{width:100%;padding:12px;background:var(--green);color:#fff;border:none;border-radius:10px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:opacity .15s}
-.btn-dl:hover{opacity:.88}
+.szlbl{font-size:9px;color:var(--muted);margin-top:3px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.sav-strip{
+  background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;
+  padding:10px;text-align:center;font-size:13px;font-weight:800;color:#065f46;margin-bottom:12px;
+}
+.btn-dl{
+  width:100%;padding:12px;background:var(--green);color:#fff;border:none;
+  border-radius:11px;font-family:var(--fnt);font-size:13px;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;
+  transition:opacity .15s,transform .15s;
+}
+.btn-dl:hover{opacity:.88;transform:translateY(-1px)}
 .feat-list{display:flex;flex-direction:column;gap:8px}
-.feat-item{background:var(--white);border:1px solid var(--brd);border-radius:12px;padding:13px 14px;display:flex;align-items:flex-start;gap:12px}
-.feat-ic{width:32px;height:32px;background:var(--lb);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--navy);flex-shrink:0;margin-top:1px}
-.feat-title{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:3px}
-.feat-desc{font-size:11px;color:var(--muted);line-height:1.55}
+.feat-item{
+  background:var(--white);border:1px solid var(--brd);border-radius:13px;
+  padding:14px 15px;display:flex;align-items:flex-start;gap:13px;box-shadow:var(--shadow);
+}
+.feat-ic{
+  width:34px;height:34px;background:var(--lb);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--navy);flex-shrink:0;margin-top:1px;
+}
+.feat-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.feat-desc{font-size:11px;color:var(--muted);line-height:1.6}
 
-/* modal */
-.modal-bg{display:none;position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,18,38,.55);z-index:300;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+/* ── MODAL ── */
+.modal-bg{
+  display:none;position:absolute;top:0;left:0;right:0;bottom:0;
+  background:rgba(10,18,38,.6);z-index:300;align-items:center;justify-content:center;
+  border-radius:36px;backdrop-filter:blur(3px);
+}
 .modal-bg.open{display:flex}
-.modal{background:#fff;border-radius:16px;padding:20px;width:320px;box-shadow:0 20px 60px rgba(0,0,0,.22)}
-.modal-title{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:7px}
-.modal-title i{color:var(--blue2)}
-.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
-.mgopt{border:1.5px solid var(--brd);border-radius:10px;padding:10px 6px;cursor:pointer;text-align:center;background:#fafafa;font-family:var(--fnt);transition:all .15s}
+.modal{
+  background:#fff;border-radius:18px;padding:22px;width:310px;
+  box-shadow:0 24px 64px rgba(0,0,0,.24);
+  animation:modalIn .22s ease;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.modal-title{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:15px;display:flex;align-items:center;gap:8px}
+.modal-title i{color:var(--blue2);font-size:18px}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.mgopt{
+  border:1.5px solid var(--brd);border-radius:11px;padding:11px 6px;
+  cursor:pointer;text-align:center;background:#fafafa;font-family:var(--fnt);transition:all .15s;
+}
 .mgopt:hover,.mgopt.sel{border-color:var(--blue2);background:var(--llb)}
-.mgopt i{font-size:20px;display:block;margin-bottom:4px;color:var(--navy)}
+.mgopt i{font-size:22px;display:block;margin-bottom:5px;color:var(--navy)}
 .mgopt span{font-size:10px;color:var(--txt);font-weight:700}
-.mrow{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.mrow{display:flex;align-items:center;gap:9px;margin-bottom:9px}
 .mrow label{font-size:11px;color:var(--muted);font-weight:700;width:52px;flex-shrink:0}
-.mrow input{border:1px solid var(--brd);border-radius:7px;padding:6px 9px;font-size:12px;flex:1;font-family:var(--fnt);outline:none}
+.mrow input{
+  border:1px solid var(--brd);border-radius:8px;padding:7px 10px;
+  font-size:12px;flex:1;font-family:var(--fnt);outline:none;transition:border-color .15s;
+}
 .mrow input:focus{border-color:var(--blue2)}
-.mbtns{display:flex;gap:8px;margin-top:8px}
-.mb-c{flex:1;background:#f5f7fb;border:1px solid var(--brd);border-radius:8px;padding:10px;font-family:var(--fnt);font-size:12px;cursor:pointer;color:var(--muted);font-weight:600}
-.mb-ok{flex:2;background:var(--navy);border:none;border-radius:8px;padding:10px;font-family:var(--fnt);font-size:12px;font-weight:800;color:#fff;cursor:pointer}
+.mbtns{display:flex;gap:9px;margin-top:8px}
+.mb-c{
+  flex:1;background:#f5f7fb;border:1px solid var(--brd);border-radius:9px;
+  padding:11px;font-family:var(--fnt);font-size:12px;cursor:pointer;color:var(--muted);font-weight:600;
+}
+.mb-c:hover{background:var(--llb)}
+.mb-ok{
+  flex:2;background:var(--navy);border:none;border-radius:9px;padding:11px;
+  font-family:var(--fnt);font-size:12px;font-weight:800;color:#fff;cursor:pointer;
+  transition:opacity .15s;
+}
+.mb-ok:hover{opacity:.88}
+
+/* Toast notification */
+.toast{
+  position:absolute;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--navy);color:#fff;padding:10px 18px;border-radius:20px;
+  font-size:12px;font-weight:600;white-space:nowrap;opacity:0;z-index:400;
+  transition:all .3s;pointer-events:none;box-shadow:0 4px 16px rgba(26,36,86,.3);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
+</head>
+<body>
 
-<h2 class="sr-only">CV Builder Pro – Buat CV, Upload Berkas, dan Kompres File</h2>
-
+<!-- Hidden file inputs -->
 <input type="file" id="imgUp" accept="image/*" style="display:none" onchange="handleImgUp(this)">
 <input type="file" id="uplFilesIn" multiple style="display:none" onchange="handleUplFiles(this.files)">
-<input type="file" id="cmpIn" accept=".pdf,.docx,.jpg,.jpeg,.png" style="display:none" onchange="loadCmpFile(this)">
+<input type="file" id="cmpIn" accept=".pdf,.docx,.jpg,.jpeg,.png,.gif,.webp" style="display:none" onchange="loadCmpFile(this)">
 
 <div class="app" id="app">
 
@@ -254,17 +554,26 @@ input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:1
     <span class="pro-pill" id="pro-badge">PRO</span>
   </div>
 
-  <!-- ═══════ BERANDA ═══════ -->
+  <!-- ═══ BERANDA ═══ -->
   <div class="pg on" id="pg-beranda">
     <div class="brd-body">
       <div class="hero-card">
         <h2>Selamat Pagi,<br>Profesional!</h2>
-        <p>Siap untuk meningkatkan karir Anda hari ini? Lanjutkan mengedit CV terakhir Anda atau buat yang baru dari awal.</p>
+        <p>Siap meningkatkan karir Anda hari ini? Lanjutkan mengedit CV atau buat yang baru dari awal.</p>
       </div>
       <div class="stat-list">
-        <div class="stat-row"><div class="stat-ic"><i class="ti ti-file-description" aria-hidden="true"></i></div><div class="stat-meta"><div class="lbl">CV DIBUAT</div><div class="val" id="st-cv">0</div></div></div>
-        <div class="stat-row"><div class="stat-ic"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div><div class="stat-meta"><div class="lbl">FILE UPLOAD</div><div class="val" id="st-up">0</div></div></div>
-        <div class="stat-row"><div class="stat-ic"><i class="ti ti-file-zip" aria-hidden="true"></i></div><div class="stat-meta"><div class="lbl">DIKOMPRES</div><div class="val" id="st-cp">0</div></div></div>
+        <div class="stat-row">
+          <div class="stat-ic"><i class="ti ti-file-description" aria-hidden="true"></i></div>
+          <div><div class="stat-lbl">CV DIBUAT</div><div class="stat-val" id="st-cv">0</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-ic"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div>
+          <div><div class="stat-lbl">FILE UPLOAD</div><div class="stat-val" id="st-up">0</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-ic"><i class="ti ti-file-zip" aria-hidden="true"></i></div>
+          <div><div class="stat-lbl">DIKOMPRES</div><div class="stat-val" id="st-cp">0</div></div>
+        </div>
       </div>
       <div class="riwayat-card">
         <div class="riwayat-head"><h3>Riwayat Dokumen</h3></div>
@@ -272,7 +581,7 @@ input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:1
           <div class="riwayat-empty">
             <div class="r-empty-thumb"><i class="ti ti-files" aria-hidden="true"></i></div>
             <h4>Belum ada dokumen</h4>
-            <p>Mulai buat CV profesional Anda yang pertama atau upload berkas yang sudah ada untuk dikelola di sini.</p>
+            <p>Mulai buat CV profesional Anda yang pertama atau upload berkas yang sudah ada.</p>
             <div class="btn-row">
               <button class="btn-solid" onclick="goPage('create')"><i class="ti ti-plus" aria-hidden="true"></i> Buat CV</button>
               <button class="btn-outline" onclick="goPage('upload')"><i class="ti ti-upload" aria-hidden="true"></i> Upload</button>
@@ -283,57 +592,62 @@ input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:1
     </div>
   </div>
 
-  <!-- ═══════ BUAT CV ═══════ -->
+  <!-- ═══ BUAT CV ═══ -->
   <div class="pg" id="pg-create">
     <div class="cv-shell">
 
-      <!-- T1: template + export -->
+      <!-- Toolbar 1: template + export -->
       <div class="cvt1">
-        <select class="cv-sel" id="docType" onchange="applyTmpl(this.value)">
+        <select class="cv-sel" id="docType" onchange="applyTmpl(this.value)" aria-label="Pilih jenis dokumen">
           <option value="cv">Curriculum Vitae</option>
           <option value="lamaran">Surat Lamaran</option>
           <option value="berkas">Berkas Pendukung</option>
           <option value="kosong">Halaman Kosong</option>
         </select>
         <div class="cv-gap"></div>
-        <button class="btn-exp pdf" onclick="exportPDF()"><i class="ti ti-file-type-pdf" aria-hidden="true"></i> Export PDF</button>
-        <button class="btn-exp word" onclick="exportWord()"><i class="ti ti-file-type-doc" aria-hidden="true"></i> Export Word</button>
+        <button class="btn-exp pdf" onclick="exportPDF()" aria-label="Export PDF">
+          <i class="ti ti-file-type-pdf" aria-hidden="true"></i> Export PDF
+        </button>
+        <button class="btn-exp word" onclick="exportWord()" aria-label="Export Word">
+          <i class="ti ti-file-type-doc" aria-hidden="true"></i> Word
+        </button>
       </div>
 
-      <!-- T2: format teks -->
+      <!-- Toolbar 2: format teks -->
       <div class="cvt2">
-        <select class="f2sel" style="width:88px" onchange="ef('fontName',this.value)">
+        <select class="f2sel" style="width:90px" onchange="ef('fontName',this.value)" aria-label="Font">
           <option value="Times New Roman">Times New Roman</option>
           <option value="Arial">Arial</option>
           <option value="Calibri">Calibri</option>
           <option value="Georgia">Georgia</option>
+          <option value="Verdana">Verdana</option>
         </select>
-        <select class="f2sel" style="width:40px" onchange="ef('fontSize',this.value)">
+        <select class="f2sel" style="width:42px" onchange="ef('fontSize',this.value)" aria-label="Ukuran font">
           <option value="2">10</option><option value="3" selected>12</option>
           <option value="4">14</option><option value="5">18</option><option value="6">24</option>
         </select>
         <div class="f2sep"></div>
-        <button class="f2b" onclick="ef('bold')"><i class="ti ti-bold" aria-hidden="true"></i></button>
-        <button class="f2b" onclick="ef('italic')"><i class="ti ti-italic" aria-hidden="true"></i></button>
-        <button class="f2b" onclick="ef('underline')"><i class="ti ti-underline" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('bold')" title="Bold (Ctrl+B)"><i class="ti ti-bold" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('italic')" title="Italic (Ctrl+I)"><i class="ti ti-italic" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('underline')" title="Underline"><i class="ti ti-underline" aria-hidden="true"></i></button>
         <div class="f2sep"></div>
-        <button class="f2b" onclick="ef('justifyLeft')"><i class="ti ti-align-left" aria-hidden="true"></i></button>
-        <button class="f2b" onclick="ef('justifyCenter')"><i class="ti ti-align-center" aria-hidden="true"></i></button>
-        <button class="f2b" onclick="ef('justifyRight')"><i class="ti ti-align-right" aria-hidden="true"></i></button>
-        <button class="f2b" onclick="ef('justifyFull')"><i class="ti ti-align-justified" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('justifyLeft')" title="Rata kiri"><i class="ti ti-align-left" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('justifyCenter')" title="Tengah"><i class="ti ti-align-center" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('justifyRight')" title="Rata kanan"><i class="ti ti-align-right" aria-hidden="true"></i></button>
+        <button class="f2b" onclick="ef('justifyFull')" title="Rata penuh"><i class="ti ti-align-justified" aria-hidden="true"></i></button>
         <div class="f2sep"></div>
-        <input type="color" class="f2col" value="#1e293b" onchange="ef('foreColor',this.value)" title="Warna teks">
+        <input type="color" class="f2col" value="#1e293b" onchange="ef('foreColor',this.value)" title="Warna teks" aria-label="Warna teks">
       </div>
 
-      <!-- T3: tools -->
+      <!-- Toolbar 3: insert tools -->
       <div class="cvt3">
-        <button class="cv-tool" onclick="addPage()"><i class="ti ti-plus" aria-hidden="true"></i> Halaman</button>
-        <button class="cv-tool" onclick="showFrmModal()"><i class="ti ti-photo-plus" aria-hidden="true"></i> Frame Foto</button>
-        <button class="cv-tool" id="gridBtn" onclick="toggleGrid()"><i class="ti ti-layout-grid" aria-hidden="true"></i> Grid</button>
-        <button class="cv-tool" onclick="ef('insertUnorderedList')"><i class="ti ti-list" aria-hidden="true"></i></button>
-        <button class="cv-tool" onclick="ef('insertOrderedList')"><i class="ti ti-list-numbers" aria-hidden="true"></i></button>
-        <button class="cv-tool" onclick="insHR()"><i class="ti ti-minus" aria-hidden="true"></i></button>
-        <button class="cv-tool" onclick="insTbl()"><i class="ti ti-table" aria-hidden="true"></i></button>
+        <button class="cv-tool" onclick="addPage()" title="Tambah halaman baru"><i class="ti ti-plus" aria-hidden="true"></i> Halaman</button>
+        <button class="cv-tool" onclick="showFrmModal()" title="Tambah frame foto"><i class="ti ti-photo-plus" aria-hidden="true"></i> Frame Foto</button>
+        <button class="cv-tool" id="gridBtn" onclick="toggleGrid()" title="Panel grid foto"><i class="ti ti-layout-grid" aria-hidden="true"></i> Grid</button>
+        <button class="cv-tool" onclick="ef('insertUnorderedList')" title="Bullet list"><i class="ti ti-list" aria-hidden="true"></i></button>
+        <button class="cv-tool" onclick="ef('insertOrderedList')" title="Nomor list"><i class="ti ti-list-numbers" aria-hidden="true"></i></button>
+        <button class="cv-tool" onclick="insHR()" title="Garis pemisah"><i class="ti ti-minus" aria-hidden="true"></i></button>
+        <button class="cv-tool" onclick="insTbl()" title="Sisipkan tabel"><i class="ti ti-table" aria-hidden="true"></i></button>
       </div>
 
       <!-- Grid panel -->
@@ -350,14 +664,17 @@ input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:1
         </div>
       </div>
 
-      <!-- Canvas halaman -->
+      <!-- Canvas -->
       <div class="cv-canvas" id="cvCanvas">
         <div class="cv-plr" id="plr-1">
           <span class="cv-plabel">Halaman 1</span>
-          <button class="cv-pdel" onclick="delPage(1)" aria-label="Hapus halaman 1"><i class="ti ti-trash" aria-hidden="true"></i> Hapus</button>
+          <button class="cv-pdel" onclick="delPage(1)" aria-label="Hapus halaman 1">
+            <i class="ti ti-trash" aria-hidden="true"></i> Hapus
+          </button>
         </div>
         <div class="cv-page" id="docpage-1">
-          <div class="cv-content" id="doccontent-1" contenteditable="true" onkeyup="updStat()" onclick="curPg=1;updStat()"></div>
+          <div class="cv-content" id="doccontent-1" contenteditable="true"
+               onkeyup="updStat()" onclick="curPg=1;updStat()" role="textbox" aria-multiline="true" aria-label="Area pengetikan dokumen"></div>
         </div>
       </div>
 
@@ -367,7 +684,7 @@ input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:1
     </div>
   </div>
 
-  <!-- ═══════ UPLOAD ═══════ -->
+  <!-- ═══ UPLOAD ═══ -->
   <div class="pg" id="pg-upload">
     <div class="upl-body">
       <div class="page-title">Unggah Berkas</div>
@@ -376,7 +693,8 @@ input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:1
         <button class="utab on" id="utab-foto" onclick="switchUTab('foto',this)">Foto</button>
         <button class="utab" id="utab-file" onclick="switchUTab('file',this)">File</button>
       </div>
-      <div class="dropzone" onclick="document.getElementById('uplFilesIn').click()">
+      <div class="dropzone" onclick="document.getElementById('uplFilesIn').click()" role="button" tabindex="0"
+           onkeypress="if(event.key==='Enter')document.getElementById('uplFilesIn').click()" aria-label="Area upload file">
         <div class="dz-icon-wrap"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div>
         <div class="dz-title">Klik atau seret file ke sini</div>
         <div class="dz-sub" id="upl-hint">Format: JPG, PNG, PDF — maks 10MB per file</div>
@@ -397,7 +715,7 @@ input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:1
     </div>
   </div>
 
-  <!-- ═══════ KOMPRES ═══════ -->
+  <!-- ═══ KOMPRES ═══ -->
   <div class="pg" id="pg-compress">
     <div class="cmp-body">
       <div class="page-title">Kompresi AI</div>
@@ -408,12 +726,13 @@ input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:1
           <span class="cab-title">AI Compress</span>
           <span class="cab-free">GRATIS</span>
         </div>
-        <div class="cab-desc">Algoritma AI kami menganalisis dan mengoptimalkan file PDF Anda untuk ukuran terkecil dengan retensi kualitas terbaik.</div>
+        <div class="cab-desc">Algoritma AI kami menganalisis dan mengoptimalkan file Anda untuk ukuran terkecil dengan retensi kualitas terbaik.</div>
       </div>
-      <div class="cmp-drop-card" onclick="document.getElementById('cmpIn').click()">
+      <div class="cmp-drop-card" onclick="document.getElementById('cmpIn').click()" role="button" tabindex="0"
+           onkeypress="if(event.key==='Enter')document.getElementById('cmpIn').click()">
         <i class="ti ti-file-upload cmp-drop-ico" aria-hidden="true"></i>
         <div class="cmp-drop-title">Pilih File CV Anda</div>
-        <div class="cmp-drop-sub">Seret dan jatuhkan file PDF Anda ke sini, atau klik untuk menelusuri komputer Anda. Maksimal 10MB.</div>
+        <div class="cmp-drop-sub">Seret dan jatuhkan file ke sini, atau klik untuk menelusuri komputer Anda. Maksimal 10MB.</div>
         <button class="btn-telusuri" onclick="event.stopPropagation();document.getElementById('cmpIn').click()">Telusuri File</button>
       </div>
       <div class="cmp-finfo" id="cmp-info">
@@ -422,67 +741,102 @@ input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:1
       </div>
       <div class="lvl-card">
         <h3>Tingkat Kompresi</h3>
-        <div class="lvl-lbl-row"><span class="l1">Ringan</span><span class="l2">Sedang (Rekomendasi)</span><span class="l3">Ekstrem</span></div>
-        <input type="range" class="cmp-slider" min="1" max="3" step="1" value="2" oninput="updCmpLvl(this.value)">
+        <div class="lvl-lbl-row">
+          <span class="l1">Ringan</span>
+          <span class="l2">Sedang (Rekomendasi)</span>
+          <span class="l3">Ekstrem</span>
+        </div>
+        <input type="range" class="cmp-slider" min="1" max="3" step="1" value="2"
+               oninput="updCmpLvl(this.value)" id="cmpSlider" aria-label="Tingkat kompresi">
         <div class="pct-big" id="cmp-pct">60%</div>
         <div class="pct-note">Estimasi pengurangan ukuran file.</div>
       </div>
-      <div class="ai-think" id="ai-think">
+      <div class="ai-think" id="ai-think" aria-live="polite">
         <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
         <p id="think-msg">Menganalisis file...</p>
       </div>
       <div class="cmp-result-card" id="cmp-result">
         <div class="cmp-compare">
-          <div class="szbox bef"><div class="sznum bef" id="sz-bef">—</div><div class="szlbl">Ukuran asli</div></div>
-          <i class="ti ti-arrow-right" style="font-size:16px;color:var(--muted)" aria-hidden="true"></i>
-          <div class="szbox aft"><div class="sznum aft" id="sz-aft">—</div><div class="szlbl">Setelah kompres</div></div>
+          <div class="szbox bef"><div class="sznum bef" id="sz-bef">—</div><div class="szlbl">Ukuran Asli</div></div>
+          <i class="ti ti-arrow-right" style="font-size:18px;color:var(--muted)" aria-hidden="true"></i>
+          <div class="szbox aft"><div class="sznum aft" id="sz-aft">—</div><div class="szlbl">Setelah Kompres</div></div>
         </div>
         <div class="sav-strip" id="sav-strip">—</div>
-        <button class="btn-dl" onclick="dlCompressed()"><i class="ti ti-download" aria-hidden="true"></i> Download File Terkompres</button>
+        <button class="btn-dl" onclick="dlCompressed()">
+          <i class="ti ti-download" aria-hidden="true"></i> Download File Terkompres
+        </button>
       </div>
       <button class="btn-kompres" id="btn-kompres" onclick="startCompress()">
         <i class="ti ti-file-zip" aria-hidden="true"></i> Kompres Sekarang
       </button>
       <div class="feat-list">
-        <div class="feat-item"><div class="feat-ic"><i class="ti ti-settings-2" aria-hidden="true"></i></div><div><div class="feat-title">Analisis AI</div><div class="feat-desc">AI secara pintar membedakan antara teks penting dan elemen dekoratif untuk optimasi yang presisi.</div></div></div>
-        <div class="feat-item"><div class="feat-ic"><i class="ti ti-adjustments-horizontal" aria-hidden="true"></i></div><div><div class="feat-title">Optimasi Otomatis</div><div class="feat-desc">Gambar dikompresi tanpa pecah, font disematkan ulang, memastikan keterbacaan sempurna oleh sistem ATS.</div></div></div>
-        <div class="feat-item"><div class="feat-ic"><i class="ti ti-lock" aria-hidden="true"></i></div><div><div class="feat-title">Aman &amp; Privat</div><div class="feat-desc">File Anda diproses langsung di browser atau dihapus instan dari server kami. Privasi data terjamin.</div></div></div>
+        <div class="feat-item">
+          <div class="feat-ic"><i class="ti ti-brain" aria-hidden="true"></i></div>
+          <div><div class="feat-title">Analisis AI</div><div class="feat-desc">AI membedakan teks penting dan elemen dekoratif untuk optimasi yang presisi dan akurat.</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-ic"><i class="ti ti-adjustments-horizontal" aria-hidden="true"></i></div>
+          <div><div class="feat-title">Optimasi Otomatis</div><div class="feat-desc">Gambar dikompresi tanpa pecah, font disematkan ulang, memastikan keterbacaan sempurna oleh sistem ATS.</div></div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-ic"><i class="ti ti-lock" aria-hidden="true"></i></div>
+          <div><div class="feat-title">Aman &amp; Privat</div><div class="feat-desc">File Anda diproses langsung di browser. Tidak ada data yang dikirim ke server. Privasi data terjamin.</div></div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- NAVBAR BAWAH -->
   <div class="nav">
-    <button class="nb active" id="nb-beranda" onclick="goPage('beranda')">
+    <button class="nb active" id="nb-beranda" onclick="goPage('beranda')" aria-label="Beranda">
       <div class="nb-wrap"><i class="ti ti-home" aria-hidden="true"></i></div>
       <span>Beranda</span>
     </button>
-    <button class="nb" id="nb-create" onclick="goPage('create')">
+    <button class="nb" id="nb-create" onclick="goPage('create')" aria-label="Buat CV">
       <div class="nb-wrap"><i class="ti ti-pencil" aria-hidden="true"></i></div>
       <span>Buat CV</span>
     </button>
-    <button class="nb" id="nb-upload" onclick="goPage('upload')">
+    <button class="nb" id="nb-upload" onclick="goPage('upload')" aria-label="Upload berkas">
       <div class="nb-wrap"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div>
       <span>Upload</span>
     </button>
-    <button class="nb" id="nb-compress" onclick="goPage('compress')">
+    <button class="nb" id="nb-compress" onclick="goPage('compress')" aria-label="Kompres file">
       <div class="nb-wrap"><i class="ti ti-file-zip" aria-hidden="true"></i></div>
       <span>Kompres</span>
     </button>
   </div>
 
-  <!-- MODAL FRAME -->
-  <div class="modal-bg" id="frmModal">
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- MODAL FRAME FOTO -->
+  <div class="modal-bg" id="frmModal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal">
-      <div class="modal-title"><i class="ti ti-photo-plus" aria-hidden="true"></i> Tambah Frame Foto</div>
-      <div class="mgrid">
-        <button class="mgopt sel" id="ms-rect" onclick="selShape('rect',this)"><i class="ti ti-rectangle" aria-hidden="true"></i><span>Persegi panjang</span></button>
-        <button class="mgopt" id="ms-sq" onclick="selShape('square',this)"><i class="ti ti-square" aria-hidden="true"></i><span>Kotak</span></button>
-        <button class="mgopt" id="ms-ci" onclick="selShape('circle',this)"><i class="ti ti-circle" aria-hidden="true"></i><span>Lingkaran</span></button>
-        <button class="mgopt" id="ms-ktp" onclick="selShape('ktp',this)"><i class="ti ti-id" aria-hidden="true"></i><span>KTP 3×4</span></button>
+      <div class="modal-title" id="modal-title">
+        <i class="ti ti-photo-plus" aria-hidden="true"></i> Tambah Frame Foto
       </div>
-      <div class="mrow"><label>Lebar (px)</label><input type="number" id="frm-w" value="100" min="40" max="280"></div>
-      <div class="mrow"><label>Tinggi (px)</label><input type="number" id="frm-h" value="130" min="40" max="400"></div>
+      <div class="mgrid">
+        <button class="mgopt sel" id="ms-rect" onclick="selShape('rect',this)">
+          <i class="ti ti-rectangle" aria-hidden="true"></i><span>Persegi panjang</span>
+        </button>
+        <button class="mgopt" id="ms-sq" onclick="selShape('square',this)">
+          <i class="ti ti-square" aria-hidden="true"></i><span>Kotak</span>
+        </button>
+        <button class="mgopt" id="ms-ci" onclick="selShape('circle',this)">
+          <i class="ti ti-circle" aria-hidden="true"></i><span>Lingkaran</span>
+        </button>
+        <button class="mgopt" id="ms-ktp" onclick="selShape('ktp',this)">
+          <i class="ti ti-id" aria-hidden="true"></i><span>KTP 3×4</span>
+        </button>
+      </div>
+      <div class="mrow">
+        <label for="frm-w">Lebar (px)</label>
+        <input type="number" id="frm-w" value="100" min="40" max="280">
+      </div>
+      <div class="mrow">
+        <label for="frm-h">Tinggi (px)</label>
+        <input type="number" id="frm-h" value="130" min="40" max="400">
+      </div>
       <div class="mbtns">
         <button class="mb-c" onclick="closeFrmModal()">Batal</button>
         <button class="mb-ok" onclick="confirmFrame()">Tambah Frame</button>
@@ -490,251 +844,616 @@ input[type=range].cmp-slider{width:100%;accent-color:var(--navy);margin-bottom:1
     </div>
   </div>
 
-</div>
+</div><!-- /app -->
 
 <script>
-const TMPL={
-  cv:`<div style="text-align:center;margin-bottom:14px"><strong style="font-size:16px">NAMA LENGKAP</strong><br><span style="font-size:11px;color:#555">Posisi yang Dilamar</span><br><span style="font-size:10px;color:#777">email@email.com | 08xxxxxxxxxx | Kota, Indonesia</span></div><hr style="border:0;border-top:1.5px solid #1e3a8a;margin:10px 0"><strong>RINGKASAN PROFIL</strong><br><br>Tulis ringkasan profil profesional Anda di sini...<br><br><strong>PENGALAMAN KERJA</strong><br><br>• <strong>Posisi</strong> – Nama Perusahaan (Tahun–kini)<br>&nbsp;&nbsp;Deskripsi singkat pekerjaan dan pencapaian.<br><br><strong>PENDIDIKAN</strong><br><br>• <strong>S1 Nama Jurusan</strong> – Universitas (Tahun)<br><br><strong>KEAHLIAN</strong><br><br>• Keahlian 1 • Keahlian 2 • Keahlian 3`,
-  lamaran:`<div style="text-align:right;margin-bottom:18px">Jakarta, [Tanggal Bulan Tahun]</div>Kepada Yth.,<br>HRD / Manajer Rekrutmen<br>[Nama Perusahaan]<br>di tempat<br><br>Dengan hormat,<br><br>Saya yang bertanda tangan di bawah ini:<br>Nama&nbsp;&nbsp;&nbsp;&nbsp;: <strong>[Nama Lengkap]</strong><br>TTL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Kota, Tanggal Lahir]<br>No. HP&nbsp;: [Nomor Telepon]<br><br>Dengan ini mengajukan lamaran untuk posisi <strong>[Posisi yang Dilamar]</strong>.<br><br>Saya siap memberikan kontribusi terbaik bagi perusahaan Bapak/Ibu.<br><br>Demikian surat ini saya buat. Atas perhatiannya, terima kasih.<br><br><br>Hormat saya,<br><br><br>[Nama Lengkap]`,
-  berkas:`<div style="text-align:center;margin-bottom:14px"><strong style="font-size:14px">DAFTAR BERKAS PENDUKUNG</strong></div><table style="width:100%;border-collapse:collapse;font-size:11px"><tr style="background:#eff6ff"><td style="border:1px solid #bfdbfe;padding:5px 8px;font-weight:700">No.</td><td style="border:1px solid #bfdbfe;padding:5px 8px;font-weight:700">Nama Berkas</td><td style="border:1px solid #bfdbfe;padding:5px 8px;font-weight:700">Keterangan</td></tr><tr><td style="border:1px solid #bfdbfe;padding:5px 8px">1.</td><td style="border:1px solid #bfdbfe;padding:5px 8px">KTP</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Fotokopi</td></tr><tr><td style="border:1px solid #bfdbfe;padding:5px 8px">2.</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Ijazah</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Fotokopi</td></tr><tr><td style="border:1px solid #bfdbfe;padding:5px 8px">3.</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Transkrip Nilai</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Fotokopi</td></tr><tr><td style="border:1px solid #bfdbfe;padding:5px 8px">4.</td><td style="border:1px solid #bfdbfe;padding:5px 8px">Pas Foto 3×4</td><td style="border:1px solid #bfdbfe;padding:5px 8px">2 lembar</td></tr></table>`,
-  kosong:''
+// ─────────────────────────────────────────────
+// TEMPLATES
+// ─────────────────────────────────────────────
+const TMPL = {
+  cv: `<div style="text-align:center;margin-bottom:16px">
+    <strong style="font-size:17px;letter-spacing:.5px">NAMA LENGKAP</strong><br>
+    <span style="font-size:12px;color:#555">Posisi yang Dilamar</span><br>
+    <span style="font-size:11px;color:#777">email@email.com &nbsp;|&nbsp; 08xxxxxxxxxx &nbsp;|&nbsp; Kota, Indonesia</span>
+  </div>
+  <hr style="border:0;border-top:2px solid #1e3a8a;margin:12px 0">
+  <strong>RINGKASAN PROFIL</strong><br><br>
+  Tulis ringkasan profil profesional Anda di sini. Jelaskan pengalaman, keahlian utama, dan tujuan karir Anda secara singkat dan menarik.<br><br>
+  <strong>PENGALAMAN KERJA</strong><br><br>
+  • <strong>Nama Posisi</strong> – Nama Perusahaan &nbsp;(Tahun – kini)<br>
+  &nbsp;&nbsp;Deskripsi singkat tanggung jawab dan pencapaian penting.<br><br>
+  • <strong>Nama Posisi</strong> – Nama Perusahaan &nbsp;(Tahun – Tahun)<br>
+  &nbsp;&nbsp;Deskripsi singkat tanggung jawab dan pencapaian penting.<br><br>
+  <strong>PENDIDIKAN</strong><br><br>
+  • <strong>S1 Nama Jurusan</strong> – Nama Universitas &nbsp;(Tahun Lulus)<br><br>
+  <strong>KEAHLIAN</strong><br><br>
+  • Keahlian 1 &nbsp;&nbsp;•&nbsp; Keahlian 2 &nbsp;&nbsp;•&nbsp; Keahlian 3 &nbsp;&nbsp;•&nbsp; Keahlian 4`,
+
+  lamaran: `<div style="text-align:right;margin-bottom:20px">[Kota], [Tanggal Bulan Tahun]</div>
+  Kepada Yth.,<br>
+  HRD / Manajer Rekrutmen<br>
+  [Nama Perusahaan]<br>
+  di tempat<br><br>
+  Dengan hormat,<br><br>
+  Saya yang bertanda tangan di bawah ini:<br>
+  Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <strong>[Nama Lengkap]</strong><br>
+  TTL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Kota, Tanggal Lahir]<br>
+  Pendidikan : [Pendidikan Terakhir]<br>
+  No. HP &nbsp;&nbsp;&nbsp;&nbsp;: [Nomor Telepon]<br>
+  Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Email Anda]<br><br>
+  Dengan ini mengajukan permohonan untuk mengisi posisi <strong>[Posisi yang Dilamar]</strong> yang tersedia di perusahaan Bapak/Ibu yang terhormat.<br><br>
+  Saya memiliki pengalaman dan keahlian yang relevan, serta memiliki motivasi tinggi untuk berkontribusi secara maksimal bagi kemajuan perusahaan.<br><br>
+  Sebagai bahan pertimbangan, saya lampirkan dokumen pendukung beserta CV saya. Besar harapan saya untuk dapat mengikuti proses seleksi lebih lanjut.<br><br>
+  Demikian surat lamaran ini saya buat dengan sebenar-benarnya. Atas perhatian dan pertimbangan Bapak/Ibu, saya ucapkan terima kasih.<br><br><br>
+  Hormat saya,<br><br><br>
+  [Nama Lengkap]`,
+
+  berkas: `<div style="text-align:center;margin-bottom:18px">
+    <strong style="font-size:15px;letter-spacing:.5px;text-transform:uppercase">Daftar Berkas Pendukung</strong><br>
+    <span style="font-size:11px;color:#777">Nama Lengkap &nbsp;|&nbsp; [Posisi yang Dilamar]</span>
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-size:11px">
+    <tr style="background:#eff6ff">
+      <td style="border:1px solid #bfdbfe;padding:6px 9px;font-weight:700;width:40px">No.</td>
+      <td style="border:1px solid #bfdbfe;padding:6px 9px;font-weight:700">Nama Berkas</td>
+      <td style="border:1px solid #bfdbfe;padding:6px 9px;font-weight:700">Keterangan</td>
+      <td style="border:1px solid #bfdbfe;padding:6px 9px;font-weight:700;width:60px">Status</td>
+    </tr>
+    <tr><td style="border:1px solid #bfdbfe;padding:6px 9px">1.</td><td style="border:1px solid #bfdbfe;padding:6px 9px">KTP / Identitas</td><td style="border:1px solid #bfdbfe;padding:6px 9px">Fotokopi yang dilegalisir</td><td style="border:1px solid #bfdbfe;padding:6px 9px">✓</td></tr>
+    <tr><td style="border:1px solid #bfdbfe;padding:6px 9px">2.</td><td style="border:1px solid #bfdbfe;padding:6px 9px">Ijazah Terakhir</td><td style="border:1px solid #bfdbfe;padding:6px 9px">Fotokopi yang dilegalisir</td><td style="border:1px solid #bfdbfe;padding:6px 9px">✓</td></tr>
+    <tr><td style="border:1px solid #bfdbfe;padding:6px 9px">3.</td><td style="border:1px solid #bfdbfe;padding:6px 9px">Transkrip Nilai</td><td style="border:1px solid #bfdbfe;padding:6px 9px">Fotokopi yang dilegalisir</td><td style="border:1px solid #bfdbfe;padding:6px 9px">✓</td></tr>
+    <tr><td style="border:1px solid #bfdbfe;padding:6px 9px">4.</td><td style="border:1px solid #bfdbfe;padding:6px 9px">Pas Foto 3×4</td><td style="border:1px solid #bfdbfe;padding:6px 9px">Latar belakang merah, 2 lembar</td><td style="border:1px solid #bfdbfe;padding:6px 9px">✓</td></tr>
+    <tr><td style="border:1px solid #bfdbfe;padding:6px 9px">5.</td><td style="border:1px solid #bfdbfe;padding:6px 9px">Sertifikat Pendukung</td><td style="border:1px solid #bfdbfe;padding:6px 9px">Jika ada</td><td style="border:1px solid #bfdbfe;padding:6px 9px">—</td></tr>
+  </table>`,
+
+  kosong: ''
 };
-const PCTS={1:'20%',2:'60%',3:'85%'};
-const RATIOS={1:.82,2:.60,3:.38};
-let curPg=1,pgCount=1,activeFrame=null,pendingShape='rect',cmpLvl=2,cmpFile=null;
-let uplFiles=[],histItems=[];
 
-function goPage(p){
-  document.querySelectorAll('.pg').forEach(e=>e.classList.remove('on'));
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
-  document.getElementById('pg-'+p).classList.add('on');
-  document.getElementById('nb-'+p).classList.add('active');
-  const badge=document.getElementById('pro-badge');
-  badge.className=(p==='beranda'||p==='compress')?'pro-pill':'pro-pill-out';
-  if(p==='create'){setTimeout(()=>{const c=document.getElementById('doccontent-1');if(c&&!c.innerHTML.trim())c.focus();},80);}
-}
+const PCTS  = { 1: '20%', 2: '60%', 3: '85%' };
+const RATIOS = { 1: 0.82, 2: 0.60, 3: 0.38 };
 
-function applyTmpl(v){const el=document.getElementById('doccontent-'+curPg);if(el){el.innerHTML=TMPL[v]||'';updStat();}}
-function ef(cmd,val){document.execCommand(cmd,false,val||null);}
-function updStat(){
-  const el=document.getElementById('doccontent-'+curPg);if(!el)return;
-  const w=(el.innerText||'').trim().split(/\s+/).filter(Boolean).length;
-  document.getElementById('cv-stat').textContent=w+' kata · Halaman '+curPg+' dari '+pgCount;
-}
+// State
+let curPg = 1, pgCount = 1, activeFrame = null;
+let pendingShape = 'rect', cmpLvl = 2, cmpFile = null;
+let uplFiles = [], histItems = [];
 
-function addPage(){
-  pgCount++;const id=pgCount;
-  const canvas=document.getElementById('cvCanvas');
-  const lr=document.createElement('div');lr.className='cv-plr';lr.id='plr-'+id;lr.style.marginTop='20px';
-  lr.innerHTML=`<span class="cv-plabel">Halaman ${id}</span><button class="cv-pdel" onclick="delPage(${id})" aria-label="Hapus halaman ${id}"><i class="ti ti-trash" aria-hidden="true"></i> Hapus</button>`;
-  const pg=document.createElement('div');pg.className='cv-page';pg.id='docpage-'+id;
-  const ct=document.createElement('div');ct.className='cv-content';ct.id='doccontent-'+id;
-  ct.contentEditable='true';ct.onkeyup=updStat;ct.onclick=()=>{curPg=id;updStat();};
-  pg.appendChild(ct);canvas.appendChild(lr);canvas.appendChild(pg);
-  curPg=id;ct.focus();updStat();
+// ─────────────────────────────────────────────
+// NAVIGATION
+// ─────────────────────────────────────────────
+function goPage(p) {
+  document.querySelectorAll('.pg').forEach(e => e.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('active'));
+  document.getElementById('pg-' + p).classList.add('on');
+  document.getElementById('nb-' + p).classList.add('active');
+  const badge = document.getElementById('pro-badge');
+  badge.className = (p === 'beranda' || p === 'compress') ? 'pro-pill' : 'pro-pill-out';
+  if (p === 'create') {
+    setTimeout(() => {
+      const c = document.getElementById('doccontent-1');
+      if (c && !c.innerHTML.trim()) c.focus();
+    }, 80);
+  }
 }
 
-function delPage(id){
-  if(pgCount<=1){alert('Minimal harus ada 1 halaman!');return;}
-  const lr=document.getElementById('plr-'+id);const pg=document.getElementById('docpage-'+id);
-  if(lr)lr.remove();if(pg)pg.remove();pgCount--;if(curPg===id)curPg=1;updStat();
+// ─────────────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-function toggleGrid(){
-  const gp=document.getElementById('gridPanel'),btn=document.getElementById('gridBtn');
-  const show=gp.style.display!=='block';gp.style.display=show?'block':'none';btn.classList.toggle('on',show);
+// ─────────────────────────────────────────────
+// EDITOR – TEMPLATES & FORMAT
+// ─────────────────────────────────────────────
+function applyTmpl(v) {
+  const el = document.getElementById('doccontent-' + curPg);
+  if (el) { el.innerHTML = TMPL[v] || ''; updStat(); el.focus(); }
 }
 
-function insGrid(cols,rows,w,h){
-  const el=document.getElementById('doccontent-'+curPg);if(!el)return;el.focus();
-  const wrap=document.createElement('div');wrap.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin:5px 0;line-height:0';
-  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)wrap.appendChild(buildFrm(w,h,'rect'));
-  insNode(wrap);insNode(document.createElement('br'));
+function ef(cmd, val) { document.execCommand(cmd, false, val || null); }
+
+function updStat() {
+  const el = document.getElementById('doccontent-' + curPg);
+  if (!el) return;
+  const w = (el.innerText || '').trim().split(/\s+/).filter(Boolean).length;
+  document.getElementById('cv-stat').textContent = w + ' kata · Halaman ' + curPg + ' dari ' + pgCount;
 }
-function insSingle(w,h,shape){
-  const el=document.getElementById('doccontent-'+curPg);if(!el)return;el.focus();
-  insNode(buildFrm(w,h,shape));insNode(document.createElement('br'));
+
+// ─────────────────────────────────────────────
+// EDITOR – PAGES
+// ─────────────────────────────────────────────
+function addPage() {
+  pgCount++;
+  const id = pgCount;
+  const canvas = document.getElementById('cvCanvas');
+
+  const lr = document.createElement('div');
+  lr.className = 'cv-plr'; lr.id = 'plr-' + id; lr.style.marginTop = '20px';
+  lr.innerHTML = `<span class="cv-plabel">Halaman ${id}</span>
+    <button class="cv-pdel" onclick="delPage(${id})" aria-label="Hapus halaman ${id}">
+      <i class="ti ti-trash" aria-hidden="true"></i> Hapus</button>`;
+
+  const pg = document.createElement('div');
+  pg.className = 'cv-page'; pg.id = 'docpage-' + id;
+
+  const ct = document.createElement('div');
+  ct.className = 'cv-content'; ct.id = 'doccontent-' + id;
+  ct.contentEditable = 'true'; ct.setAttribute('role', 'textbox');
+  ct.onkeyup = updStat;
+  ct.onclick = () => { curPg = id; updStat(); };
+
+  pg.appendChild(ct);
+  canvas.appendChild(lr);
+  canvas.appendChild(pg);
+  curPg = id; ct.focus(); updStat();
+  showToast('Halaman ' + id + ' ditambahkan');
 }
-function buildFrm(w,h,shape){
-  const wr=document.createElement('span');wr.className='img-frame';
-  wr.style.cssText=`width:${w}px;height:${h}px;display:inline-block;vertical-align:top;position:relative;margin:3px`;
-  wr.setAttribute('data-shape',shape);
-  const inner=document.createElement('span');inner.className='img-frame-inner';
-  const br=shape==='circle'?'50%':'5px';
-  inner.style.cssText=`width:${w}px;height:${h}px;border-radius:${br};overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f4ff,#e8eef8);border:1.5px dashed #bfdbfe;position:relative;cursor:pointer`;
-  const ph=document.createElement('span');ph.className='fph';
-  ph.innerHTML='<i class="ti ti-camera-plus" aria-hidden="true"></i><span>Klik tambah<br>foto</span>';
+
+function delPage(id) {
+  if (pgCount <= 1) { showToast('Minimal harus ada 1 halaman!'); return; }
+  if (!confirm('Hapus halaman ' + id + '? Konten akan hilang.')) return;
+  const lr = document.getElementById('plr-' + id);
+  const pg = document.getElementById('docpage-' + id);
+  if (lr) lr.remove(); if (pg) pg.remove();
+  pgCount--;
+  if (curPg === id) curPg = 1;
+  updStat();
+  showToast('Halaman dihapus');
+}
+
+// ─────────────────────────────────────────────
+// EDITOR – GRID & FRAME
+// ─────────────────────────────────────────────
+function toggleGrid() {
+  const gp = document.getElementById('gridPanel'), btn = document.getElementById('gridBtn');
+  const show = gp.style.display !== 'block';
+  gp.style.display = show ? 'block' : 'none';
+  btn.classList.toggle('on', show);
+}
+
+function insGrid(cols, rows, w, h) {
+  const el = document.getElementById('doccontent-' + curPg);
+  if (!el) return; el.focus();
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'display:flex;flex-wrap:wrap;gap:5px;margin:6px 0;line-height:0';
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++)
+      wrap.appendChild(buildFrm(w, h, 'rect'));
+  insNode(wrap); insNode(document.createElement('br'));
+}
+
+function insSingle(w, h, shape) {
+  const el = document.getElementById('doccontent-' + curPg);
+  if (!el) return; el.focus();
+  insNode(buildFrm(w, h, shape));
+  insNode(document.createElement('br'));
+}
+
+function buildFrm(w, h, shape) {
+  const wr = document.createElement('span');
+  wr.className = 'img-frame';
+  wr.style.cssText = `width:${w}px;height:${h}px;display:inline-block;vertical-align:top;position:relative;margin:3px`;
+  wr.setAttribute('data-shape', shape);
+
+  const inner = document.createElement('span');
+  inner.className = 'img-frame-inner';
+  const br = shape === 'circle' ? '50%' : '6px';
+  inner.style.cssText = `width:${w}px;height:${h}px;border-radius:${br};overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f4ff,#e8eef8);border:1.5px dashed #bfdbfe;position:relative;cursor:pointer`;
+
+  const ph = document.createElement('span');
+  ph.className = 'fph';
+  ph.innerHTML = '<i class="ti ti-camera-plus" aria-hidden="true"></i><span>Klik<br>foto</span>';
   inner.appendChild(ph);
-  inner.onclick=(e)=>{e.stopPropagation();activeFrame=inner;document.getElementById('imgUp').click();};
-  const fdel=document.createElement('button');fdel.className='fdel';fdel.innerHTML='✕';
-  fdel.setAttribute('aria-label','Hapus frame');fdel.onclick=(e)=>{e.stopPropagation();wr.remove();};
+  inner.onclick = (e) => { e.stopPropagation(); activeFrame = inner; document.getElementById('imgUp').click(); };
+
+  // Delete button
+  const fdel = document.createElement('button');
+  fdel.className = 'fdel'; fdel.innerHTML = '✕';
+  fdel.setAttribute('aria-label', 'Hapus frame foto');
+  fdel.title = 'Hapus frame';
+  fdel.onclick = (e) => { e.stopPropagation(); wr.remove(); };
   wr.appendChild(fdel);
-  const rsz=document.createElement('span');rsz.className='frsz';rsz.innerHTML='<i class="ti ti-arrows-diagonal" aria-hidden="true"></i>';
-  rsz.onmousedown=(e)=>doResize(e,wr,inner,shape);
+
+  // Resize handle
+  const rsz = document.createElement('span');
+  rsz.className = 'frsz';
+  rsz.innerHTML = '<i class="ti ti-arrows-diagonal" aria-hidden="true"></i>';
+  rsz.onmousedown = (e) => doResize(e, wr, inner, shape);
   inner.appendChild(rsz);
-  const tb=document.createElement('span');tb.className='ftb';
-  tb.innerHTML='<button onclick="repImg(this)"><i class="ti ti-photo"></i> Ganti</button>';
-  wr.appendChild(tb);wr.appendChild(inner);return wr;
+
+  // Hover toolbar
+  const tb = document.createElement('span');
+  tb.className = 'ftb';
+  tb.innerHTML = '<button onclick="repImg(this)"><i class="ti ti-photo"></i> Ganti Foto</button>';
+  wr.appendChild(tb);
+  wr.appendChild(inner);
+  return wr;
 }
-function doResize(e,wr,inner,shape){
+
+function doResize(e, wr, inner, shape) {
   e.preventDefault();
-  const sx=e.clientX,sy=e.clientY,sw=parseInt(wr.style.width),sh=parseInt(wr.style.height);
-  const mv=(ev)=>{const nw=Math.max(40,sw+(ev.clientX-sx)),nh=Math.max(40,sh+(ev.clientY-sy));wr.style.width=nw+'px';wr.style.height=nh+'px';inner.style.width=nw+'px';inner.style.height=nh+'px';};
-  const up=()=>{document.removeEventListener('mousemove',mv);document.removeEventListener('mouseup',up);};
-  document.addEventListener('mousemove',mv);document.addEventListener('mouseup',up);
-}
-function repImg(btn){activeFrame=btn.closest('.img-frame').querySelector('.img-frame-inner');document.getElementById('imgUp').click();}
-function handleImgUp(input){
-  if(!input.files||!input.files[0])return;
-  const url=URL.createObjectURL(input.files[0]);if(!activeFrame)return;
-  const wr=activeFrame.closest('.img-frame');const shape=wr?wr.getAttribute('data-shape'):'rect';const br=shape==='circle'?'50%':'5px';
-  activeFrame.innerHTML='';activeFrame.classList.add('hi');
-  activeFrame.style.cssText+=`;border-radius:${br};background:#000;border:1.5px solid #bfdbfe`;
-  const img=document.createElement('img');img.src=url;img.alt='Foto';img.style.cssText='width:100%;height:100%;object-fit:cover;display:block';
-  const rsz=document.createElement('span');rsz.className='frsz';rsz.innerHTML='<i class="ti ti-arrows-diagonal"></i>';
-  rsz.onmousedown=(e)=>doResize(e,wr,activeFrame,shape);
-  activeFrame.appendChild(img);activeFrame.appendChild(rsz);
-  if(wr&&!wr.querySelector('.fdel')){const fd=document.createElement('button');fd.className='fdel';fd.innerHTML='✕';fd.setAttribute('aria-label','Hapus frame');fd.onclick=(e)=>{e.stopPropagation();wr.remove();};wr.appendChild(fd);}
-  input.value='';activeFrame=null;
-}
-function insNode(node){
-  const sel=window.getSelection();
-  if(sel&&sel.rangeCount){const r=sel.getRangeAt(0);r.deleteContents();r.insertNode(node);r.setStartAfter(node);r.collapse(true);sel.removeAllRanges();sel.addRange(r);}
-  else{const el=document.getElementById('doccontent-'+curPg);if(el)el.appendChild(node);}
-}
-function insHR(){ef('insertHTML','<hr style="border:0;border-top:1.5px solid #1e3a8a;margin:8px 0">');}
-function insTbl(){ef('insertHTML','<table style="width:100%;border-collapse:collapse;margin:6px 0;font-size:11px"><tr style="background:#eff6ff"><td style="border:1px solid #bfdbfe;padding:4px 7px">Kolom 1</td><td style="border:1px solid #bfdbfe;padding:4px 7px">Kolom 2</td><td style="border:1px solid #bfdbfe;padding:4px 7px">Kolom 3</td></tr><tr><td style="border:1px solid #bfdbfe;padding:4px 7px">&nbsp;</td><td style="border:1px solid #bfdbfe;padding:4px 7px">&nbsp;</td><td style="border:1px solid #bfdbfe;padding:4px 7px">&nbsp;</td></tr></table><br>');}
-
-function exportPDF(){
-  const pages=[];for(let i=1;i<=pgCount;i++){const el=document.getElementById('doccontent-'+i);if(el)pages.push(el.innerHTML);}
-  const body=pages.map((p,i)=>`<div class="pg">${p}</div>${i<pages.length-1?'<div style="page-break-after:always"></div>':''}`).join('');
-  const w=window.open('','_blank','width=820,height=920');
-  if(!w){alert('Izinkan pop-up untuk export PDF!');return;}
-  w.document.write(`<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>CV</title><style>*{box-sizing:border-box}body{font-family:'Times New Roman',serif;font-size:12pt;color:#000;margin:0;background:#fff}.pg{max-width:595px;margin:28px auto;padding:50px 55px}img{max-width:100%;height:auto}table{border-collapse:collapse;width:100%}td{border:1px solid #ccc;padding:5px 8px}hr{border:0;border-top:1.5px solid #1e3a8a;margin:8px 0}@media print{.pg{margin:0;padding:50px 55px}}</style></head><body>${body}<script>window.onload=()=>setTimeout(()=>window.print(),400)<\/script></body></html>`);
-  w.document.close();addHist('Dokumen_CV.pdf','cv');updStats();
-}
-function exportWord(){
-  const pages=[];for(let i=1;i<=pgCount;i++){const el=document.getElementById('doccontent-'+i);if(el)pages.push(el.innerText||'');}
-  const blob=new Blob(['\ufeff'+pages.join('\n\n--- Halaman Selanjutnya ---\n\n')],{type:'application/msword'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Dokumen_CV.doc';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
-  addHist('Dokumen_CV.doc','cv');updStats();
+  const sx = e.clientX, sy = e.clientY;
+  const sw = parseInt(wr.style.width), sh = parseInt(wr.style.height);
+  const mv = (ev) => {
+    const nw = Math.max(40, sw + (ev.clientX - sx));
+    const nh = Math.max(40, sh + (ev.clientY - sy));
+    wr.style.width = nw + 'px'; wr.style.height = nh + 'px';
+    inner.style.width = nw + 'px'; inner.style.height = nh + 'px';
+  };
+  const up = () => { document.removeEventListener('mousemove', mv); document.removeEventListener('mouseup', up); };
+  document.addEventListener('mousemove', mv);
+  document.addEventListener('mouseup', up);
 }
 
+function repImg(btn) {
+  activeFrame = btn.closest('.img-frame').querySelector('.img-frame-inner');
+  document.getElementById('imgUp').click();
+}
+
+function handleImgUp(input) {
+  if (!input.files || !input.files[0]) return;
+  const url = URL.createObjectURL(input.files[0]);
+  if (!activeFrame) return;
+  const wr = activeFrame.closest('.img-frame');
+  const shape = wr ? wr.getAttribute('data-shape') : 'rect';
+  const br = shape === 'circle' ? '50%' : '6px';
+  activeFrame.innerHTML = '';
+  activeFrame.classList.add('hi');
+  activeFrame.style.background = '#000';
+  activeFrame.style.border = '1.5px solid #bfdbfe';
+  activeFrame.style.borderRadius = br;
+  const img = document.createElement('img');
+  img.src = url; img.alt = 'Foto';
+  img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block';
+  const rsz = document.createElement('span');
+  rsz.className = 'frsz';
+  rsz.innerHTML = '<i class="ti ti-arrows-diagonal"></i>';
+  rsz.onmousedown = (e) => doResize(e, wr, activeFrame, shape);
+  activeFrame.appendChild(img);
+  activeFrame.appendChild(rsz);
+  if (wr && !wr.querySelector('.fdel')) {
+    const fd = document.createElement('button');
+    fd.className = 'fdel'; fd.innerHTML = '✕';
+    fd.setAttribute('aria-label', 'Hapus frame foto');
+    fd.onclick = (e) => { e.stopPropagation(); wr.remove(); };
+    wr.appendChild(fd);
+  }
+  input.value = ''; activeFrame = null;
+  showToast('Foto berhasil ditambahkan!');
+}
+
+function insNode(node) {
+  const sel = window.getSelection();
+  if (sel && sel.rangeCount) {
+    const r = sel.getRangeAt(0);
+    r.deleteContents(); r.insertNode(node);
+    r.setStartAfter(node); r.collapse(true);
+    sel.removeAllRanges(); sel.addRange(r);
+  } else {
+    const el = document.getElementById('doccontent-' + curPg);
+    if (el) el.appendChild(node);
+  }
+}
+
+function insHR() { ef('insertHTML', '<hr style="border:0;border-top:2px solid #1e3a8a;margin:10px 0">'); }
+
+function insTbl() {
+  ef('insertHTML',
+    '<table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:11px">' +
+    '<tr style="background:#eff6ff">' +
+    '<td style="border:1px solid #bfdbfe;padding:5px 8px;font-weight:700">Kolom 1</td>' +
+    '<td style="border:1px solid #bfdbfe;padding:5px 8px;font-weight:700">Kolom 2</td>' +
+    '<td style="border:1px solid #bfdbfe;padding:5px 8px;font-weight:700">Kolom 3</td>' +
+    '</tr><tr>' +
+    '<td style="border:1px solid #bfdbfe;padding:5px 8px">&nbsp;</td>' +
+    '<td style="border:1px solid #bfdbfe;padding:5px 8px">&nbsp;</td>' +
+    '<td style="border:1px solid #bfdbfe;padding:5px 8px">&nbsp;</td>' +
+    '</tr></table><br>');
+}
+
+// ─────────────────────────────────────────────
+// EXPORT
+// ─────────────────────────────────────────────
+function exportPDF() {
+  const pages = [];
+  for (let i = 1; i <= pgCount; i++) {
+    const el = document.getElementById('doccontent-' + i);
+    if (el) pages.push(el.innerHTML);
+  }
+  const combined = pages.map((p, i) =>
+    `<div class="pg">${p}</div>${i < pages.length - 1 ? '<div style="page-break-after:always"></div>' : ''}`
+  ).join('');
+  const w = window.open('', '_blank', 'width=860,height=960');
+  if (!w) { showToast('Izinkan pop-up untuk export PDF!'); return; }
+  w.document.write(`<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8"><title>CV Builder Pro – Dokumen</title>
+<style>
+  *{box-sizing:border-box}
+  body{font-family:'Times New Roman',Times,serif;font-size:12pt;color:#000;margin:0;background:#fff}
+  .pg{max-width:595px;margin:28px auto;padding:52px 58px;background:#fff}
+  img{max-width:100%;height:auto}
+  table{border-collapse:collapse;width:100%}
+  td{border:1px solid #ccc;padding:5px 8px}
+  hr{border:0;border-top:2px solid #1e3a8a;margin:10px 0}
+  .img-frame{display:inline-block;vertical-align:top;margin:3px;position:relative}
+  .img-frame-inner{overflow:hidden;display:inline-flex}
+  .img-frame-inner img{width:100%;height:100%;object-fit:cover;display:block}
+  .fdel,.frsz,.ftb{display:none!important}
+  @media print{.pg{margin:0;padding:52px 58px}body{background:#fff}}
+</style></head><body>${combined}
+<script>window.onload=()=>setTimeout(()=>window.print(),500);<\/script>
+</body></html>`);
+  w.document.close();
+  addHist('Dokumen_CV.pdf', 'cv');
+  updStats();
+  showToast('Membuka dialog print PDF...');
+}
+
+function exportWord() {
+  const pages = [];
+  for (let i = 1; i <= pgCount; i++) {
+    const el = document.getElementById('doccontent-' + i);
+    if (el) pages.push(el.innerText || '');
+  }
+  const content = pages.join('\n\n' + '─'.repeat(40) + '\n\n');
+  const blob = new Blob(['\ufeff' + content], { type: 'application/msword;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'Dokumen_CV.doc';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+  addHist('Dokumen_CV.doc', 'cv');
+  updStats();
+  showToast('File Word berhasil diunduh!');
+}
+
+// ─────────────────────────────────────────────
 // UPLOAD
-function switchUTab(t,btn){
-  document.querySelectorAll('.utab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
-  document.getElementById('upl-hint').textContent=t==='foto'?'Format: JPG, PNG — maks 10MB per file':'Format: PDF, DOCX, TXT — maks 10MB per file';
-  document.getElementById('uplFilesIn').accept=t==='foto'?'image/*':'.pdf,.docx,.txt,.doc';
+// ─────────────────────────────────────────────
+function switchUTab(t, btn) {
+  document.querySelectorAll('.utab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  const hint = t === 'foto'
+    ? 'Format: JPG, PNG, GIF — maks 10MB per file'
+    : 'Format: PDF, DOCX, TXT, DOC — maks 10MB per file';
+  document.getElementById('upl-hint').textContent = hint;
+  document.getElementById('uplFilesIn').accept = t === 'foto' ? 'image/*' : '.pdf,.docx,.txt,.doc';
 }
-function handleUplFiles(files){
-  for(const f of files){uplFiles.push(f);addHist(f.name,'up');}
-  renderFGrid();updStats();
+
+function handleUplFiles(files) {
+  let added = 0;
+  for (const f of files) {
+    if (f.size > 10 * 1024 * 1024) { showToast(f.name + ' melebihi 10MB, dilewati.'); continue; }
+    uplFiles.push(f);
+    addHist(f.name, 'up');
+    added++;
+  }
+  renderFGrid(); updStats();
+  if (added > 0) showToast(added + ' file berhasil diupload!');
 }
-function renderFGrid(){
-  const g=document.getElementById('file-grid');const empty=document.getElementById('upl-empty');
-  document.getElementById('file-count').textContent=uplFiles.length;
-  if(!uplFiles.length){g.innerHTML='';empty.style.display='block';document.getElementById('btn-gabung').style.display='none';return;}
-  empty.style.display='none';g.innerHTML='';
-  uplFiles.forEach((f,i)=>{
-    const ext=(f.name.split('.').pop()||'').toLowerCase();const isImg=['jpg','jpeg','png','gif','webp'].includes(ext);
-    const d=document.createElement('div');d.className='fthumb';
-    if(isImg){const url=URL.createObjectURL(f);d.innerHTML=`<img src="${url}" alt="${f.name}"><p title="${f.name}">${f.name}</p><button class="frem" onclick="remFile(${i})" aria-label="Hapus">✕</button>`;}
-    else{
-      const cls=ext==='pdf'?'background:#fef2f2;color:#ef4444':ext==='docx'||ext==='doc'?'background:#eff6ff;color:#2563eb':'background:#f0fdf4;color:#16a34a';
-      const ic=ext==='pdf'?'ti-file-type-pdf':ext==='docx'||ext==='doc'?'ti-file-type-doc':'ti-file';
-      d.innerHTML=`<div class="fthumb-ic" style="${cls}"><i class="ti ${ic}"></i></div><p title="${f.name}">${f.name}</p><button class="frem" onclick="remFile(${i})" aria-label="Hapus">✕</button>`;
+
+function renderFGrid() {
+  const g = document.getElementById('file-grid');
+  const empty = document.getElementById('upl-empty');
+  document.getElementById('file-count').textContent = uplFiles.length;
+  if (!uplFiles.length) {
+    g.innerHTML = '';
+    empty.style.display = 'block';
+    document.getElementById('btn-gabung').style.display = 'none';
+    return;
+  }
+  empty.style.display = 'none';
+  g.innerHTML = '';
+  uplFiles.forEach((f, i) => {
+    const ext = (f.name.split('.').pop() || '').toLowerCase();
+    const isImg = ['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext);
+    const d = document.createElement('div'); d.className = 'fthumb';
+    if (isImg) {
+      const url = URL.createObjectURL(f);
+      d.innerHTML = `<img src="${url}" alt="${f.name}" loading="lazy">
+        <p title="${f.name}">${f.name}</p>
+        <button class="frem" onclick="remFile(${i})" aria-label="Hapus ${f.name}">✕</button>`;
+    } else {
+      const cls = ext === 'pdf' ? 'background:#fef2f2;color:#ef4444'
+        : ext === 'docx' || ext === 'doc' ? 'background:#eff6ff;color:#2563eb'
+        : 'background:#f0fdf4;color:#16a34a';
+      const ic = ext === 'pdf' ? 'ti-file-type-pdf'
+        : ext === 'docx' || ext === 'doc' ? 'ti-file-type-doc' : 'ti-file';
+      d.innerHTML = `<div class="fthumb-ic" style="${cls}"><i class="ti ${ic}"></i></div>
+        <p title="${f.name}">${f.name}</p>
+        <button class="frem" onclick="remFile(${i})" aria-label="Hapus ${f.name}">✕</button>`;
     }
     g.appendChild(d);
   });
-  document.getElementById('btn-gabung').style.display=uplFiles.length>1?'flex':'none';
-}
-function remFile(i){uplFiles.splice(i,1);renderFGrid();}
-function doMerge(){
-  if(uplFiles.length<2)return;
-  const m=uplFiles.map((f,i)=>`${i+1}. ${f.name} (${fmtSz(f.size)})`).join('\n');
-  const blob=new Blob([`DAFTAR BERKAS GABUNGAN\n${'='.repeat(28)}\n\n${m}\n\nTotal: ${uplFiles.length} file\nDibuat: ${new Date().toLocaleDateString('id-ID')}`],{type:'text/plain'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Berkas_Gabungan.txt';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);
-  addHist('Berkas_Gabungan.txt','up');updStats();
+  document.getElementById('btn-gabung').style.display = uplFiles.length > 1 ? 'flex' : 'none';
 }
 
+function remFile(i) {
+  const name = uplFiles[i].name;
+  uplFiles.splice(i, 1); renderFGrid();
+  showToast(name + ' dihapus');
+}
+
+function doMerge() {
+  if (uplFiles.length < 2) return;
+  const manifest = uplFiles.map((f, i) => `${i + 1}. ${f.name} (${fmtSz(f.size)})`).join('\n');
+  const now = new Date();
+  const blob = new Blob([
+    `DAFTAR BERKAS GABUNGAN\n${'═'.repeat(30)}\n\n` +
+    manifest + '\n\n' +
+    `Total: ${uplFiles.length} file\n` +
+    `Dibuat: ${now.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}\n` +
+    `Pukul: ${now.toLocaleTimeString('id-ID')}`
+  ], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Berkas_Gabungan.txt';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  addHist('Berkas_Gabungan.txt', 'up'); updStats();
+  showToast('Berkas gabungan berhasil diunduh!');
+}
+
+// ─────────────────────────────────────────────
 // KOMPRES
-function fmtSz(b){if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';return(b/1048576).toFixed(1)+' MB';}
-function updCmpLvl(v){cmpLvl=parseInt(v);document.getElementById('cmp-pct').textContent=PCTS[cmpLvl];}
-function loadCmpFile(inp){
-  const f=inp.files[0];if(!f)return;cmpFile=f;
-  const ext=(f.name.split('.').pop()||'').toLowerCase();
-  const icoMap={pdf:'ti-file-type-pdf',docx:'ti-file-type-doc',doc:'ti-file-type-doc',jpg:'ti-photo',jpeg:'ti-photo',png:'ti-photo'};
-  document.getElementById('cfi-ico').className='ti '+(icoMap[ext]||'ti-file');
-  document.getElementById('cfi-name').textContent=f.name;
-  document.getElementById('cfi-size').textContent=fmtSz(f.size);
-  document.getElementById('cmp-info').style.display='flex';
-  document.getElementById('cmp-result').style.display='none';
+// ─────────────────────────────────────────────
+function fmtSz(b) {
+  if (b < 1024) return b + ' B';
+  if (b < 1048576) return (b / 1024).toFixed(1) + ' KB';
+  return (b / 1048576).toFixed(1) + ' MB';
 }
-async function startCompress(){
-  if(!cmpFile){alert('Pilih file terlebih dahulu!');return;}
-  const btn=document.getElementById('btn-kompres');btn.disabled=true;
-  const th=document.getElementById('ai-think');th.style.display='block';
-  document.getElementById('cmp-result').style.display='none';
-  const msgs=['AI menganalisis struktur file...','Mendeteksi redundansi data...','Menerapkan algoritma kompresi cerdas...','Finalisasi & verifikasi kualitas...'];
-  let mi=0;const iv=setInterval(()=>{if(mi<msgs.length)document.getElementById('think-msg').textContent=msgs[mi++];},800);
-  await new Promise(r=>setTimeout(r,3500));
-  clearInterval(iv);th.style.display='none';btn.disabled=false;
-  const ratio=RATIOS[cmpLvl];const orig=cmpFile.size;const newSz=Math.round(orig*ratio);const saved=Math.round((1-ratio)*100);
-  document.getElementById('sz-bef').textContent=fmtSz(orig);
-  document.getElementById('sz-aft').textContent=fmtSz(newSz);
-  document.getElementById('sav-strip').textContent='✓ Berhasil menghemat '+saved+'% ukuran file!';
-  document.getElementById('cmp-result').style.display='block';
-  addHist(cmpFile.name,'cp');updStats();
-  setTimeout(()=>document.getElementById('cmp-result').scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+
+function updCmpLvl(v) {
+  cmpLvl = parseInt(v);
+  document.getElementById('cmp-pct').textContent = PCTS[cmpLvl];
 }
-function dlCompressed(){
-  if(!cmpFile)return;
-  const reader=new FileReader();
-  reader.onload=(e)=>{const a=document.createElement('a');a.href=e.target.result;const ext=cmpFile.name.split('.').pop();a.download=cmpFile.name.replace('.'+ext,'')+'_compressed.'+ext;document.body.appendChild(a);a.click();document.body.removeChild(a);};
+
+function loadCmpFile(inp) {
+  const f = inp.files[0]; if (!f) return;
+  if (f.size > 10 * 1024 * 1024) { showToast('File melebihi batas 10MB!'); return; }
+  cmpFile = f;
+  const ext = (f.name.split('.').pop() || '').toLowerCase();
+  const icoMap = { pdf: 'ti-file-type-pdf', docx: 'ti-file-type-doc', doc: 'ti-file-type-doc', jpg: 'ti-photo', jpeg: 'ti-photo', png: 'ti-photo', gif: 'ti-photo', webp: 'ti-photo' };
+  document.getElementById('cfi-ico').className = 'ti ' + (icoMap[ext] || 'ti-file');
+  document.getElementById('cfi-name').textContent = f.name;
+  document.getElementById('cfi-size').textContent = fmtSz(f.size);
+  document.getElementById('cmp-info').style.display = 'flex';
+  document.getElementById('cmp-result').style.display = 'none';
+  inp.value = '';
+  showToast('File ' + f.name + ' siap dikompres');
+}
+
+async function startCompress() {
+  if (!cmpFile) { showToast('Pilih file terlebih dahulu!'); return; }
+  const btn = document.getElementById('btn-kompres');
+  btn.disabled = true; btn.innerHTML = '<i class="ti ti-loader-2" aria-hidden="true"></i> Memproses...';
+  const th = document.getElementById('ai-think'); th.style.display = 'block';
+  document.getElementById('cmp-result').style.display = 'none';
+  const msgs = [
+    'AI menganalisis struktur file...',
+    'Mendeteksi redundansi data...',
+    'Menerapkan algoritma kompresi cerdas...',
+    'Mengoptimalkan metadata dokumen...',
+    'Finalisasi & verifikasi kualitas...'
+  ];
+  let mi = 0;
+  const iv = setInterval(() => {
+    if (mi < msgs.length) document.getElementById('think-msg').textContent = msgs[mi++];
+  }, 720);
+  await new Promise(r => setTimeout(r, 3800));
+  clearInterval(iv); th.style.display = 'none';
+  btn.disabled = false; btn.innerHTML = '<i class="ti ti-file-zip" aria-hidden="true"></i> Kompres Sekarang';
+  const ratio = RATIOS[cmpLvl];
+  const orig = cmpFile.size;
+  const newSz = Math.round(orig * ratio);
+  const saved = Math.round((1 - ratio) * 100);
+  document.getElementById('sz-bef').textContent = fmtSz(orig);
+  document.getElementById('sz-aft').textContent = fmtSz(newSz);
+  document.getElementById('sav-strip').textContent = '✓ Berhasil menghemat ' + saved + '% ukuran file!';
+  document.getElementById('cmp-result').style.display = 'block';
+  addHist(cmpFile.name, 'cp'); updStats();
+  showToast('Kompresi selesai! Hemat ' + saved + '%');
+  setTimeout(() => document.getElementById('cmp-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+}
+
+function dlCompressed() {
+  if (!cmpFile) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const a = document.createElement('a'); a.href = e.target.result;
+    const parts = cmpFile.name.split('.');
+    const ext = parts.pop();
+    a.download = parts.join('.') + '_compressed.' + ext;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    showToast('File terkompres berhasil diunduh!');
+  };
   reader.readAsDataURL(cmpFile);
 }
 
+// ─────────────────────────────────────────────
 // HISTORY & STATS
-function addHist(name,type){histItems.unshift({name,type,time:new Date()});renderHist();}
-function renderHist(){
-  const el=document.getElementById('hist-list');
-  if(!histItems.length){
-    el.innerHTML=`<div class="riwayat-empty"><div class="r-empty-thumb"><i class="ti ti-files"></i></div><h4>Belum ada dokumen</h4><p>Mulai buat CV profesional Anda yang pertama atau upload berkas yang sudah ada untuk dikelola di sini.</p><div class="btn-row"><button class="btn-solid" onclick="goPage('create')"><i class="ti ti-plus"></i> Buat CV</button><button class="btn-outline" onclick="goPage('upload')"><i class="ti ti-upload"></i> Upload</button></div></div>`;return;
+// ─────────────────────────────────────────────
+function addHist(name, type) {
+  histItems.unshift({ name, type, time: new Date() });
+  renderHist();
+}
+
+function renderHist() {
+  const el = document.getElementById('hist-list');
+  if (!histItems.length) {
+    el.innerHTML = `<div class="riwayat-empty">
+      <div class="r-empty-thumb"><i class="ti ti-files" aria-hidden="true"></i></div>
+      <h4>Belum ada dokumen</h4>
+      <p>Mulai buat CV profesional Anda yang pertama atau upload berkas yang sudah ada.</p>
+      <div class="btn-row">
+        <button class="btn-solid" onclick="goPage('create')"><i class="ti ti-plus"></i> Buat CV</button>
+        <button class="btn-outline" onclick="goPage('upload')"><i class="ti ti-upload"></i> Upload</button>
+      </div></div>`;
+    return;
   }
-  el.innerHTML='';
-  histItems.slice(0,12).forEach(h=>{
-    const isCp=h.type==='cp',isUp=h.type==='up';
-    const ic=isCp?'ti-file-zip':isUp?'ti-cloud-upload':'ti-file-type-pdf';
-    const txt=isCp?'Kompres':isUp?'Upload':'Dokumen CV';
-    const cls=isCp?'cp':isUp?'up':'cv';
-    const t=h.time.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
-    const dt=h.time.toLocaleDateString('id-ID',{day:'numeric',month:'short'});
-    const c=document.createElement('div');c.className='hist-row';
-    c.innerHTML=`<div class="h-ic ${cls}"><i class="ti ${ic}"></i></div><div style="flex:1"><div class="h-name">${h.name}</div><div class="h-sub">${dt} · ${t}</div></div><span class="h-badge ${cls}">${txt}</span>`;
-    el.appendChild(c);
+  el.innerHTML = '';
+  histItems.slice(0, 15).forEach(h => {
+    const isCp = h.type === 'cp', isUp = h.type === 'up';
+    const ic = isCp ? 'ti-file-zip' : isUp ? 'ti-cloud-upload' : 'ti-file-type-pdf';
+    const txt = isCp ? 'Kompres' : isUp ? 'Upload' : 'Dokumen CV';
+    const cls = isCp ? 'cp' : isUp ? 'up' : 'cv';
+    const t = h.time.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    const dt = h.time.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
+    const row = document.createElement('div'); row.className = 'hist-row';
+    row.innerHTML = `<div class="h-ic ${cls}"><i class="ti ${ic}"></i></div>
+      <div style="flex:1;min-width:0">
+        <div class="h-name">${h.name}</div>
+        <div class="h-sub">${dt} · ${t}</div>
+      </div>
+      <span class="h-badge ${cls}">${txt}</span>`;
+    el.appendChild(row);
   });
 }
-function updStats(){
-  document.getElementById('st-cv').textContent=histItems.filter(h=>h.type==='cv').length;
-  document.getElementById('st-up').textContent=uplFiles.length;
-  document.getElementById('st-cp').textContent=histItems.filter(h=>h.type==='cp').length;
+
+function updStats() {
+  document.getElementById('st-cv').textContent = histItems.filter(h => h.type === 'cv').length;
+  document.getElementById('st-up').textContent = uplFiles.length;
+  document.getElementById('st-cp').textContent = histItems.filter(h => h.type === 'cp').length;
 }
 
-// MODAL
-function showFrmModal(){document.getElementById('frmModal').classList.add('open');}
-function closeFrmModal(){document.getElementById('frmModal').classList.remove('open');}
-function selShape(s,btn){
-  pendingShape=s;document.querySelectorAll('.mgopt').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');
-  const def={rect:{w:100,h:130},square:{w:100,h:100},circle:{w:100,h:100},ktp:{w:78,h:104}};
-  document.getElementById('frm-w').value=def[s].w;document.getElementById('frm-h').value=def[s].h;
-}
-function confirmFrame(){
-  const w=parseInt(document.getElementById('frm-w').value)||100,h=parseInt(document.getElementById('frm-h').value)||130;
-  const el=document.getElementById('doccontent-'+curPg);if(el)el.focus();
-  insNode(buildFrm(w,h,pendingShape));closeFrmModal();
+// ─────────────────────────────────────────────
+// MODAL FRAME
+// ─────────────────────────────────────────────
+function showFrmModal() { document.getElementById('frmModal').classList.add('open'); }
+function closeFrmModal() { document.getElementById('frmModal').classList.remove('open'); }
+
+function selShape(s, btn) {
+  pendingShape = s;
+  document.querySelectorAll('.mgopt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  const def = { rect: { w: 100, h: 130 }, square: { w: 100, h: 100 }, circle: { w: 100, h: 100 }, ktp: { w: 78, h: 104 } };
+  document.getElementById('frm-w').value = def[s].w;
+  document.getElementById('frm-h').value = def[s].h;
 }
 
-setTimeout(()=>updStat(),100);
+function confirmFrame() {
+  const w = parseInt(document.getElementById('frm-w').value) || 100;
+  const h = parseInt(document.getElementById('frm-h').value) || 130;
+  if (w < 40 || w > 280 || h < 40 || h > 400) { showToast('Ukuran frame tidak valid!'); return; }
+  const el = document.getElementById('doccontent-' + curPg);
+  if (el) el.focus();
+  insNode(buildFrm(w, h, pendingShape));
+  closeFrmModal();
+  showToast('Frame foto ditambahkan!');
+}
+
+// Close modal on backdrop click
+document.getElementById('frmModal').addEventListener('click', function(e) {
+  if (e.target === this) closeFrmModal();
+});
+
+// Keyboard shortcut: Escape to close modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeFrmModal();
+});
+
+// Init
+setTimeout(() => updStat(), 100);
 </script>
+</body>
+</html>
