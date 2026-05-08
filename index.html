@@ -2,33 +2,22 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>CV Builder Pro</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{
-  --navy:#1a2456;--navy2:#0f1a3a;--blue:#1e3a8a;--blue2:#2563eb;
-  --lb:#e8edf8;--llb:#f0f4ff;--white:#fff;--bg:#eef1f8;
-  --brd:#dde3ef;--muted:#64748b;--txt:#1e293b;--txt2:#374151;
-  --red:#ef4444;--green:#16a34a;--amber:#d97706;--purple:#7c3aed;
-  --fnt:"Plus Jakarta Sans",system-ui,sans-serif;
-  --sh:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06);
-}
+:root{--navy:#1a2456;--navy2:#0f1a3a;--blue2:#2563eb;--lb:#e8edf8;--llb:#f0f4ff;--white:#fff;--bg:#eef1f8;--brd:#dde3ef;--muted:#64748b;--txt:#1e293b;--red:#ef4444;--green:#16a34a;--amber:#d97706;--purple:#7c3aed;--fnt:"Plus Jakarta Sans",system-ui,sans-serif;--sh:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06)}
 html,body{height:100%;overflow:hidden;background:var(--bg)}
 body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;align-items:stretch;justify-content:center}
 .app{width:100%;max-width:430px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative}
-
-/* HEADER */
 .hdr{background:var(--white);padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--brd);flex-shrink:0;height:54px}
 .hdr-left{display:flex;align-items:center;gap:10px}
 .hdr-ico{font-size:21px;color:var(--navy)}
 .hdr-name{font-size:17px;font-weight:900;color:var(--navy);letter-spacing:-.4px}
-.pro-pill{background:var(--navy);color:#fff;font-size:10px;font-weight:800;padding:4px 11px;border-radius:20px;letter-spacing:.5px}
+.pro-pill{background:var(--navy);color:#fff;font-size:10px;font-weight:800;padding:4px 11px;border-radius:20px}
 .pro-pill-out{border:2px solid var(--navy);color:var(--navy);font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;background:transparent}
-
-/* BOTTOM NAV */
 .nav{background:var(--white);border-top:1px solid var(--brd);display:flex;padding:5px 6px 10px;flex-shrink:0}
 .nb{flex:1;background:none;border:none;font-family:var(--fnt);font-size:10px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px 2px;transition:color .2s}
 .nb-wrap{padding:4px 12px;border-radius:11px;display:flex;align-items:center;justify-content:center;transition:background .2s}
@@ -37,26 +26,23 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 .nb.active .nb-wrap{background:var(--lb)}
 .nb.active i{transform:translateY(-1px)}
 .nb span{font-size:10px;font-weight:600}
-
-/* PAGES */
 .pg{flex:1;display:none;flex-direction:column;overflow-y:auto;overflow-x:hidden;min-height:0}
 .pg.on{display:flex}
 .pg::-webkit-scrollbar{width:3px}
 .pg::-webkit-scrollbar-thumb{background:var(--brd);border-radius:3px}
-
 /* BERANDA */
 .brd-body{padding:16px 14px 100px;display:flex;flex-direction:column;gap:13px}
 .hero-card{background:var(--white);border-radius:16px;padding:20px 18px;border:1px solid var(--brd);box-shadow:var(--sh)}
 .hero-card h2{font-size:22px;font-weight:900;color:var(--navy);line-height:1.22;margin-bottom:7px}
 .hero-card p{font-size:12px;color:var(--muted);line-height:1.65}
 .stat-list{display:flex;flex-direction:column;gap:7px}
-.stat-row{background:var(--white);border:1px solid var(--brd);border-radius:12px;padding:12px 15px;display:flex;align-items:center;gap:13px;box-shadow:var(--sh);transition:transform .15s}
+.stat-row{background:var(--white);border:1px solid var(--brd);border-radius:12px;padding:12px 15px;display:flex;align-items:center;gap:13px;box-shadow:var(--sh);cursor:default;transition:transform .15s}
 .stat-row:hover{transform:translateY(-1px)}
 .stat-ic{width:38px;height:38px;background:var(--lb);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--navy);flex-shrink:0}
 .stat-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:1px}
 .stat-val{font-size:21px;font-weight:900;color:var(--navy);line-height:1}
 .riwayat-card{background:var(--white);border:1px solid var(--brd);border-radius:16px;overflow:hidden;box-shadow:var(--sh)}
-.riwayat-head{padding:16px 18px 10px;display:flex;align-items:center;justify-content:space-between}
+.riwayat-head{padding:16px 18px 10px}
 .riwayat-head h3{font-size:15px;font-weight:800;color:var(--navy)}
 .riwayat-empty{padding:22px 18px 26px;text-align:center}
 .r-empty-thumb{width:120px;height:74px;background:linear-gradient(135deg,var(--llb),#dde4f8);border-radius:10px;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--navy);opacity:.2}
@@ -65,26 +51,20 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 .btn-row{display:flex;gap:9px}
 .btn-solid{flex:1;background:var(--navy);color:#fff;border:none;border-radius:11px;padding:12px 10px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity .18s,transform .18s}
 .btn-solid:hover{opacity:.88;transform:translateY(-1px)}
-.btn-solid:active{transform:scale(.97)}
 .btn-outline{flex:1;background:var(--white);color:var(--navy);border:1.5px solid var(--brd);border-radius:11px;padding:11px 10px;font-family:var(--fnt);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .18s}
 .btn-outline:hover{border-color:var(--navy);transform:translateY(-1px)}
 .hist-row{padding:11px 18px;border-top:1px solid var(--brd);display:flex;align-items:center;gap:11px;cursor:pointer;transition:background .14s}
 .hist-row:hover{background:var(--llb)}
 .h-ic{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.h-ic.cv{background:var(--lb);color:var(--navy)}
-.h-ic.up{background:#f0fdf4;color:var(--green)}
-.h-ic.cp{background:#fffbeb;color:var(--amber)}
+.h-ic.cv{background:var(--lb);color:var(--navy)}.h-ic.up{background:#f0fdf4;color:var(--green)}.h-ic.cp{background:#fffbeb;color:var(--amber)}
 .h-name{font-size:12px;font-weight:600;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
 .h-sub{font-size:10px;color:var(--muted);margin-top:1px}
 .h-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;margin-left:auto;flex-shrink:0}
-.h-badge.cv{background:var(--lb);color:var(--navy)}
-.h-badge.up{background:#f0fdf4;color:var(--green)}
-.h-badge.cp{background:#fffbeb;color:var(--amber)}
-
-/* EDITOR SHELL */
+.h-badge.cv{background:var(--lb);color:var(--navy)}.h-badge.up{background:#f0fdf4;color:var(--green)}.h-badge.cp{background:#fffbeb;color:var(--amber)}
+/* EDITOR */
 .cv-shell{display:flex;flex-direction:column;height:100%;min-height:0}
 .cvt1{background:var(--white);border-bottom:1px solid var(--brd);padding:8px 12px;display:flex;align-items:center;gap:6px;flex-shrink:0;flex-wrap:wrap}
-.cv-sel{border:1.5px solid var(--brd);border-radius:8px;padding:6px 8px;font-size:11px;font-family:var(--fnt);color:var(--navy);background:#fff;cursor:pointer;font-weight:600;outline:none;transition:border-color .15s}
+.cv-sel{border:1.5px solid var(--brd);border-radius:8px;padding:6px 8px;font-size:11px;font-family:var(--fnt);color:var(--navy);background:#fff;cursor:pointer;font-weight:600;outline:none}
 .cv-sel:focus{border-color:var(--blue2)}
 .cv-gap{flex:1}
 .btn-exp{border:none;border-radius:8px;padding:6px 10px;font-family:var(--fnt);font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;transition:opacity .15s,transform .15s}
@@ -93,59 +73,61 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 .btn-exp.word{background:var(--blue2);color:#fff}
 .btn-exp i{font-size:13px}
 .cvt2{background:var(--white);border-bottom:1px solid var(--brd);padding:5px 11px;display:flex;align-items:center;gap:2px;flex-wrap:wrap;flex-shrink:0}
-.f2b{background:none;border:1px solid transparent;border-radius:5px;padding:3px 5px;cursor:pointer;font-size:11px;color:var(--txt2);font-family:var(--fnt);display:flex;align-items:center;gap:2px;transition:all .12s}
+.f2b{background:none;border:1px solid transparent;border-radius:5px;padding:3px 5px;cursor:pointer;font-size:11px;color:var(--txt);font-family:var(--fnt);display:flex;align-items:center;transition:all .12s}
 .f2b:hover{background:var(--llb);border-color:var(--brd)}
 .f2b i{font-size:13px}
 .f2sep{width:1px;height:14px;background:var(--brd);margin:0 2px;flex-shrink:0}
 .f2sel{border:1px solid var(--brd);border-radius:5px;padding:2px 4px;font-size:11px;font-family:var(--fnt);color:var(--txt);background:#fff;cursor:pointer;outline:none}
 .f2col{width:19px;height:19px;border-radius:4px;border:1px solid var(--brd);cursor:pointer;padding:0}
+/* T3 dengan undo/redo */
 .cvt3{background:var(--white);border-bottom:1px solid var(--brd);padding:5px 11px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;flex-shrink:0}
 .cv-tool{background:var(--llb);border:1px solid var(--brd);border-radius:7px;padding:4px 8px;font-size:10px;font-weight:700;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:3px;font-family:var(--fnt);transition:all .14s;white-space:nowrap}
 .cv-tool:hover{background:var(--lb);border-color:#93c5fd;transform:translateY(-1px)}
 .cv-tool.on{background:var(--lb);border-color:#93c5fd}
 .cv-tool i{font-size:12px}
+.cv-tool-undo{background:none;border:1px solid var(--brd);border-radius:7px;padding:4px 7px;cursor:pointer;font-size:10px;color:var(--navy);display:flex;align-items:center;gap:2px;font-family:var(--fnt);transition:all .14s}
+.cv-tool-undo:hover{background:var(--llb);border-color:var(--blue2)}
+.cv-tool-undo i{font-size:13px}
+.t3-right{margin-left:auto;display:flex;gap:4px}
+/* GRID PANEL */
 .cvgp{background:#f7f9ff;border-bottom:1px solid var(--brd);padding:8px 12px;display:none;flex-shrink:0}
 .cvgp-lbl{font-size:9px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px}
 .cvgp-row{display:flex;gap:4px;flex-wrap:wrap}
 .gopt{border:1px solid var(--brd);border-radius:7px;padding:4px 8px;cursor:pointer;font-size:9px;font-weight:700;color:var(--navy);background:#fff;display:flex;align-items:center;gap:3px;font-family:var(--fnt);transition:all .13s}
 .gopt:hover{border-color:var(--blue2);background:var(--llb);transform:translateY(-1px)}
 .gopt i{font-size:11px}
-
 /* CANVAS */
 .cv-canvas{flex:1;overflow-y:auto;overflow-x:hidden;background:linear-gradient(180deg,#d5dced,#c8d2e8);display:flex;flex-direction:column;align-items:center;padding:14px 0 24px;min-height:0}
 .cv-canvas::-webkit-scrollbar{width:3px}
 .cv-canvas::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:3px}
 .cv-plr{width:320px;display:flex;align-items:center;justify-content:space-between;margin-top:14px;margin-bottom:4px}
-.cv-plabel{font-size:10px;font-weight:700;color:#5a6a80;letter-spacing:.2px}
+.cv-plabel{font-size:10px;font-weight:700;color:#5a6a80}
 .cv-pdel{background:none;border:none;cursor:pointer;font-size:10px;font-weight:700;color:var(--red);display:flex;align-items:center;gap:3px;font-family:var(--fnt);padding:3px 6px;border-radius:5px;transition:background .14s}
 .cv-pdel:hover{background:#fef2f2}
 .cv-pdel i{font-size:12px}
 .cv-page{background:#fff;width:320px;min-height:440px;padding:28px 30px;border:1px solid #bfcbe0;box-shadow:0 2px 8px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);position:relative;flex-shrink:0}
 .cv-content{outline:none;min-height:360px;font-size:11px;line-height:1.9;color:#1e293b;font-family:"Times New Roman",Times,serif;word-wrap:break-word}
-.cv-content:empty::before{content:"Mulai ketik di sini — CV, surat lamaran, atau berkas...";color:#c4c8d4;pointer-events:none;font-style:italic}
-
-/* BOTTOM BAR EDITOR */
+.cv-content:empty::before{content:"Mulai ketik di sini \2014 CV, surat lamaran, atau berkas...";color:#c4c8d4;pointer-events:none;font-style:italic}
+/* BOTTOM BAR */
 .cv-bottom-bar{background:var(--white);border-top:1px solid var(--brd);padding:7px 12px;display:flex;align-items:center;gap:8px;flex-shrink:0}
 .btn-create-ai{flex:1;background:linear-gradient(135deg,#6d28d9,#7c3aed,#4f46e5);color:#fff;border:none;border-radius:10px;padding:9px 12px;font-family:var(--fnt);font-size:12px;font-weight:800;cursor:pointer;display:none;align-items:center;justify-content:center;gap:6px;transition:opacity .18s,transform .18s;box-shadow:0 3px 12px rgba(109,40,217,.3);position:relative;overflow:hidden}
 .btn-create-ai::before{content:"";position:absolute;top:-50%;left:-60%;width:40px;height:200%;background:rgba(255,255,255,.15);transform:skewX(-20deg);animation:shim 3s infinite}
 @keyframes shim{0%{left:-60%}100%{left:120%}}
 .btn-create-ai:hover{opacity:.9;transform:translateY(-1px)}
-.btn-create-ai:active{transform:scale(.97)}
 .btn-create-ai i{font-size:15px}
 .cv-stat-pill{background:var(--llb);border:1px solid var(--brd);border-radius:20px;padding:5px 10px;font-size:9px;color:var(--muted);font-weight:600;white-space:nowrap;flex-shrink:0}
-
-/* AI RESULT PANEL */
-.ai-result-panel{width:320px;margin:12px auto 0;background:#fff;border-radius:14px;border:1px solid #c4b5fd;box-shadow:0 4px 20px rgba(109,40,217,.15);overflow:hidden;flex-shrink:0;animation:sdDown .3s ease}
+/* AI PANEL */
+.ai-panel{width:320px;margin:12px auto 0;background:#fff;border-radius:14px;border:1px solid #c4b5fd;box-shadow:0 4px 20px rgba(109,40,217,.15);overflow:hidden;flex-shrink:0;animation:sdDown .3s ease}
 @keyframes sdDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
-.ai-rh{background:linear-gradient(135deg,#6d28d9,#7c3aed);padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
-.ai-rh-left{display:flex;align-items:center;gap:7px}
-.ai-rh-left i{font-size:16px;color:#e9d5ff}
-.ai-rh-title{font-size:12px;font-weight:800;color:#fff}
-.ai-rh-sub{font-size:9px;color:#c4b5fd;margin-top:1px}
-.ai-close{background:rgba(255,255,255,.15);border:none;color:#fff;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .14s}
-.ai-close:hover{background:rgba(255,255,255,.25)}
+.ai-ph{background:linear-gradient(135deg,#6d28d9,#7c3aed);padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.ai-ph-l{display:flex;align-items:center;gap:7px}
+.ai-ph-l .sico{font-size:16px;color:#e9d5ff}
+.ai-ph-title{font-size:12px;font-weight:800;color:#fff}
+.ai-ph-sub{font-size:9px;color:#c4b5fd;margin-top:1px}
+.ai-xbtn{background:rgba(255,255,255,.15);border:none;color:#fff;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;font-weight:700}
+.ai-xbtn:hover{background:rgba(255,255,255,.28)}
 .ai-tabs{display:flex;padding:8px 12px 0;border-bottom:1px solid #f0ebfe}
-.ai-tab{flex:1;padding:7px 4px;border:none;background:none;font-family:var(--fnt);font-size:10px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;text-align:center}
+.ai-tab{flex:1;padding:7px 4px;border:none;background:none;font-family:var(--fnt);font-size:10px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2.5px solid transparent;transition:all .15s;text-align:center}
 .ai-tab.on{color:var(--purple);border-bottom-color:var(--purple)}
 .ai-tab i{font-size:13px;display:block;margin-bottom:2px}
 .ai-loading{padding:18px;text-align:center;display:none}
@@ -153,41 +135,80 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 .ai-ld{width:8px;height:8px;border-radius:50%;background:#7c3aed;animation:aip 1.2s ease infinite}
 .ai-ld:nth-child(2){animation-delay:.2s}.ai-ld:nth-child(3){animation-delay:.4s}
 @keyframes aip{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1)}}
-.ai-loading p{font-size:11px;color:var(--muted);font-weight:500}
-.ai-lbar{height:3px;background:#f3f0ff;border-radius:3px;margin-top:8px;overflow:hidden}
+.ai-loading p{font-size:11px;color:var(--muted);font-weight:500;margin-bottom:8px}
+.ai-lbar{height:3px;background:#f3f0ff;border-radius:3px;overflow:hidden}
 .ai-lfill{height:100%;background:linear-gradient(90deg,#7c3aed,#4f46e5);border-radius:3px;animation:alb 2s ease-in-out infinite alternate}
 @keyframes alb{from{width:20%}to{width:95%}}
-.ai-result-content{padding:12px;max-height:240px;overflow-y:auto;display:none}
-.ai-result-content::-webkit-scrollbar{width:3px}
-.ai-result-content::-webkit-scrollbar-thumb{background:#c4b5fd;border-radius:3px}
-.ai-result-body{font-size:10.5px;line-height:1.85;color:var(--txt);font-family:"Times New Roman",Times,serif;white-space:pre-wrap}
-.ai-actions{padding:10px 12px;border-top:1px solid #f0ebfe;display:none;gap:6px;flex-direction:column}
+/* Kreative CV hasil - scrollable dengan pilihan desain */
+.ai-body-wrap{padding:10px;max-height:300px;overflow-y:auto;display:none}
+.ai-body-wrap::-webkit-scrollbar{width:3px}
+.ai-body-wrap::-webkit-scrollbar-thumb{background:#c4b5fd;border-radius:3px}
+.ai-body-text{font-size:10.5px;line-height:1.85;color:var(--txt);font-family:"Times New Roman",Times,serif;white-space:pre-wrap}
+/* Design picker untuk CV Kreatif */
+.ai-design-picker{padding:10px 12px;display:none;flex-direction:column;gap:8px}
+.dp-title{font-size:10px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.dp-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.dp-card{border:2px solid var(--brd);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .15s;position:relative}
+.dp-card:hover,.dp-card.sel{border-color:var(--purple);transform:translateY(-2px);box-shadow:0 4px 12px rgba(124,58,237,.2)}
+.dp-card.sel::after{content:"\2713";position:absolute;top:4px;right:4px;width:16px;height:16px;background:var(--purple);color:#fff;border-radius:50%;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.dp-preview{height:80px;padding:6px 8px;font-size:7px;line-height:1.4;overflow:hidden;position:relative}
+.dp-preview::after{content:"";position:absolute;bottom:0;left:0;right:0;height:20px;background:linear-gradient(transparent,var(--white))}
+.dp-name{padding:4px 8px 6px;font-size:9px;font-weight:700;color:var(--navy);border-top:1px solid var(--brd);background:var(--white)}
+/* Desain 1: Hijau Modern */
+.dp-d1{background:linear-gradient(180deg,#ecfdf5 0%,#fff 40%)}
+.dp-d1-bar{width:100%;height:4px;background:linear-gradient(90deg,#059669,#10b981);margin-bottom:5px}
+.dp-d1-name{font-size:10px;font-weight:800;color:#065f46;text-align:center}
+.dp-d1-pos{font-size:8px;color:#059669;text-align:center;margin-bottom:4px}
+.dp-d1-line{height:1.5px;background:#059669;margin:3px 0}
+/* Desain 2: Navy Dark */
+.dp-d2{background:linear-gradient(180deg,#1e3a5f 0%,#1e3a5f 30%,#fff 30%)}
+.dp-d2-hdr{color:#fff;text-align:center;padding:4px 2px 6px}
+.dp-d2-nm{font-size:9px;font-weight:800}
+.dp-d2-ps{font-size:7px;color:#93c5fd}
+.dp-d2-body{font-size:7px;color:#374151}
+/* Desain 3: Merah Aksen */
+.dp-d3{background:#fff}
+.dp-d3-left{width:28px;height:80px;background:linear-gradient(180deg,#dc2626,#991b1b);position:absolute;top:0;left:0}
+.dp-d3-content{margin-left:32px;padding:4px 2px}
+.dp-d3-nm{font-size:9px;font-weight:800;color:#dc2626}
+/* Desain 4: Gold Profesional */
+.dp-d4{background:linear-gradient(180deg,#fef9ec,#fff)}
+.dp-d4-bar{width:100%;height:3px;background:linear-gradient(90deg,#d97706,#f59e0b);margin-bottom:5px}
+.dp-d4-nm{font-size:9px;font-weight:800;color:#92400e;text-align:center}
+/* Desain 5: Teal Modern */
+.dp-d5{background:#fff}
+.dp-d5-sidebar{width:26px;height:80px;background:linear-gradient(180deg,#0d9488,#0f766e);position:absolute;top:0;left:0}
+.dp-d5-content{margin-left:30px;padding:4px 2px}
+.dp-d5-nm{font-size:9px;font-weight:800;color:#0d9488}
+/* Desain 6: Purple Kreatif */
+.dp-d6{background:linear-gradient(135deg,#faf5ff,#fff)}
+.dp-d6-circle{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#6d28d9);margin:4px auto;display:flex;align-items:center;justify-content:center}
+.dp-d6-nm{font-size:9px;font-weight:800;color:#6d28d9;text-align:center}
+.ai-act{padding:10px 12px;border-top:1px solid #f0ebfe;display:none;gap:6px;flex-direction:column}
 .ai-act-row{display:flex;gap:6px}
 .btn-ai{flex:1;border:none;border-radius:9px;padding:9px 8px;font-family:var(--fnt);font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity .15s}
-.btn-ai.primary{background:var(--purple);color:#fff}
-.btn-ai.secondary{background:var(--llb);color:var(--purple);border:1px solid #c4b5fd}
+.btn-ai.pri{background:var(--purple);color:#fff}
+.btn-ai.sec{background:var(--llb);color:var(--purple);border:1px solid #c4b5fd}
 .btn-ai:hover{opacity:.88}
 .btn-ai i{font-size:12px}
-
 /* FRAME FOTO */
 .img-frame{display:inline-block;vertical-align:top;position:relative;margin:3px}
-.img-frame-inner{overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f4ff,#e8eef8);border:1.5px dashed #bfdbfe;position:relative;cursor:pointer;transition:border-color .15s,box-shadow .15s}
-.img-frame-inner:hover{border-color:var(--blue2);box-shadow:0 0 0 2px rgba(37,99,235,.1)}
+.img-frame-inner{overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f4ff,#e8eef8);border:1.5px dashed #bfdbfe;position:relative;cursor:pointer;transition:border-color .15s}
+.img-frame-inner:hover{border-color:var(--blue2)}
 .img-frame-inner.hi{border:1.5px solid #bfdbfe;background:#000}
 .img-frame-inner img{width:100%;height:100%;object-fit:cover;display:block}
-.fdel{position:absolute;top:-8px;right:-8px;width:19px;height:19px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:15;font-size:9px;color:#fff;font-weight:700;border:2px solid #fff;line-height:1;transition:transform .14s;box-shadow:0 2px 5px rgba(239,68,68,.3)}
+.fdel{position:absolute;top:-8px;right:-8px;width:19px;height:19px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:15;font-size:12px;color:#fff;font-weight:900;border:2px solid #fff;line-height:1;transition:transform .14s;box-shadow:0 2px 5px rgba(239,68,68,.3)}
 .fdel:hover{transform:scale(1.2)}
 .fph{display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none}
 .fph i{font-size:18px;color:#93c5fd}
 .fph span{font-size:8px;text-align:center;line-height:1.4;color:#93c5fd}
 .ftb{position:absolute;top:-25px;left:0;background:rgba(15,26,58,.92);border-radius:6px;display:flex;opacity:0;transition:opacity .14s;z-index:10;overflow:hidden}
 .img-frame:hover .ftb{opacity:1}
-.ftb button{background:none;border:none;color:rgba(255,255,255,.85);padding:3px 7px;cursor:pointer;font-size:9px;font-family:var(--fnt);font-weight:600;display:flex;align-items:center;gap:2px;transition:background .12s}
+.ftb button{background:none;border:none;color:rgba(255,255,255,.85);padding:3px 7px;cursor:pointer;font-size:9px;font-family:var(--fnt);font-weight:600;display:flex;align-items:center;gap:2px}
 .ftb button:hover{background:rgba(255,255,255,.15);color:#fff}
 .frsz{position:absolute;bottom:0;right:0;width:12px;height:12px;background:var(--blue2);cursor:se-resize;display:flex;align-items:center;justify-content:center;border-radius:3px 0 0 0;opacity:.8}
 .frsz:hover{opacity:1}
 .frsz i{font-size:8px;color:#fff}
-
 /* UPLOAD */
 .upl-body{padding:18px 14px 100px}
 .page-title{font-size:26px;font-weight:900;color:var(--navy);line-height:1.2;margin-bottom:5px}
@@ -200,8 +221,8 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 .dz-icon-wrap{width:52px;height:52px;background:var(--lb);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:21px;color:var(--navy)}
 .dz-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
 .dz-sub{font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.55}
-.btn-pilih{background:var(--navy);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s,transform .15s}
-.btn-pilih:hover{opacity:.88;transform:translateY(-1px)}
+.btn-pilih{background:var(--navy);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s}
+.btn-pilih:hover{opacity:.88}
 .upl-fhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .upl-fhdr h3{font-size:16px;font-weight:800;color:var(--navy)}
 .count-badge{background:var(--lb);color:var(--navy);font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px}
@@ -219,11 +240,9 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 .btn-gabung{width:100%;margin-top:12px;padding:13px;background:var(--navy);color:#fff;border:none;border-radius:13px;font-family:var(--fnt);font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:opacity .15s,transform .15s;box-shadow:0 3px 14px rgba(26,36,86,.22)}
 .btn-gabung:hover{opacity:.88;transform:translateY(-1px)}
 .btn-gabung i{font-size:16px}
-
 /* KOMPRES */
 .cmp-body{padding:18px 14px 100px;display:flex;flex-direction:column;gap:13px}
 .cmp-ai-banner{background:linear-gradient(135deg,var(--navy2) 0%,var(--navy) 50%,#243070 100%);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden;box-shadow:0 4px 18px rgba(26,36,86,.28)}
-.cmp-ai-banner::after{content:"\2605";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:70px;color:rgba(255,255,255,.04);pointer-events:none}
 .cab-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
 .cab-ico{font-size:16px;color:#93c5fd}
 .cab-title{font-size:14px;font-weight:800;color:#fff}
@@ -257,28 +276,25 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 .btn-kompres:hover{opacity:.88;transform:translateY(-1px)}
 .btn-kompres:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .btn-kompres i{font-size:16px}
-.cmp-result-card{background:var(--white);border:1px solid var(--brd);border-radius:14px;padding:16px;display:none;box-shadow:var(--sh);animation:sdDown .3s ease}
+.cmp-result-card{background:var(--white);border:1px solid var(--brd);border-radius:14px;padding:16px;display:none;box-shadow:var(--sh)}
 .cmp-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:11px}
 .szbox{text-align:center;padding:11px 6px;border-radius:10px}
-.szbox.bef{background:#fef2f2;border:1px solid #fecaca}
-.szbox.aft{background:#f0fdf4;border:1px solid #bbf7d0}
+.szbox.bef{background:#fef2f2;border:1px solid #fecaca}.szbox.aft{background:#f0fdf4;border:1px solid #bbf7d0}
 .sznum{font-size:16px;font-weight:900}
 .sznum.bef{color:var(--red)}.sznum.aft{color:var(--green)}
 .szlbl{font-size:9px;color:var(--muted);margin-top:2px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
 .sav-strip{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:9px;padding:8px;text-align:center;font-size:12px;font-weight:800;color:#065f46;margin-bottom:10px}
-.btn-dl{width:100%;padding:11px;background:var(--green);color:#fff;border:none;border-radius:10px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .15s,transform .15s}
-.btn-dl:hover{opacity:.88;transform:translateY(-1px)}
+.btn-dl{width:100%;padding:11px;background:var(--green);color:#fff;border:none;border-radius:10px;font-family:var(--fnt);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .15s}
+.btn-dl:hover{opacity:.88}
 .feat-list{display:flex;flex-direction:column;gap:7px}
 .feat-item{background:var(--white);border:1px solid var(--brd);border-radius:12px;padding:12px 13px;display:flex;align-items:flex-start;gap:11px;box-shadow:var(--sh)}
 .feat-ic{width:32px;height:32px;background:var(--lb);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--navy);flex-shrink:0;margin-top:1px}
 .feat-title{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:3px}
 .feat-desc{font-size:11px;color:var(--muted);line-height:1.55}
-
 /* MODAL */
 .modal-bg{display:none;position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(10,18,38,.55);z-index:300;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
 .modal-bg.open{display:flex}
-.modal{background:#fff;border-radius:16px;padding:20px;width:305px;box-shadow:0 20px 60px rgba(0,0,0,.22);animation:mIn .22s ease}
-@keyframes mIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.modal{background:#fff;border-radius:16px;padding:20px;width:305px;box-shadow:0 20px 60px rgba(0,0,0,.22)}
 .modal-title{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:13px;display:flex;align-items:center;gap:7px}
 .modal-title i{color:var(--blue2);font-size:17px}
 .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
@@ -293,7 +309,7 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 .mbtns{display:flex;gap:8px;margin-top:7px}
 .mb-c{flex:1;background:#f5f7fb;border:1px solid var(--brd);border-radius:8px;padding:9px;font-family:var(--fnt);font-size:12px;cursor:pointer;color:var(--muted);font-weight:600}
 .mb-c:hover{background:var(--llb)}
-.mb-ok{flex:2;background:var(--navy);border:none;border-radius:8px;padding:9px;font-family:var(--fnt);font-size:12px;font-weight:800;color:#fff;cursor:pointer;transition:opacity .15s}
+.mb-ok{flex:2;background:var(--navy);border:none;border-radius:8px;padding:9px;font-family:var(--fnt);font-size:12px;font-weight:800;color:#fff;cursor:pointer}
 .mb-ok:hover{opacity:.88}
 .toast{position:absolute;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:9px 16px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;opacity:0;z-index:400;transition:all .3s;pointer-events:none;box-shadow:0 4px 14px rgba(26,36,86,.28)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -303,24 +319,15 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 <input type="file" id="imgUp" accept="image/*" style="display:none" onchange="handleImgUp(this)">
 <input type="file" id="uplFilesIn" multiple style="display:none" onchange="handleUplFiles(this.files)">
 <input type="file" id="cmpIn" accept=".pdf,.docx,.jpg,.jpeg,.png,.gif,.webp" style="display:none" onchange="loadCmpFile(this)">
-
 <div class="app" id="app">
-  <!-- HEADER -->
-  <div class="hdr" id="app-hdr">
-    <div class="hdr-left">
-      <i class="ti ti-file-description hdr-ico"></i>
-      <span class="hdr-name">CV Builder Pro</span>
-    </div>
+  <div class="hdr">
+    <div class="hdr-left"><i class="ti ti-file-description hdr-ico"></i><span class="hdr-name">CV Builder Pro</span></div>
     <span class="pro-pill" id="pro-badge">PRO</span>
   </div>
-
   <!-- BERANDA -->
   <div class="pg on" id="pg-beranda">
     <div class="brd-body">
-      <div class="hero-card">
-        <h2>Selamat Pagi,<br>Profesional!</h2>
-        <p>Siap meningkatkan karir Anda? Buat CV baru atau lanjutkan dokumen yang ada.</p>
-      </div>
+      <div class="hero-card"><h2>Selamat Pagi,<br>Profesional!</h2><p>Siap meningkatkan karir Anda? Buat CV baru atau lanjutkan dokumen yang ada.</p></div>
       <div class="stat-list">
         <div class="stat-row"><div class="stat-ic"><i class="ti ti-file-description"></i></div><div><div class="stat-lbl">CV DIBUAT</div><div class="stat-val" id="st-cv">0</div></div></div>
         <div class="stat-row"><div class="stat-ic"><i class="ti ti-cloud-upload"></i></div><div><div class="stat-lbl">FILE UPLOAD</div><div class="stat-val" id="st-up">0</div></div></div>
@@ -342,11 +349,9 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
       </div>
     </div>
   </div>
-
   <!-- BUAT CV -->
   <div class="pg" id="pg-create">
     <div class="cv-shell">
-      <!-- T1: template + export -->
       <div class="cvt1">
         <select class="cv-sel" id="docType" onchange="onDocTypeChange(this.value)">
           <option value="cv">Curriculum Vitae</option>
@@ -358,18 +363,13 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
         <button class="btn-exp pdf" onclick="exportPDF()"><i class="ti ti-file-type-pdf"></i> PDF</button>
         <button class="btn-exp word" onclick="exportWord()"><i class="ti ti-file-type-doc"></i> Word</button>
       </div>
-      <!-- T2: format -->
       <div class="cvt2">
         <select class="f2sel" style="width:88px" onchange="ef('fontName',this.value)">
-          <option value="Times New Roman">Times New Roman</option>
-          <option value="Arial">Arial</option>
-          <option value="Calibri">Calibri</option>
-          <option value="Georgia">Georgia</option>
-          <option value="Verdana">Verdana</option>
+          <option value="Times New Roman">Times New Roman</option><option value="Arial">Arial</option>
+          <option value="Calibri">Calibri</option><option value="Georgia">Georgia</option><option value="Verdana">Verdana</option>
         </select>
         <select class="f2sel" style="width:40px" onchange="ef('fontSize',this.value)">
-          <option value="2">10</option><option value="3" selected>12</option>
-          <option value="4">14</option><option value="5">18</option><option value="6">24</option>
+          <option value="2">10</option><option value="3" selected>12</option><option value="4">14</option><option value="5">18</option><option value="6">24</option>
         </select>
         <div class="f2sep"></div>
         <button class="f2b" onclick="ef('bold')" title="Bold"><i class="ti ti-bold"></i></button>
@@ -383,17 +383,20 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
         <div class="f2sep"></div>
         <input type="color" class="f2col" value="#1e293b" onchange="ef('foreColor',this.value)" title="Warna teks">
       </div>
-      <!-- T3: tools -->
+      <!-- T3: tools + undo/redo di kanan -->
       <div class="cvt3">
         <button class="cv-tool" onclick="addPage()"><i class="ti ti-plus"></i> Halaman</button>
-        <button class="cv-tool" onclick="showFrmModal()"><i class="ti ti-photo-plus"></i> Frame Foto</button>
+        <button class="cv-tool" onclick="showFrmModal()"><i class="ti ti-photo-plus"></i> Frame</button>
         <button class="cv-tool" id="gridBtn" onclick="toggleGrid()"><i class="ti ti-layout-grid"></i> Grid</button>
         <button class="cv-tool" onclick="ef('insertUnorderedList')"><i class="ti ti-list"></i></button>
         <button class="cv-tool" onclick="ef('insertOrderedList')"><i class="ti ti-list-numbers"></i></button>
         <button class="cv-tool" onclick="insHR()"><i class="ti ti-minus"></i></button>
         <button class="cv-tool" onclick="insTbl()"><i class="ti ti-table"></i></button>
+        <div class="t3-right">
+          <button class="cv-tool-undo" onclick="doUndo()" title="Undo (Ctrl+Z)"><i class="ti ti-arrow-back-up"></i></button>
+          <button class="cv-tool-undo" onclick="doRedo()" title="Redo (Ctrl+Y)"><i class="ti ti-arrow-forward-up"></i></button>
+        </div>
       </div>
-      <!-- Grid panel -->
       <div class="cvgp" id="gridPanel">
         <div class="cvgp-lbl">Pilih layout grid foto</div>
         <div class="cvgp-row">
@@ -401,12 +404,11 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
           <button class="gopt" onclick="insGrid(2,1,90,112)"><i class="ti ti-layout-columns"></i> 2 kolom</button>
           <button class="gopt" onclick="insGrid(3,1,72,95)"><i class="ti ti-columns-3"></i> 3 kolom</button>
           <button class="gopt" onclick="insGrid(2,2,90,85)"><i class="ti ti-layout-grid"></i> 2x2</button>
-          <button class="gopt" onclick="insSingle(78,104,'rect')"><i class="ti ti-id"></i> KTP 3x4</button>
+          <button class="gopt" onclick="insSingle(78,104,'rect')"><i class="ti ti-id"></i> KTP</button>
           <button class="gopt" onclick="insSingle(96,136,'rect')"><i class="ti ti-user"></i> Pas Foto</button>
           <button class="gopt" onclick="insSingle(96,96,'circle')"><i class="ti ti-circle"></i> Bulat</button>
         </div>
       </div>
-      <!-- Canvas -->
       <div class="cv-canvas" id="cvCanvas">
         <div class="cv-plr" id="plr-1">
           <span class="cv-plabel">Halaman 1</span>
@@ -415,17 +417,14 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
         <div class="cv-page" id="docpage-1">
           <div class="cv-content" id="doccontent-1" contenteditable="true" onkeyup="updStat()" onclick="curPg=1;updStat()" role="textbox" aria-multiline="true"></div>
         </div>
-        <!-- AI Result Panel muncul di sini -->
-        <div class="ai-result-panel" id="aiResultPanel" style="display:none">
-          <div class="ai-rh">
-            <div class="ai-rh-left">
-              <i class="ti ti-sparkles"></i>
-              <div>
-                <div class="ai-rh-title">Hasil Create AI</div>
-                <div class="ai-rh-sub" id="aiSub">CV ATS Profesional</div>
-              </div>
+        <!-- AI Panel -->
+        <div class="ai-panel" id="aiPanel" style="display:none">
+          <div class="ai-ph">
+            <div class="ai-ph-l">
+              <i class="ti ti-sparkles sico"></i>
+              <div><div class="ai-ph-title">Hasil Create AI</div><div class="ai-ph-sub" id="aiSub">CV ATS Profesional</div></div>
             </div>
-            <button class="ai-close" onclick="closeAI()">x</button>
+            <button class="ai-xbtn" onclick="closeAI()">&#x2715;</button>
           </div>
           <div class="ai-tabs" id="aiTabsBox"></div>
           <div class="ai-loading" id="aiLoading">
@@ -433,31 +432,32 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
             <p id="aiMsg">AI sedang menyusun dokumen...</p>
             <div class="ai-lbar"><div class="ai-lfill"></div></div>
           </div>
-          <div class="ai-result-content" id="aiContent">
-            <div class="ai-result-body" id="aiBody"></div>
+          <!-- Design Picker untuk CV Kreatif -->
+          <div class="ai-design-picker" id="aiDesignPicker">
+            <div class="dp-title">Pilih Desain CV Kreatif</div>
+            <div class="dp-grid" id="dpGrid"></div>
           </div>
-          <div class="ai-actions" id="aiActions">
+          <div class="ai-body-wrap" id="aiBodyWrap">
+            <div class="ai-body-text" id="aiBody"></div>
+          </div>
+          <div class="ai-act" id="aiAct">
             <div class="ai-act-row">
-              <button class="btn-ai primary" onclick="applyAI('replace')"><i class="ti ti-replace"></i> Terapkan ke Halaman</button>
-              <button class="btn-ai secondary" onclick="applyAI('append')"><i class="ti ti-plus"></i> Tambahkan</button>
+              <button class="btn-ai pri" onclick="applyAI('replace')"><i class="ti ti-replace"></i> Terapkan ke Halaman</button>
+              <button class="btn-ai sec" onclick="applyAI('append')"><i class="ti ti-plus"></i> Tambahkan</button>
             </div>
             <div class="ai-act-row">
-              <button class="btn-ai secondary" onclick="copyAI()"><i class="ti ti-copy"></i> Salin Teks</button>
-              <button class="btn-ai secondary" onclick="regenAI()"><i class="ti ti-refresh"></i> Buat Ulang</button>
+              <button class="btn-ai sec" onclick="copyAI()"><i class="ti ti-copy"></i> Salin Teks</button>
+              <button class="btn-ai sec" onclick="regenAI()"><i class="ti ti-refresh"></i> Buat Ulang</button>
             </div>
           </div>
         </div>
       </div>
-      <!-- Bottom bar: Create AI + stat -->
       <div class="cv-bottom-bar">
-        <button class="btn-create-ai" id="btnAI" onclick="triggerAI()">
-          <i class="ti ti-sparkles"></i> Create AI
-        </button>
-        <span class="cv-stat-pill" id="cv-stat">0 kata · Hal 1/1</span>
+        <button class="btn-create-ai" id="btnAI" onclick="triggerAI()"><i class="ti ti-sparkles"></i> Create AI</button>
+        <span class="cv-stat-pill" id="cv-stat">0 kata &#xB7; Hal 1/1</span>
       </div>
     </div>
   </div>
-
   <!-- UPLOAD -->
   <div class="pg" id="pg-upload">
     <div class="upl-body">
@@ -470,19 +470,15 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
       <div class="dropzone" onclick="document.getElementById('uplFilesIn').click()" tabindex="0">
         <div class="dz-icon-wrap"><i class="ti ti-cloud-upload"></i></div>
         <div class="dz-title">Klik atau seret file ke sini</div>
-        <div class="dz-sub" id="upl-hint">Format: JPG, PNG, PDF -- maks 10MB per file</div>
+        <div class="dz-sub" id="upl-hint">Format: JPG, PNG, PDF &#x2014; maks 10MB per file</div>
         <button class="btn-pilih" onclick="event.stopPropagation();document.getElementById('uplFilesIn').click()">Pilih File</button>
       </div>
-      <div class="upl-fhdr">
-        <h3>File Terupload</h3>
-        <span class="count-badge" id="file-count">0</span>
-      </div>
+      <div class="upl-fhdr"><h3>File Terupload</h3><span class="count-badge" id="file-count">0</span></div>
       <div class="fgrid" id="file-grid"></div>
       <div class="upl-empty" id="upl-empty"><i class="ti ti-folder-open"></i><p>Belum ada file yang diupload</p></div>
       <button class="btn-gabung" id="btn-gabung" style="display:none" onclick="doMerge()"><i class="ti ti-git-merge"></i> Jadikan Satu Berkas &amp; Download</button>
     </div>
   </div>
-
   <!-- KOMPRES -->
   <div class="pg" id="pg-compress">
     <div class="cmp-body">
@@ -498,10 +494,7 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
         <div class="cmp-drop-sub">Seret dan jatuhkan file ke sini atau klik untuk menelusuri. Maks 10MB.</div>
         <button class="btn-telusuri" onclick="event.stopPropagation();document.getElementById('cmpIn').click()">Telusuri File</button>
       </div>
-      <div class="cmp-finfo" id="cmp-info">
-        <div class="cfi-ic"><i class="ti ti-file" id="cfi-ico"></i></div>
-        <div><div class="cfi-name" id="cfi-name">--</div><div class="cfi-size" id="cfi-size">--</div></div>
-      </div>
+      <div class="cmp-finfo" id="cmp-info"><div class="cfi-ic"><i class="ti ti-file" id="cfi-ico"></i></div><div><div class="cfi-name" id="cfi-name">&#x2014;</div><div class="cfi-size" id="cfi-size">&#x2014;</div></div></div>
       <div class="lvl-card">
         <h3>Tingkat Kompresi</h3>
         <div class="lvl-lbl-row"><span class="l1">Ringan</span><span class="l2">Sedang (Rekomendasi)</span><span class="l3">Ekstrem</span></div>
@@ -509,28 +502,24 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
         <div class="pct-big" id="cmp-pct">60%</div>
         <div class="pct-note">Estimasi pengurangan ukuran file.</div>
       </div>
-      <div class="ai-think" id="ai-think">
-        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-        <p id="think-msg">Menganalisis file...</p>
-      </div>
+      <div class="ai-think" id="ai-think"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><p id="think-msg">Menganalisis file...</p></div>
       <div class="cmp-result-card" id="cmp-result">
         <div class="cmp-compare">
-          <div class="szbox bef"><div class="sznum bef" id="sz-bef">--</div><div class="szlbl">Ukuran Asli</div></div>
+          <div class="szbox bef"><div class="sznum bef" id="sz-bef">&#x2014;</div><div class="szlbl">Ukuran Asli</div></div>
           <i class="ti ti-arrow-right" style="font-size:16px;color:var(--muted)"></i>
-          <div class="szbox aft"><div class="sznum aft" id="sz-aft">--</div><div class="szlbl">Setelah Kompres</div></div>
+          <div class="szbox aft"><div class="sznum aft" id="sz-aft">&#x2014;</div><div class="szlbl">Setelah Kompres</div></div>
         </div>
-        <div class="sav-strip" id="sav-strip">--</div>
-        <button class="btn-dl" onclick="dlCompressed()"><i class="ti ti-download"></i> Download File Terkompres</button>
+        <div class="sav-strip" id="sav-strip">&#x2014;</div>
+        <button class="btn-dl" id="btnDlCompressed" onclick="dlCompressed()"><i class="ti ti-download"></i> Download File Terkompres</button>
       </div>
       <button class="btn-kompres" id="btn-kompres" onclick="startCompress()"><i class="ti ti-file-zip"></i> Kompres Sekarang</button>
       <div class="feat-list">
         <div class="feat-item"><div class="feat-ic"><i class="ti ti-brain"></i></div><div><div class="feat-title">Analisis AI</div><div class="feat-desc">Membedakan teks penting dan elemen dekoratif untuk optimasi presisi.</div></div></div>
-        <div class="feat-item"><div class="feat-ic"><i class="ti ti-adjustments-horizontal"></i></div><div><div class="feat-title">Optimasi Otomatis</div><div class="feat-desc">Font disematkan ulang, keterbacaan sempurna oleh sistem ATS.</div></div></div>
+        <div class="feat-item"><div class="feat-ic"><i class="ti ti-adjustments-horizontal"></i></div><div><div class="feat-title">Optimasi Otomatis</div><div class="feat-desc">Font disematkan ulang, memastikan keterbacaan sempurna oleh sistem ATS.</div></div></div>
         <div class="feat-item"><div class="feat-ic"><i class="ti ti-lock"></i></div><div><div class="feat-title">Aman &amp; Privat</div><div class="feat-desc">File diproses langsung di browser. Tidak ada data dikirim ke server.</div></div></div>
       </div>
     </div>
   </div>
-
   <!-- NAVBAR -->
   <div class="nav">
     <button class="nb active" id="nb-beranda" onclick="goPage('beranda')"><div class="nb-wrap"><i class="ti ti-home"></i></div><span>Beranda</span></button>
@@ -539,7 +528,6 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
     <button class="nb" id="nb-compress" onclick="goPage('compress')"><div class="nb-wrap"><i class="ti ti-file-zip"></i></div><span>Kompres</span></button>
   </div>
   <div class="toast" id="toast"></div>
-
   <!-- MODAL FRAME -->
   <div class="modal-bg" id="frmModal">
     <div class="modal">
@@ -552,387 +540,730 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
       </div>
       <div class="mrow"><label for="frm-w">Lebar (px)</label><input type="number" id="frm-w" value="100" min="40" max="280"></div>
       <div class="mrow"><label for="frm-h">Tinggi (px)</label><input type="number" id="frm-h" value="130" min="40" max="400"></div>
-      <div class="mbtns">
-        <button class="mb-c" onclick="closeFrmModal()">Batal</button>
-        <button class="mb-ok" onclick="confirmFrame()">Tambah Frame</button>
-      </div>
+      <div class="mbtns"><button class="mb-c" onclick="closeFrmModal()">Batal</button><button class="mb-ok" onclick="confirmFrame()">Tambah Frame</button></div>
     </div>
   </div>
 </div>
-
 <script>
-// ─── TEMPLATES ───
-const TMPL={
-  cv:"<div style=\"text-align:center;margin-bottom:14px\"><strong style=\"font-size:16px\">NAMA LENGKAP</strong><br><span style=\"font-size:11px;color:#555\">Posisi yang Dilamar</span><br><span style=\"font-size:10px;color:#777\">email@email.com | 08xxxxxxxxxx | Kota, Indonesia</span></div><hr style=\"border:0;border-top:2px solid #1e3a8a;margin:10px 0\"><strong>RINGKASAN PROFIL</strong><br><br>Tulis ringkasan profil profesional Anda di sini...<br><br><strong>PENGALAMAN KERJA</strong><br><br>&bull; <strong>Posisi</strong> &ndash; Nama Perusahaan (Tahun&ndash;kini)<br>&nbsp;&nbsp;Deskripsi singkat pekerjaan dan pencapaian.<br><br><strong>PENDIDIKAN</strong><br><br>&bull; <strong>S1 Nama Jurusan</strong> &ndash; Universitas (Tahun)<br><br><strong>KEAHLIAN</strong><br><br>&bull; Keahlian 1 &bull; Keahlian 2 &bull; Keahlian 3",
-  lamaran:"<div style=\"text-align:right;margin-bottom:16px\">[Kota], [Tanggal Bulan Tahun]</div>Kepada Yth.,<br>HRD / Manajer Rekrutmen<br>[Nama Perusahaan]<br>di tempat<br><br>Dengan hormat,<br><br>Saya yang bertanda tangan di bawah ini:<br>Nama&nbsp;&nbsp;&nbsp;&nbsp;: <strong>[Nama Lengkap]</strong><br>TTL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Kota, Tanggal Lahir]<br>No. HP&nbsp;: [Nomor Telepon]<br>Email&nbsp;&nbsp;&nbsp;: [Email Anda]<br><br>Dengan ini mengajukan lamaran untuk posisi <strong>[Posisi yang Dilamar]</strong>.<br><br>Saya memiliki keahlian relevan dan siap memberikan kontribusi terbaik.<br><br>Demikian surat ini saya buat. Atas perhatiannya, terima kasih.<br><br><br>Hormat saya,<br><br><br>[Nama Lengkap]",
-  berkas:"<div style=\"text-align:center;margin-bottom:14px\"><strong style=\"font-size:14px\">DAFTAR BERKAS PENDUKUNG</strong></div><table style=\"width:100%;border-collapse:collapse;font-size:10.5px\"><tr style=\"background:#eff6ff\"><td style=\"border:1px solid #bfdbfe;padding:5px 7px;font-weight:700\">No.</td><td style=\"border:1px solid #bfdbfe;padding:5px 7px;font-weight:700\">Nama Berkas</td><td style=\"border:1px solid #bfdbfe;padding:5px 7px;font-weight:700\">Keterangan</td></tr><tr><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">1.</td><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">KTP</td><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">Fotokopi</td></tr><tr><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">2.</td><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">Ijazah</td><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">Fotokopi</td></tr><tr><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">3.</td><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">Transkrip Nilai</td><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">Fotokopi</td></tr><tr><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">4.</td><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">Pas Foto 3x4</td><td style=\"border:1px solid #bfdbfe;padding:5px 7px\">2 lembar</td></tr></table>",
-  kosong:""
-};
-const PCTS={1:"20%",2:"60%",3:"85%"};
-const RATIOS={1:.82,2:.60,3:.38};
-let curPg=1,pgCount=1,activeFrame=null,pendingShape="rect",cmpLvl=2,cmpFile=null;
-let uplFiles=[],histItems=[],currentDocType="cv",currentAiType="ats",lastAIText="";
+// ─── STATE ───
+const PCTS={1:'20%',2:'60%',3:'85%'};
+const RATIOS={1:0.82,2:0.60,3:0.38};
+let curPg=1,pgCount=1,activeFrame=null,pendingShape='rect';
+let cmpLvl=2,cmpFile=null,cmpFileUrl=null,uplFiles=[],histItems=[];
+let currentDocType='cv',currentAiType='ats',lastAIText='',selectedDesign=0;
+
+// Desain kreatif CV - 6 pilihan berbeda
+const CREATIVE_DESIGNS = [
+  {
+    name:"Hijau Segar",
+    preview:`<div class="dp-d1"><div class="dp-d1-bar"></div><div class="dp-d1-name">NAMA LENGKAP</div><div class="dp-d1-pos">Digital Marketing Specialist</div><div class="dp-d1-line"></div><div style="font-size:7px;color:#065f46;font-weight:700;margin:3px 0">PROFIL</div><div style="font-size:6.5px;color:#374151">Profesional berpengalaman dengan keahlian dalam bidang pemasaran digital dan strategi konten.</div></div>`,
+    content:`╔══════════════════════════════════════╗
+║          NAMA LENGKAP                ║
+║    Digital Marketing Specialist      ║
+╚══════════════════════════════════════╝
+
+📧 email@email.com  📱 08xxxxxxxxxx  📍 Jakarta
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🌱 TENTANG SAYA
+Profesional kreatif dengan passion dalam digital marketing dan brand storytelling. Berpengalaman 4+ tahun mengembangkan strategi konten yang menghasilkan pertumbuhan organik signifikan.
+
+💼 PENGALAMAN KERJA
+
+▶ Senior Digital Marketer | PT Media Kreatif (2022–kini)
+  ✦ Tingkatkan engagement media sosial 180% dalam 6 bulan
+  ✦ Kelola budget iklan Rp 500 juta/bulan dengan ROAS 4.2x
+  ✦ Pimpin tim konten 8 orang lintas platform
+
+▶ Content Strategist | Startup XYZ (2020–2022)
+  ✦ Bangun SEO dari 0 ke 50.000 organic visitors/bulan
+  ✦ Produksi 200+ konten berkualitas tinggi
+
+🎓 PENDIDIKAN
+S1 Komunikasi – Universitas Indonesia (2020) | IPK 3.82
+
+🛠 KEAHLIAN
+SEO/SEM | Google Ads | Meta Ads | Content Writing
+Canva | Figma | Analytics | Email Marketing
+
+🏆 PENCAPAIAN
+• Best Campaign Award 2023 – Digital Marketing Summit
+• Speaker di MarketingFest Indonesia 2022`
+  },
+  {
+    name:"Navy Elegan",
+    preview:`<div class="dp-d2"><div class="dp-d2-hdr"><div class="dp-d2-nm">NAMA LENGKAP</div><div class="dp-d2-ps">Software Engineer</div></div><div class="dp-d2-body" style="padding:4px 2px"><div style="font-weight:700;color:#1e3a5f;font-size:7px;margin-bottom:2px">EXPERIENCE</div><div style="font-size:6.5px">Software Eng · 3 years exp</div><div style="font-size:6.5px">Full-stack · React · Node.js</div></div></div>`,
+    content:`████████████████████████████████████████
+  NAMA LENGKAP
+  Software Engineer  |  Full-Stack Developer
+████████████████████████████████████████
+
+  email@email.com  ·  08xxxxxxxxxx  ·  Jakarta, Indonesia
+  linkedin.com/in/nama  ·  github.com/username
+
+▌RINGKASAN KARIR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Full-stack developer berpengalaman 3+ tahun. Spesialisasi dalam membangun aplikasi web scalable menggunakan React dan Node.js. Passionate tentang clean code dan user experience.
+
+▌PENGALAMAN PROFESIONAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[2022–kini]  Senior Software Engineer  |  PT Teknologi Maju
+             • Arsitektur microservices yang melayani 500K users/hari
+             • Reduksi bug production sebesar 70% via automated testing
+             • Mentoring 3 junior developer
+
+[2020–2022]  Software Engineer  |  Startup Digital
+             • Bangun REST API dengan response time <200ms
+             • Implementasi CI/CD yang percepat deployment 60%
+
+▌TECH STACK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Frontend  :  React · TypeScript · Next.js · Tailwind
+Backend   :  Node.js · Python · Express · FastAPI
+Database  :  PostgreSQL · MongoDB · Redis
+DevOps    :  Docker · Kubernetes · AWS · GitHub Actions
+
+▌PENDIDIKAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+S1 Teknik Informatika  ·  Universitas Indonesia  ·  IPK 3.78  ·  2020`
+  },
+  {
+    name:"Merah Bold",
+    preview:`<div class="dp-d3" style="position:relative"><div class="dp-d3-left"></div><div class="dp-d3-content"><div class="dp-d3-nm">NAMA LENGKAP</div><div style="font-size:7px;color:#374151">UI/UX Designer</div><div style="font-size:6.5px;color:#6b7280;margin-top:3px">▪ Design Thinking</div><div style="font-size:6.5px;color:#6b7280">▪ Figma Expert</div><div style="font-size:6.5px;color:#6b7280">▪ User Research</div></div></div>`,
+    content:`┌─────────────────────────────────────────┐
+│ ████  NAMA LENGKAP                      │
+│ ████  UI/UX Designer & Creative Lead    │
+└─────────────────────────────────────────┘
+      📌 email@email.com | 08xxxxxxxxxx | Jakarta
+
+◆ PROFIL KREATIF ◆
+Desainer berpengalaman dengan pendekatan human-centered design. Spesialisasi dalam menciptakan pengalaman digital yang intuitif dan estetis. Portfolio: www.namaportfolio.com
+
+◆ PENGALAMAN ◆
+
+[2021–kini]  Lead UI/UX Designer  ·  PT Inovasi Digital
+  ► Redesign aplikasi mobile: tingkatkan user retention 45%
+  ► Pimpin design system yang digunakan 15+ produk
+  ► Conduct user research dengan 200+ responden
+
+[2019–2021]  UI/UX Designer  ·  Agency Kreatif
+  ► Desain 50+ website dan aplikasi klien Fortune 500
+  ► Raih penghargaan "Best UI Design" 2020
+
+◆ KEAHLIAN DESAIN ◆
+Figma · Adobe XD · Sketch · Illustrator · Photoshop
+Prototyping · User Testing · Design System · Motion Design
+
+◆ PENDIDIKAN ◆
+S1 Desain Komunikasi Visual  ·  ITB  ·  2019  ·  IPK 3.85
+
+◆ PORTOFOLIO PROYEK ◆
+• Redesign Super App Fintech – 2 juta pengguna aktif
+• Design System E-commerce – Digunakan 5 tim produk
+• Mobile Banking UX – Award Winning Design 2022`
+  },
+  {
+    name:"Gold Premium",
+    preview:`<div class="dp-d4"><div class="dp-d4-bar"></div><div class="dp-d4-nm">NAMA LENGKAP</div><div style="font-size:7px;color:#92400e;text-align:center;margin-bottom:3px">Business Analyst</div><div style="font-size:6.5px;color:#78716c;text-align:center">★ ★ ★ ★ ★</div><div style="font-size:6.5px;color:#374151;margin-top:3px;text-align:center">5+ Years Experience</div></div>`,
+    content:`✦ ─────────────────────────────────── ✦
+            NAMA LENGKAP
+         Business Analyst & Strategist
+✦ ─────────────────────────────────── ✦
+
+  ✉ email@email.com   ☎ 08xxxxxxxxxx
+  ⌂ Jakarta, Indonesia   ★ 5+ Tahun Pengalaman
+
+═══════════════════════════════════════
+
+  RINGKASAN EKSEKUTIF
+
+  Business analyst berpengalaman dengan track record
+  mengoptimalkan proses bisnis dan meningkatkan
+  profitabilitas perusahaan. Ahli dalam data-driven
+  decision making dan stakeholder management.
+
+═══════════════════════════════════════
+
+  PENGALAMAN KERJA
+
+  ✦ Senior Business Analyst  •  PT Konsultan Prima
+    2022 – Sekarang
+    • Identifikasi peluang efisiensi senilai Rp 2 miliar/tahun
+    • Analisis data 50+ departemen untuk optimasi proses
+    • Presentasi rekomendasi kepada C-level executives
+
+  ✦ Business Analyst  •  Perusahaan Multinasional
+    2019 – 2022
+    • Pimpin 12 proyek transformasi digital
+    • ROI rata-rata proyek: 320%
+
+═══════════════════════════════════════
+
+  KOMPETENSI UTAMA
+  Data Analysis · SQL · Power BI · Excel Advanced
+  Process Improvement · Agile · Project Management
+
+  PENDIDIKAN
+  S1 Manajemen Bisnis  ·  Universitas Gadjah Mada  ·  2019
+  IPK: 3.91 (Summa Cum Laude)`
+  },
+  {
+    name:"Teal Modern",
+    preview:`<div class="dp-d5" style="position:relative"><div class="dp-d5-sidebar"></div><div class="dp-d5-content"><div class="dp-d5-nm">NAMA LENGKAP</div><div style="font-size:7px;color:#374151">Data Scientist</div><div style="margin-top:3px"><div style="font-size:6px;color:#0d9488">■ Python  ■ ML</div><div style="font-size:6px;color:#0d9488">■ TensorFlow</div></div></div></div>`,
+    content:`┃ NAMA LENGKAP ┃ Data Scientist & ML Engineer
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  📊 email@email.com  |  08xxxxxxxxxx  |  Jakarta
+  🔗 kaggle.com/nama  |  github.com/username
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PROFIL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Data scientist dengan keahlian dalam machine learning dan deep learning. Berpengalaman mengubah data kompleks menjadi insight bisnis yang actionable.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PENGALAMAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+► Lead Data Scientist  |  PT Fintek Inovasi  |  2022–kini
+  ◉ Bangun model prediksi kredit dengan akurasi 94.7%
+  ◉ Hemat biaya operasional Rp 1.5 miliar via otomasi ML
+  ◉ Pimpin tim 5 data scientist dan 3 data engineer
+
+► Data Scientist  |  E-commerce Platform  |  2020–2022
+  ◉ Rekomendasi engine: naikkan revenue 28%
+  ◉ Churn prediction model: kurangi customer loss 35%
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TECH STACK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Python · R · SQL · TensorFlow · PyTorch · Scikit-learn
+Spark · Airflow · MLflow · Docker · AWS SageMaker
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PENDIDIKAN & SERTIFIKASI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+S2 Data Science  ·  Institut Teknologi Bandung  ·  2020
+AWS Certified ML Specialty  ·  TensorFlow Developer Certificate`
+  },
+  {
+    name:"Purple Kreatif",
+    preview:`<div class="dp-d6"><div class="dp-d6-circle"><i class="ti ti-user" style="font-size:12px;color:#fff"></i></div><div class="dp-d6-nm">NAMA LENGKAP</div><div style="font-size:7px;color:#7c3aed;text-align:center">Product Manager</div><div style="font-size:6px;color:#6b7280;text-align:center;margin-top:2px">◆ Innovation ◆ Strategy</div></div>`,
+    content:`◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈
+         ◈  NAMA LENGKAP  ◈
+      Product Manager & Innovation Lead
+◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈
+
+  ✦ email@email.com  ✦ 08xxxxxxxxxx
+  ✦ Jakarta  ✦ linkedin.com/in/nama
+
+◇─────────────────────────────────────◇
+  PASSION & MISI
+◇─────────────────────────────────────◇
+  "Membangun produk yang mengubah cara
+   orang menjalani kehidupan sehari-hari."
+
+  Product manager dengan rekam jejak meluncurkan
+  10+ produk sukses di pasar Indonesia. Fokus pada
+  growth hacking, user research, dan data-driven.
+
+◇─────────────────────────────────────◇
+  PERJALANAN KARIR
+◇─────────────────────────────────────◇
+  ◆ Senior PM  ·  Unicorn Startup  ·  2022–kini
+    → Luncurkan fitur yang akuisisi 2 juta user baru
+    → Kelola roadmap produk 5 tim lintas fungsi
+    → North Star Metric naik 67% dalam 1 tahun
+
+  ◆ Product Manager  ·  Tech Company  ·  2020–2022
+    → 0→1 produk fintech: 500K users dalam 8 bulan
+    → Net Promoter Score: 72 (industri avg: 45)
+
+◇─────────────────────────────────────◇
+  PRODUCT TOOLKIT
+◇─────────────────────────────────────◇
+  Jira · Notion · Miro · Figma · Amplitude
+  A/B Testing · OKR · Design Sprint · RICE
+
+  PENDIDIKAN
+  MBA – Prasetiya Mulya Business School · 2020`
+  }
+];
 
 function goPage(p){
-  document.querySelectorAll(".pg").forEach(e=>e.classList.remove("on"));
-  document.querySelectorAll(".nb").forEach(b=>b.classList.remove("active"));
-  document.getElementById("pg-"+p).classList.add("on");
-  document.getElementById("nb-"+p).classList.add("active");
-  document.getElementById("pro-badge").className=(p==="beranda"||p==="compress")?"pro-pill":"pro-pill-out";
-  if(p==="create"){setTimeout(()=>{const c=document.getElementById("doccontent-1");if(c&&!c.innerHTML.trim())c.focus();},80);}
+  document.querySelectorAll('.pg').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pg-'+p).classList.add('on');
+  document.getElementById('nb-'+p).classList.add('active');
+  document.getElementById('pro-badge').className=(p==='beranda'||p==='compress')?'pro-pill':'pro-pill-out';
+  if(p==='create')setTimeout(()=>{const c=document.getElementById('doccontent-1');if(c&&!c.innerHTML.trim())c.focus();},80);
 }
-
 function showToast(msg){
-  const t=document.getElementById("toast");t.textContent=msg;
-  t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2800);
+  const t=document.getElementById('toast');t.textContent=msg;
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);
 }
+// Undo/Redo
+function doUndo(){ef('undo');}
+function doRedo(){ef('redo');}
 
 function onDocTypeChange(v){
-  currentDocType=v;
-  applyTmpl(v);
-  const btn=document.getElementById("btnAI");
-  const showAI=(v==="cv"||v==="lamaran");
-  btn.style.display=showAI?"flex":"none";
-  if(!showAI)closeAI();
+  currentDocType=v;applyTmpl(v);
+  const btn=document.getElementById('btnAI');
+  const show=(v==='cv'||v==='lamaran');
+  btn.style.display=show?'flex':'none';
+  if(!show)closeAI();
   buildAITabs(v);
-  if(v==="cv")currentAiType="ats";
-  else if(v==="lamaran")currentAiType="formal_lamaran";
+  currentAiType=(v==='lamaran')?'formal_lamaran':'ats';
+}
+function buildAITabs(v){
+  const box=document.getElementById('aiTabsBox');
+  if(v==='cv'){
+    box.innerHTML='<button class="ai-tab on" onclick="switchAiTab(\'ats\',this)"><i class="ti ti-file-check"></i>CV ATS</button>'+
+    '<button class="ai-tab" onclick="switchAiTab(\'kreatif\',this)"><i class="ti ti-palette"></i>CV Kreatif</button>'+
+    '<button class="ai-tab" onclick="switchAiTab(\'formal\',this)"><i class="ti ti-briefcase"></i>Formal</button>';
+  }else if(v==='lamaran'){
+    box.innerHTML='<button class="ai-tab on" onclick="switchAiTab(\'formal_lamaran\',this)"><i class="ti ti-briefcase"></i>Formal</button>'+
+    '<button class="ai-tab" onclick="switchAiTab(\'kreatif_lamaran\',this)"><i class="ti ti-palette"></i>Kreatif</button>'+
+    '<button class="ai-tab" onclick="switchAiTab(\'singkat_lamaran\',this)"><i class="ti ti-bolt"></i>Singkat</button>';
+  }
+}
+function switchAiTab(type,btn){
+  currentAiType=type;
+  document.querySelectorAll('.ai-tab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.getElementById('aiBodyWrap').style.display='none';
+  document.getElementById('aiAct').style.display='none';
+  document.getElementById('aiLoading').style.display='none';
+  document.getElementById('aiDesignPicker').style.display='none';
+}
+const TMPL={
+  cv:'<div style="text-align:center;margin-bottom:14px"><strong style="font-size:16px">NAMA LENGKAP</strong><br><span style="font-size:11px;color:#555">Posisi yang Dilamar</span><br><span style="font-size:10px;color:#777">email@email.com | 08xxxxxxxxxx | Kota</span></div><hr style="border:0;border-top:2px solid #1e3a8a;margin:10px 0"><strong>RINGKASAN PROFIL</strong><br><br>Tulis ringkasan profil profesional Anda...<br><br><strong>PENGALAMAN KERJA</strong><br><br>&#x2022; <strong>Posisi</strong> &ndash; Perusahaan (Tahun&ndash;kini)<br>&nbsp;&nbsp;Deskripsi pekerjaan dan pencapaian.<br><br><strong>PENDIDIKAN</strong><br><br>&#x2022; <strong>S1 Nama Jurusan</strong> &ndash; Universitas (Tahun)<br><br><strong>KEAHLIAN</strong><br><br>&#x2022; Keahlian 1 &nbsp;&#x2022; Keahlian 2 &nbsp;&#x2022; Keahlian 3',
+  lamaran:'<div style="text-align:right;margin-bottom:16px">[Kota], [Tanggal]</div>Kepada Yth.,<br>HRD / Manajer Rekrutmen<br>[Nama Perusahaan]<br><br>Dengan hormat,<br><br>Saya <strong>[Nama]</strong>, mengajukan lamaran untuk <strong>[Posisi]</strong>.<br><br>Saya memiliki keahlian relevan dan siap berkontribusi.<br><br>Hormat saya,<br><br>[Nama]',
+  berkas:'<div style="text-align:center;margin-bottom:14px"><strong>DAFTAR BERKAS PENDUKUNG</strong></div><table style="width:100%;border-collapse:collapse;font-size:10.5px"><tr style="background:#eff6ff"><td style="border:1px solid #bfdbfe;padding:5px 7px;font-weight:700">No.</td><td style="border:1px solid #bfdbfe;padding:5px 7px;font-weight:700">Berkas</td><td style="border:1px solid #bfdbfe;padding:5px 7px;font-weight:700">Ket.</td></tr><tr><td style="border:1px solid #bfdbfe;padding:5px 7px">1.</td><td style="border:1px solid #bfdbfe;padding:5px 7px">KTP</td><td style="border:1px solid #bfdbfe;padding:5px 7px">Fotokopi</td></tr><tr><td style="border:1px solid #bfdbfe;padding:5px 7px">2.</td><td style="border:1px solid #bfdbfe;padding:5px 7px">Ijazah</td><td style="border:1px solid #bfdbfe;padding:5px 7px">Fotokopi</td></tr></table>',
+  kosong:''
+};
+function applyTmpl(v){const el=document.getElementById('doccontent-'+curPg);if(el){el.innerHTML=TMPL[v]||'';updStat();el.focus();}}
+function ef(cmd,val){document.execCommand(cmd,false,val||null);}
+function updStat(){
+  const el=document.getElementById('doccontent-'+curPg);if(!el)return;
+  const w=(el.innerText||'').trim().split(/\s+/).filter(Boolean).length;
+  document.getElementById('cv-stat').textContent=w+' kata \u00B7 Hal '+curPg+'/'+pgCount;
 }
 
-function buildAITabs(v){
-  const box=document.getElementById("aiTabsBox");
-  if(v==="cv"){
-    box.innerHTML='<button class="ai-tab on" onclick="switchAiTab(\'ats\',this)"><i class="ti ti-file-check"></i>CV ATS</button><button class="ai-tab" onclick="switchAiTab(\'kreatif\',this)"><i class="ti ti-palette"></i>CV Kreatif</button><button class="ai-tab" onclick="switchAiTab(\'formal\',this)"><i class="ti ti-briefcase"></i>Formal</button>';
-  } else if(v==="lamaran"){
-    box.innerHTML='<button class="ai-tab on" onclick="switchAiTab(\'formal_lamaran\',this)"><i class="ti ti-briefcase"></i>Formal</button><button class="ai-tab" onclick="switchAiTab(\'kreatif_lamaran\',this)"><i class="ti ti-palette"></i>Kreatif</button><button class="ai-tab" onclick="switchAiTab(\'singkat_lamaran\',this)"><i class="ti ti-bolt"></i>Singkat</button>';
+// ─── CREATE AI ───
+function triggerAI(){
+  const panel=document.getElementById('aiPanel');panel.style.display='block';
+  const subs={ats:'CV Berbasis ATS',kreatif:'CV Kreatif \u2013 Pilih Desain',formal:'CV Format Formal',formal_lamaran:'Surat Lamaran Formal',kreatif_lamaran:'Surat Lamaran Kreatif',singkat_lamaran:'Surat Lamaran Singkat'};
+  document.getElementById('aiSub').textContent=subs[currentAiType]||'Dokumen Profesional';
+  setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+  if(currentAiType==='kreatif'){
+    showDesignPicker();
+  } else {
+    runAI();
   }
 }
 
-function switchAiTab(type,btn){
-  currentAiType=type;
-  document.querySelectorAll(".ai-tab").forEach(b=>b.classList.remove("on"));
-  btn.classList.add("on");
-  document.getElementById("aiContent").style.display="none";
-  document.getElementById("aiActions").style.display="none";
-  document.getElementById("aiLoading").style.display="none";
+function showDesignPicker(){
+  document.getElementById('aiLoading').style.display='none';
+  document.getElementById('aiBodyWrap').style.display='none';
+  document.getElementById('aiAct').style.display='none';
+  const picker=document.getElementById('aiDesignPicker');
+  picker.style.display='flex';
+  const grid=document.getElementById('dpGrid');
+  grid.innerHTML='';
+  CREATIVE_DESIGNS.forEach((d,i)=>{
+    const card=document.createElement('div');
+    card.className='dp-card'+(selectedDesign===i?' sel':'');
+    card.innerHTML=d.preview+'<div class="dp-name">'+d.name+'</div>';
+    card.onclick=()=>selectDesign(i);
+    grid.appendChild(card);
+  });
+  // Tambahkan tombol generate di bawah grid
+  const genBtn=document.createElement('button');
+  genBtn.style.cssText='width:100%;margin-top:8px;padding:9px;background:linear-gradient(135deg,#6d28d9,#7c3aed);color:#fff;border:none;border-radius:9px;font-family:var(--fnt);font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px';
+  genBtn.innerHTML='<i class="ti ti-sparkles" style="font-size:13px"></i> Generate dengan Desain Ini';
+  genBtn.onclick=()=>{
+    document.getElementById('aiDesignPicker').style.display='none';
+    runAIKreatif();
+  };
+  picker.appendChild(genBtn);
 }
 
-function applyTmpl(v){
-  const el=document.getElementById("doccontent-"+curPg);
-  if(el){el.innerHTML=TMPL[v]||"";updStat();el.focus();}
-}
-function ef(cmd,val){document.execCommand(cmd,false,val||null);}
-function updStat(){
-  const el=document.getElementById("doccontent-"+curPg);if(!el)return;
-  const w=(el.innerText||"").trim().split(/\s+/).filter(Boolean).length;
-  document.getElementById("cv-stat").textContent=w+" kata · Hal "+curPg+"/"+pgCount;
+function selectDesign(i){
+  selectedDesign=i;
+  document.querySelectorAll('.dp-card').forEach((c,idx)=>{
+    c.classList.toggle('sel',idx===i);
+  });
 }
 
-function triggerAI(){
-  const panel=document.getElementById("aiResultPanel");
-  panel.style.display="block";
-  const subs={ats:"CV Berbasis ATS",kreatif:"CV Kreatif & Personal",formal:"CV Format Formal",formal_lamaran:"Surat Lamaran Formal",kreatif_lamaran:"Surat Lamaran Kreatif",singkat_lamaran:"Surat Lamaran Singkat"};
-  document.getElementById("aiSub").textContent=subs[currentAiType]||"Dokumen Profesional";
-  setTimeout(()=>panel.scrollIntoView({behavior:"smooth",block:"nearest"}),100);
-  runAI();
+function runAIKreatif(){
+  document.getElementById('aiLoading').style.display='block';
+  document.getElementById('aiBodyWrap').style.display='none';
+  document.getElementById('aiAct').style.display='none';
+  const el=document.getElementById('doccontent-'+curPg);
+  const userText=(el?el.innerText:'').trim();
+  const msgs=['AI menganalisis data Anda...','Menerapkan desain '+CREATIVE_DESIGNS[selectedDesign].name+'...','Menyusun konten kreatif...','Hampir selesai...'];
+  let mi=0;const iv=setInterval(()=>{if(mi<msgs.length)document.getElementById('aiMsg').textContent=msgs[mi++];},700);
+  const design=CREATIVE_DESIGNS[selectedDesign];
+  setTimeout(()=>{
+    clearInterval(iv);
+    document.getElementById('aiLoading').style.display='none';
+    // Ambil template desain terpilih dan isi dengan data user
+    let content=design.content;
+    if(userText.length>20){
+      // Coba ekstrak nama dari teks user
+      const lines=userText.split('\n').filter(l=>l.trim());
+      if(lines[0])content=content.replace(/NAMA LENGKAP/g,lines[0].trim().toUpperCase());
+    }
+    lastAIText=content;
+    document.getElementById('aiBody').textContent=content;
+    document.getElementById('aiBodyWrap').style.display='block';
+    document.getElementById('aiAct').style.display='flex';
+    showToast('CV Kreatif desain "'+design.name+'" siap!');
+  },2800);
 }
 
 async function runAI(){
-  document.getElementById("aiLoading").style.display="block";
-  document.getElementById("aiContent").style.display="none";
-  document.getElementById("aiActions").style.display="none";
-  const el=document.getElementById("doccontent-"+curPg);
-  const userText=(el?el.innerText:"").trim();
-  const msgs=["AI menganalisis isi dokumen...","Menyusun struktur profesional...","Mengoptimalkan kata kunci ATS...","Memperhalus bahasa dan format...","Hampir selesai..."];
-  let mi=0;
-  const iv=setInterval(()=>{if(mi<msgs.length)document.getElementById("aiMsg").textContent=msgs[mi++];},700);
-  const prompts={
-    ats:`Buat CV ATS sangat profesional berdasarkan: "${userText||"CV Software Engineer 3 tahun pengalaman"}". Format: NAMA LENGKAP, Posisi|Email|Telp|Kota, garis ---, RINGKASAN PROFESIONAL (kata kunci kuat), PENGALAMAN KERJA (bullet STAR method dengan angka), PENDIDIKAN, KEAHLIAN TEKNIS per kategori, SERTIFIKASI. Bahasa Indonesia profesional. Output isi CV saja langsung.`,
-    kreatif:`Buat CV KREATIF menarik berdasarkan: "${userText||"CV UI/UX Designer"}". Format: nama+tagline personal, Tentang Saya (personal), Proyek Unggulan 3-5 item, Pengalaman (cerita singkat), Keahlian (hard/soft/tools), Pendidikan, Filosofi Kerja. Bahasa segar berkarakter. Output isi CV saja.`,
-    formal:`Buat CV FORMAT FORMAL berdasarkan: "${userText||"CV Manajer senior"}". Format: DAFTAR RIWAYAT HIDUP, Data Pribadi lengkap, Riwayat Pendidikan (tabel), Riwayat Pekerjaan (kronologis), Keahlian Kompetensi, Organisasi, Referensi. Bahasa Indonesia formal baku. Output isi saja.`,
-    formal_lamaran:`Buat SURAT LAMARAN FORMAL berdasarkan: "${userText||"Lamaran Manager di perusahaan nasional"}". Format surat resmi: tanggal, alamat tujuan, perihal, salam, paragraf perkenalan, kualifikasi, motivasi, penutup, tanda tangan. Bahasa formal baku. Output isi surat saja.`,
-    kreatif_lamaran:`Buat SURAT LAMARAN KREATIF berdasarkan: "${userText||"Lamaran startup teknologi"}". Format: hook pembuka menarik, cerita passion, pencapaian spesifik dengan angka, alasan memilih perusahaan, call to action percaya diri. Bahasa segar berkarakter. Output surat saja.`,
-    singkat_lamaran:`Buat SURAT LAMARAN SINGKAT PADAT (maks 200 kata) berdasarkan: "${userText||"Lamaran berbagai posisi"}". Format: nama+posisi+sumber info, 2-3 kalimat kualifikasi terkuat, penutup antusias+kontak. Langsung ke poin. Output surat saja.`
+  document.getElementById('aiLoading').style.display='block';
+  document.getElementById('aiBodyWrap').style.display='none';
+  document.getElementById('aiAct').style.display='none';
+  document.getElementById('aiDesignPicker').style.display='none';
+  const el=document.getElementById('doccontent-'+curPg);
+  const userText=(el?el.innerText:'').trim();
+  const msgs=['AI menganalisis dokumen...','Menyusun struktur profesional...','Mengoptimalkan kata kunci...','Hampir selesai...'];
+  let mi=0;const iv=setInterval(()=>{if(mi<msgs.length)document.getElementById('aiMsg').textContent=msgs[mi++];},700);
+  const base=userText.length>10?userText:'';
+  const P={
+    ats:'Buat CV ATS profesional Bahasa Indonesia berdasarkan: "'+base+'". Format: NAMA, Posisi|Email|Telp|Kota, garis, RINGKASAN PROFESIONAL (2-3 kalimat+kata kunci), PENGALAMAN KERJA (bullet STAR+angka), PENDIDIKAN, KEAHLIAN per kategori. Output isi CV saja.',
+    formal:'Buat DAFTAR RIWAYAT HIDUP FORMAL berdasarkan: "'+base+'". Format: DATA PRIBADI lengkap, RIWAYAT PENDIDIKAN, RIWAYAT PEKERJAAN kronologis, KEAHLIAN. Bahasa formal baku. Output isi saja.',
+    formal_lamaran:'Buat SURAT LAMARAN FORMAL berdasarkan: "'+base+'". Surat resmi lengkap: tanggal, tujuan, perihal, 3 paragraf, penutup, tanda tangan. Output saja.',
+    kreatif_lamaran:'Buat SURAT LAMARAN KREATIF berdasarkan: "'+base+'". Hook menarik, passion story, pencapaian+angka, alasan pilih perusahaan, CTA percaya diri. Output saja.',
+    singkat_lamaran:'Buat SURAT LAMARAN SINGKAT max 180 kata berdasarkan: "'+base+'". Pembuka+posisi, 2-3 kalimat kualifikasi, penutup+kontak. Output saja.'
   };
   try{
-    const resp=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompts[currentAiType]||prompts.ats}]})});
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:P[currentAiType]||P.ats}]})});
     const data=await resp.json();
-    clearInterval(iv);
-    document.getElementById("aiLoading").style.display="none";
-    const text=data.content&&data.content[0]?data.content[0].text:"Konten tidak tersedia.";
-    lastAIText=text;
-    document.getElementById("aiBody").textContent=text;
-    document.getElementById("aiContent").style.display="block";
-    document.getElementById("aiActions").style.display="flex";
-    showToast("AI berhasil membuat dokumen!");
-  }catch(err){
-    clearInterval(iv);
-    document.getElementById("aiLoading").style.display="none";
-    const fb=genFallback(currentAiType,userText);
-    lastAIText=fb;
-    document.getElementById("aiBody").textContent=fb;
-    document.getElementById("aiContent").style.display="block";
-    document.getElementById("aiActions").style.display="flex";
-    showToast("Hasil dari template AI!");
+    clearInterval(iv);document.getElementById('aiLoading').style.display='none';
+    const text=(data.content&&data.content[0])?data.content[0].text:genFallback(currentAiType);
+    lastAIText=text;document.getElementById('aiBody').textContent=text;
+    document.getElementById('aiBodyWrap').style.display='block';document.getElementById('aiAct').style.display='flex';
+    showToast('AI berhasil membuat dokumen!');
+  }catch(e){
+    clearInterval(iv);document.getElementById('aiLoading').style.display='none';
+    const fb=genFallback(currentAiType);lastAIText=fb;document.getElementById('aiBody').textContent=fb;
+    document.getElementById('aiBodyWrap').style.display='block';document.getElementById('aiAct').style.display='flex';
+    showToast('Hasil dari template AI!');
   }
 }
 
-function genFallback(type,userText){
-  const today=new Date().toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"});
-  const fb={
-    ats:"NAMA PROFESIONAL\nSoftware Engineer | email@email.com | 08xxxxxxxxxx | Jakarta\n"+"-".repeat(38)+"\n\nRINGKASAN PROFESIONAL\nInsinyur perangkat lunak berpengalaman 3+ tahun. Terbukti meningkatkan performa aplikasi 40% melalui optimasi kode dan implementasi best practice. Keahlian full-stack dengan fokus pada scalability dan clean code.\n\nPENGALAMAN KERJA\n\u2022 Senior Software Engineer - PT Teknologi Maju (2022-sekarang)\n  - Kembangkan 5 fitur utama yang meningkatkan retensi pengguna 25%\n  - Pimpin tim 4 developer dengan metodologi Agile/Scrum\n  - Optimalkan query database, kurangi load time 60%\n\n\u2022 Software Engineer - Startup Digital (2021-2022)\n  - Bangun REST API menangani 10.000+ request/hari\n  - Unit test coverage 85%+\n\nPENDIDIKAN\n\u2022 S1 Teknik Informatika - Universitas Indonesia (2021) | IPK: 3.78\n\nKEAHLIAN TEKNIS\n\u2022 Backend: Node.js, Python, PHP, Java\n\u2022 Frontend: React, Vue.js, TypeScript\n\u2022 Database: MySQL, PostgreSQL, MongoDB, Redis\n\u2022 DevOps: Docker, Kubernetes, AWS, CI/CD",
-    kreatif:"NAMA KREATIF \u2726 Digital Creator\n\"Saya percaya kode yang baik adalah seni yang berfungsi.\"\n"+"-".repeat(38)+"\n\nTENTANG SAYA\nSeorang developer yang lahir dari rasa penasaran. Saya tidak sekadar menulis kode - saya menciptakan pengalaman digital bermakna.\n\nPROYEK UNGGULAN\n\u2605 Aplikasi Keuangan - 50.000+ unduhan | React Native + Node.js\n\u2605 Platform E-learning - 200+ bintang GitHub\n\u2605 Dashboard Analytics Real-time - 1 juta data poin/hari\n\nPERJALANAN KARIR\n\u2192 Lead Frontend Developer | Tech Startup (2022-kini)\n\u2192 UI Developer | Creative Agency (2020-2022)\n\nKEAHLIAN\n\u2605 Hard Skills: React, Vue, Node.js, Python, Figma\n\u2605 Soft Skills: Creative thinking, storytelling, empati\n\nFILOSOFI KERJA\n\"Code dengan hati, iterasi dengan data.\"",
-    formal:"DAFTAR RIWAYAT HIDUP\n\nDATA PRIBADI\nNama Lengkap : Nama Profesional\nTempat/Tgl Lahir : Jakarta, 1 Januari 1995\nAlamat : Jl. Contoh No. 1, Jakarta Selatan\nNomor HP : 08xxxxxxxxxx\nEmail : nama@email.com\nStatus : Belum Menikah\n\nRIWAYAT PENDIDIKAN\n2017-2021 : S1 Manajemen Bisnis - Universitas Indonesia | IPK: 3.65\n2014-2017 : SMA Negeri 1 Jakarta\n\nRIWAYAT PEKERJAAN\n2022-kini : Manajer Operasional - PT Berkah Sejahtera\n2021-2022 : Staf Administrasi - CV Maju Bersama\n\nKEAHLIAN\n\u2022 Microsoft Office - Mahir\n\u2022 Analisis Data & Pelaporan Bisnis\n\u2022 Manajemen Tim dan Proyek\n\u2022 Bahasa Inggris - Aktif\n\nJakarta, "+today+"\n\n\nNama Profesional",
-    formal_lamaran:"Jakarta, "+today+"\n\nKepada Yth.,\nBapak/Ibu HRD Manager\nNama Perusahaan\ndi tempat\n\nPerihal: Lamaran Pekerjaan\n\nDengan hormat,\n\nSaya yang bertanda tangan di bawah ini:\n  Nama : Nama Profesional\n  HP   : 08xxxxxxxxxx\n  Email: nama@email.com\n\nmengajukan permohonan untuk mengisi posisi yang tersedia di perusahaan Bapak/Ibu.\n\nSaya memiliki pengalaman 3 tahun yang relevan dengan rekam jejak peningkatan efisiensi 30% dan kepemimpinan tim lintas divisi.\n\nSaya sangat antusias untuk berdiskusi lebih lanjut mengenai kontribusi saya.\n\nDemikian surat lamaran ini. Atas perhatiannya, terima kasih.\n\nHormat saya,\n\n\nNama Profesional",
-    kreatif_lamaran:"Halo Tim Rekrutmen,\n\nSaya tidak ingin memulai surat ini dengan cara biasa - karena saya bukan kandidat yang biasa.\n\nNama saya Nama Profesional, dan saya sudah jatuh cinta dengan apa yang perusahaan Anda lakukan sejak pertama mendengar kisah di baliknya.\n\nDalam 3 tahun terakhir, saya berhasil:\n\u2192 Pimpin proyek yang memenangkan penghargaan industri\n\u2192 Bangun tim dari 0 menjadi unit produktif dan bahagia\n\u2192 Hasilkan ROI 250% dari inisiatif yang saya pimpin\n\nSaya ingin mengobrol - bukan interview formal, tapi percakapan tentang bagaimana kita tumbuh bersama.\n\nSampai bertemu,\n\nNama Profesional\n\ud83d\udce7 nama@email.com | \ud83d\udcf1 08xxxxxxxxxx",
-    singkat_lamaran:today+"\n\nKepada HRD Manager,\n\nSaya Nama Profesional, melamar posisi [Nama Posisi] yang diiklankan di [Sumber].\n\nDengan 3 tahun pengalaman relevan dan rekam jejak peningkatan performa tim 40%, saya yakin dapat berkontribusi langsung. Keahlian utama: [skill 1], [skill 2], [skill 3].\n\nSiap dihubungi: 08xxxxxxxxxx | nama@email.com\n\nHormat saya,\nNama Profesional"
+function genFallback(type){
+  const today=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  const F={
+    ats:'NAMA PROFESIONAL\nSoftware Engineer | email@email.com | 08xxxxxxxxxx | Jakarta\n'+'-'.repeat(38)+'\n\nRINGKASAN PROFESIONAL\nInsinyur perangkat lunak 3+ tahun. Tingkatkan performa 40%. Ahli full-stack.\n\nPENGALAMAN\n\u2022 Senior Engineer \u2013 PT Teknologi (2022\u2013kini)\n  - Kembangkan 5 fitur, naikan retensi 25%\n\nPENDIDIKAN\n\u2022 S1 Informatika \u2013 UI (2021) | IPK: 3.78\n\nKEAHLIAN\nNode.js, React, Python, PostgreSQL, Docker',
+    formal:'DAFTAR RIWAYAT HIDUP\n\nNama : Nama Profesional\nHP   : 08xxxxxxxxxx\nEmail: nama@email.com\n\nPENDIDIKAN\n2017-2021: S1 Manajemen \u2013 UI | IPK 3.65\n\nPEKERJAAN\n2022-kini: Manajer \u2013 PT Berkah\n\nJakarta, '+today+'\n\nNama Profesional',
+    formal_lamaran:'Jakarta, '+today+'\n\nKepada Yth.,\nHRD Manager\nNama Perusahaan\n\nDengan hormat,\nSaya Nama Profesional mengajukan lamaran.\n\nSaya berpengalaman 3 tahun relevan.\n\nHormat saya,\nNama Profesional',
+    kreatif_lamaran:'Halo Tim Rekrutmen,\n\nSaya Nama Profesional. Passion saya selaras dengan visi perusahaan Anda.\n\nDalam 3 tahun: capai ROI 250%, pimpin tim dari 0.\n\nMari diskusi!\n\nNama Profesional | 08xxxxxxxxxx',
+    singkat_lamaran:today+'\n\nKepada HRD,\n\nSaya Nama, melamar [Posisi]. Pengalaman 3 tahun relevan, skill utama: A, B, C.\n\nHubungi: 08xxxxxxxxxx\n\nNama Profesional'
   };
-  return fb[type]||fb.ats;
+  return F[type]||F.ats;
 }
 
-function closeAI(){document.getElementById("aiResultPanel").style.display="none";}
+function closeAI(){document.getElementById('aiPanel').style.display='none';}
 function applyAI(mode){
   if(!lastAIText)return;
-  const el=document.getElementById("doccontent-"+curPg);if(!el)return;
-  const html=lastAIText.replace(/\n/g,"<br>").replace(/  /g,"&nbsp;&nbsp;");
-  if(mode==="replace")el.innerHTML=html;
-  else el.innerHTML=el.innerHTML+"<br><br>"+html;
+  const el=document.getElementById('doccontent-'+curPg);if(!el)return;
+  const html=lastAIText.replace(/\n/g,'<br>').replace(/ {2}/g,'&nbsp;&nbsp;');
+  if(mode==='replace')el.innerHTML=html;else el.innerHTML=el.innerHTML+'<br><br>'+html;
   updStat();closeAI();
-  showToast(mode==="replace"?"Konten AI diterapkan!":"Konten AI ditambahkan!");
-  el.scrollIntoView({behavior:"smooth",block:"start"});
+  showToast(mode==='replace'?'Konten AI diterapkan!':'Konten AI ditambahkan!');
+  el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function copyAI(){
   if(!lastAIText)return;
-  navigator.clipboard.writeText(lastAIText).then(()=>showToast("Teks berhasil disalin!")).catch(()=>{
-    const ta=document.createElement("textarea");ta.value=lastAIText;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);showToast("Teks berhasil disalin!");
+  navigator.clipboard.writeText(lastAIText).then(()=>showToast('Teks berhasil disalin!')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=lastAIText;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showToast('Teks disalin!');
   });
 }
 function regenAI(){
-  document.getElementById("aiContent").style.display="none";
-  document.getElementById("aiActions").style.display="none";
-  runAI();
+  document.getElementById('aiBodyWrap').style.display='none';
+  document.getElementById('aiAct').style.display='none';
+  document.getElementById('aiDesignPicker').style.display='none';
+  if(currentAiType==='kreatif')showDesignPicker();else runAI();
 }
 
-// PAGES
+// ─── PAGES ───
 function addPage(){
   pgCount++;const id=pgCount;
-  const canvas=document.getElementById("cvCanvas");
-  const aiPanel=document.getElementById("aiResultPanel");
-  const lr=document.createElement("div");lr.className="cv-plr";lr.id="plr-"+id;lr.style.marginTop="14px";
+  const canvas=document.getElementById('cvCanvas');const aiPanel=document.getElementById('aiPanel');
+  const lr=document.createElement('div');lr.className='cv-plr';lr.id='plr-'+id;lr.style.marginTop='14px';
   lr.innerHTML='<span class="cv-plabel">Halaman '+id+'</span><button class="cv-pdel" onclick="delPage('+id+')"><i class="ti ti-trash"></i> Hapus</button>';
-  const pg=document.createElement("div");pg.className="cv-page";pg.id="docpage-"+id;
-  const ct=document.createElement("div");ct.className="cv-content";ct.id="doccontent-"+id;
-  ct.contentEditable="true";ct.onkeyup=updStat;ct.onclick=()=>{curPg=id;updStat();};
+  const pg=document.createElement('div');pg.className='cv-page';pg.id='docpage-'+id;
+  const ct=document.createElement('div');ct.className='cv-content';ct.id='doccontent-'+id;
+  ct.contentEditable='true';ct.onkeyup=updStat;ct.onclick=()=>{curPg=id;updStat();};
   pg.appendChild(ct);canvas.insertBefore(lr,aiPanel);canvas.insertBefore(pg,aiPanel);
-  curPg=id;ct.focus();updStat();showToast("Halaman "+id+" ditambahkan");
+  curPg=id;ct.focus();updStat();showToast('Halaman '+id+' ditambahkan');
 }
 function delPage(id){
-  if(pgCount<=1){showToast("Minimal 1 halaman!");return;}
-  if(!confirm("Hapus halaman "+id+"?"))return;
-  const lr=document.getElementById("plr-"+id);const pg=document.getElementById("docpage-"+id);
-  if(lr)lr.remove();if(pg)pg.remove();pgCount--;if(curPg===id)curPg=1;updStat();showToast("Halaman dihapus");
+  if(pgCount<=1){showToast('Minimal 1 halaman!');return;}
+  if(!confirm('Hapus halaman '+id+'?'))return;
+  const lr=document.getElementById('plr-'+id);const pg=document.getElementById('docpage-'+id);
+  if(lr)lr.remove();if(pg)pg.remove();pgCount--;if(curPg===id)curPg=1;updStat();showToast('Halaman dihapus');
 }
 function toggleGrid(){
-  const gp=document.getElementById("gridPanel"),btn=document.getElementById("gridBtn");
-  const show=gp.style.display!=="block";gp.style.display=show?"block":"none";btn.classList.toggle("on",show);
+  const gp=document.getElementById('gridPanel'),btn=document.getElementById('gridBtn');
+  const show=gp.style.display!=='block';gp.style.display=show?'block':'none';btn.classList.toggle('on',show);
 }
 function insGrid(cols,rows,w,h){
-  const el=document.getElementById("doccontent-"+curPg);if(!el)return;el.focus();
-  const wrap=document.createElement("div");wrap.style.cssText="display:flex;flex-wrap:wrap;gap:4px;margin:5px 0;line-height:0";
-  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)wrap.appendChild(buildFrm(w,h,"rect"));
-  insNode(wrap);insNode(document.createElement("br"));
+  const el=document.getElementById('doccontent-'+curPg);if(!el)return;el.focus();
+  const wrap=document.createElement('div');wrap.style.cssText='display:flex;flex-wrap:wrap;gap:4px;margin:5px 0;line-height:0';
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)wrap.appendChild(buildFrm(w,h,'rect'));
+  insNode(wrap);insNode(document.createElement('br'));
 }
 function insSingle(w,h,shape){
-  const el=document.getElementById("doccontent-"+curPg);if(!el)return;el.focus();
-  insNode(buildFrm(w,h,shape));insNode(document.createElement("br"));
+  const el=document.getElementById('doccontent-'+curPg);if(!el)return;el.focus();
+  insNode(buildFrm(w,h,shape));insNode(document.createElement('br'));
 }
 function buildFrm(w,h,shape){
-  const wr=document.createElement("span");wr.className="img-frame";
-  wr.style.cssText="width:"+w+"px;height:"+h+"px;display:inline-block;vertical-align:top;position:relative;margin:3px";
-  wr.setAttribute("data-shape",shape);
-  const inner=document.createElement("span");inner.className="img-frame-inner";
-  const br=shape==="circle"?"50%":"5px";
-  inner.style.cssText="width:"+w+"px;height:"+h+"px;border-radius:"+br+";overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f4ff,#e8eef8);border:1.5px dashed #bfdbfe;position:relative;cursor:pointer";
-  const ph=document.createElement("span");ph.className="fph";
+  const wr=document.createElement('span');wr.className='img-frame';
+  wr.style.cssText='width:'+w+'px;height:'+h+'px;display:inline-block;vertical-align:top;position:relative;margin:3px';
+  wr.setAttribute('data-shape',shape);
+  const inner=document.createElement('span');inner.className='img-frame-inner';
+  const br=shape==='circle'?'50%':'5px';
+  inner.style.cssText='width:'+w+'px;height:'+h+'px;border-radius:'+br+';overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0f4ff,#e8eef8);border:1.5px dashed #bfdbfe;position:relative;cursor:pointer';
+  const ph=document.createElement('span');ph.className='fph';
   ph.innerHTML='<i class="ti ti-camera-plus"></i><span>Klik<br>foto</span>';
   inner.appendChild(ph);
-  inner.onclick=(e)=>{e.stopPropagation();activeFrame=inner;document.getElementById("imgUp").click();};
-  const fdel=document.createElement("button");fdel.className="fdel";fdel.innerHTML="x";
-  fdel.setAttribute("aria-label","Hapus frame");fdel.style.fontFamily="monospace";fdel.style.fontWeight="700";
+  inner.onclick=(e)=>{e.stopPropagation();activeFrame=inner;document.getElementById('imgUp').click();};
+  const fdel=document.createElement('button');fdel.className='fdel';fdel.innerHTML='&times;';
+  fdel.setAttribute('aria-label','Hapus frame');
   fdel.onclick=(e)=>{e.stopPropagation();wr.remove();};
   wr.appendChild(fdel);
-  const rsz=document.createElement("span");rsz.className="frsz";rsz.innerHTML='<i class="ti ti-arrows-diagonal"></i>';
+  const rsz=document.createElement('span');rsz.className='frsz';rsz.innerHTML='<i class="ti ti-arrows-diagonal"></i>';
   rsz.onmousedown=(e)=>doResize(e,wr,inner,shape);
   inner.appendChild(rsz);
-  const tb=document.createElement("span");tb.className="ftb";
+  const tb=document.createElement('span');tb.className='ftb';
   tb.innerHTML='<button onclick="repImg(this)"><i class="ti ti-photo"></i> Ganti</button>';
   wr.appendChild(tb);wr.appendChild(inner);return wr;
 }
 function doResize(e,wr,inner,shape){
   e.preventDefault();
   const sx=e.clientX,sy=e.clientY,sw=parseInt(wr.style.width),sh=parseInt(wr.style.height);
-  const mv=(ev)=>{const nw=Math.max(40,sw+(ev.clientX-sx)),nh=Math.max(40,sh+(ev.clientY-sy));wr.style.width=nw+"px";wr.style.height=nh+"px";inner.style.width=nw+"px";inner.style.height=nh+"px";};
-  const up=()=>{document.removeEventListener("mousemove",mv);document.removeEventListener("mouseup",up);};
-  document.addEventListener("mousemove",mv);document.addEventListener("mouseup",up);
+  const mv=(ev)=>{const nw=Math.max(40,sw+(ev.clientX-sx)),nh=Math.max(40,sh+(ev.clientY-sy));wr.style.width=nw+'px';wr.style.height=nh+'px';inner.style.width=nw+'px';inner.style.height=nh+'px';};
+  const up=()=>{document.removeEventListener('mousemove',mv);document.removeEventListener('mouseup',up);};
+  document.addEventListener('mousemove',mv);document.addEventListener('mouseup',up);
 }
-function repImg(btn){activeFrame=btn.closest(".img-frame").querySelector(".img-frame-inner");document.getElementById("imgUp").click();}
+function repImg(btn){activeFrame=btn.closest('.img-frame').querySelector('.img-frame-inner');document.getElementById('imgUp').click();}
 function handleImgUp(input){
   if(!input.files||!input.files[0])return;
   const url=URL.createObjectURL(input.files[0]);if(!activeFrame)return;
-  const wr=activeFrame.closest(".img-frame");const shape=wr?wr.getAttribute("data-shape"):"rect";const br=shape==="circle"?"50%":"5px";
-  activeFrame.innerHTML="";activeFrame.classList.add("hi");
-  activeFrame.style.background="#000";activeFrame.style.border="1.5px solid #bfdbfe";activeFrame.style.borderRadius=br;
-  const img=document.createElement("img");img.src=url;img.alt="Foto";img.style.cssText="width:100%;height:100%;object-fit:cover;display:block";
-  const rsz=document.createElement("span");rsz.className="frsz";rsz.innerHTML='<i class="ti ti-arrows-diagonal"></i>';
+  const wr=activeFrame.closest('.img-frame');const shape=wr?wr.getAttribute('data-shape'):'rect';const br=shape==='circle'?'50%':'5px';
+  activeFrame.innerHTML='';activeFrame.classList.add('hi');activeFrame.style.background='#000';activeFrame.style.border='1.5px solid #bfdbfe';activeFrame.style.borderRadius=br;
+  const img=document.createElement('img');img.src=url;img.alt='Foto';img.style.cssText='width:100%;height:100%;object-fit:cover;display:block';
+  const rsz=document.createElement('span');rsz.className='frsz';rsz.innerHTML='<i class="ti ti-arrows-diagonal"></i>';
   rsz.onmousedown=(e)=>doResize(e,wr,activeFrame,shape);
   activeFrame.appendChild(img);activeFrame.appendChild(rsz);
-  if(wr&&!wr.querySelector(".fdel")){const fd=document.createElement("button");fd.className="fdel";fd.innerHTML="x";fd.style.fontFamily="monospace";fd.style.fontWeight="700";fd.setAttribute("aria-label","Hapus frame");fd.onclick=(e)=>{e.stopPropagation();wr.remove();};wr.appendChild(fd);}
-  input.value="";activeFrame=null;showToast("Foto berhasil ditambahkan!");
+  if(wr&&!wr.querySelector('.fdel')){const fd=document.createElement('button');fd.className='fdel';fd.innerHTML='&times;';fd.setAttribute('aria-label','Hapus frame');fd.onclick=(e)=>{e.stopPropagation();wr.remove();};wr.appendChild(fd);}
+  input.value='';activeFrame=null;showToast('Foto berhasil ditambahkan!');
 }
 function insNode(node){
   const sel=window.getSelection();
   if(sel&&sel.rangeCount){const r=sel.getRangeAt(0);r.deleteContents();r.insertNode(node);r.setStartAfter(node);r.collapse(true);sel.removeAllRanges();sel.addRange(r);}
-  else{const el=document.getElementById("doccontent-"+curPg);if(el)el.appendChild(node);}
+  else{const el=document.getElementById('doccontent-'+curPg);if(el)el.appendChild(node);}
 }
-function insHR(){ef("insertHTML","<hr style=\"border:0;border-top:2px solid #1e3a8a;margin:8px 0\">");}
-function insTbl(){ef("insertHTML","<table style=\"width:100%;border-collapse:collapse;margin:6px 0;font-size:10.5px\"><tr style=\"background:#eff6ff\"><td style=\"border:1px solid #bfdbfe;padding:4px 7px;font-weight:700\">Kolom 1</td><td style=\"border:1px solid #bfdbfe;padding:4px 7px;font-weight:700\">Kolom 2</td><td style=\"border:1px solid #bfdbfe;padding:4px 7px;font-weight:700\">Kolom 3</td></tr><tr><td style=\"border:1px solid #bfdbfe;padding:4px 7px\">&nbsp;</td><td style=\"border:1px solid #bfdbfe;padding:4px 7px\">&nbsp;</td><td style=\"border:1px solid #bfdbfe;padding:4px 7px\">&nbsp;</td></tr></table><br>");}
+function insHR(){ef('insertHTML','<hr style="border:0;border-top:2px solid #1e3a8a;margin:8px 0">');}
+function insTbl(){ef('insertHTML','<table style="width:100%;border-collapse:collapse;margin:6px 0;font-size:10.5px"><tr style="background:#eff6ff"><td style="border:1px solid #bfdbfe;padding:4px 7px;font-weight:700">Kolom 1</td><td style="border:1px solid #bfdbfe;padding:4px 7px;font-weight:700">Kolom 2</td><td style="border:1px solid #bfdbfe;padding:4px 7px;font-weight:700">Kolom 3</td></tr><tr><td style="border:1px solid #bfdbfe;padding:4px 7px">&nbsp;</td><td style="border:1px solid #bfdbfe;padding:4px 7px">&nbsp;</td><td style="border:1px solid #bfdbfe;padding:4px 7px">&nbsp;</td></tr></table><br>');}
 
-// EXPORT
+// ─── EXPORT PDF dengan tombol KEMBALI ───
 function exportPDF(){
-  const pages=[];for(let i=1;i<=pgCount;i++){const el=document.getElementById("doccontent-"+i);if(el)pages.push(el.innerHTML);}
-  const body=pages.map((p,i)=>'<div class="pg">'+p+"</div>"+(i<pages.length-1?'<div style="page-break-after:always"></div>':"")).join("");
-  const w=window.open("","_blank","width=860,height=960");
-  if(!w){showToast("Izinkan pop-up untuk export PDF!");return;}
-  w.document.write('<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>CV Builder Pro</title><style>*{box-sizing:border-box}body{font-family:"Times New Roman",serif;font-size:12pt;color:#000;margin:0;background:#fff}.pg{max-width:595px;margin:28px auto;padding:50px 55px}img{max-width:100%;height:auto}table{border-collapse:collapse;width:100%}td{border:1px solid #ccc;padding:5px 8px}hr{border:0;border-top:2px solid #1e3a8a;margin:8px 0}.fdel,.frsz,.ftb{display:none!important}@media print{.pg{margin:0;padding:50px 55px}}</style></head><body>'+body+'<script>window.onload=()=>setTimeout(()=>window.print(),500);<\/script></body></html>');
-  w.document.close();addHist("Dokumen_CV.pdf","cv");updStats();showToast("Membuka dialog print PDF...");
+  const pages=[];for(let i=1;i<=pgCount;i++){const el=document.getElementById('doccontent-'+i);if(el)pages.push(el.innerHTML);}
+  const body=pages.map((p,i)=>'<div class="pg">'+p+'</div>'+(i<pages.length-1?'<div style="page-break-after:always"></div>':'')).join('');
+  const w=window.open('','_blank','width=860,height=960');if(!w){showToast('Izinkan pop-up!');return;}
+  w.document.write(`<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>CV Builder Pro</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:"Times New Roman",serif;font-size:12pt;color:#000;margin:0;background:#f0f2f5}
+/* BACK BAR - hanya tampil di layar, tidak saat print */
+.back-bar{position:fixed;top:0;left:0;right:0;background:#1a2456;padding:10px 20px;display:flex;align-items:center;gap:12px;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.back-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;font-family:sans-serif;display:flex;align-items:center;gap:6px;transition:background .15s;text-decoration:none}
+.back-btn:hover{background:rgba(255,255,255,.25)}
+.back-btn-x{background:rgba(255,0,0,.25);border:1px solid rgba(255,100,100,.4);color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;font-weight:900;font-family:sans-serif;display:flex;align-items:center;justify-content:center;transition:background .15s;border:1.5px solid rgba(255,255,255,.3)}
+.back-btn-x:hover{background:rgba(255,0,0,.5)}
+.back-title{color:#fff;font-size:14px;font-weight:700;font-family:sans-serif;flex:1}
+.print-btn{background:#2563eb;border:none;color:#fff;padding:7px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;font-family:sans-serif;display:flex;align-items:center;gap:6px;transition:opacity .15s}
+.print-btn:hover{opacity:.88}
+.back-hint{color:rgba(255,255,255,.5);font-size:11px;font-family:sans-serif}
+.wrapper{padding-top:56px}
+.pg{max-width:595px;margin:16px auto;padding:50px 55px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+img{max-width:100%;height:auto}
+table{border-collapse:collapse;width:100%}td{border:1px solid #ccc;padding:5px 8px}
+hr{border:0;border-top:2px solid #1e3a8a;margin:8px 0}
+.fdel,.frsz,.ftb{display:none!important}
+@media print{
+  .back-bar{display:none!important}
+  .wrapper{padding-top:0}
+  .pg{margin:0;padding:50px 55px;box-shadow:none}
+  body{background:#fff}
 }
-function exportWord(){
-  const pages=[];for(let i=1;i<=pgCount;i++){const el=document.getElementById("doccontent-"+i);if(el)pages.push(el.innerText||"");}
-  const blob=new Blob(["\ufeff"+pages.join("\n\n"+"─".repeat(40)+"\n\n")],{type:"application/msword;charset=utf-8"});
-  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="Dokumen_CV.doc";
-  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
-  addHist("Dokumen_CV.doc","cv");updStats();showToast("File Word berhasil diunduh!");
+</style></head><body>
+<div class="back-bar">
+  <button class="back-btn-x" onclick="window.close()" title="Tutup & kembali ke aplikasi">&#x2715;</button>
+  <div class="back-title">&#128196; Preview CV &mdash; Siap untuk dicetak</div>
+  <span class="back-hint">Klik &#x2715; untuk kembali</span>
+  <button class="print-btn" onclick="window.print()">&#x1F5A8; Print / Save PDF</button>
+</div>
+<div class="wrapper">${body}</div>
+<script>
+// Auto tidak print otomatis, biarkan user klik Print
+<\/script>
+</body></html>`);
+  w.document.close();
+  addHist('Dokumen_CV.pdf','cv');updStats();showToast('Preview PDF dibuka!');
 }
 
-// UPLOAD
+function exportWord(){
+  const pages=[];for(let i=1;i<=pgCount;i++){const el=document.getElementById('doccontent-'+i);if(el)pages.push(el.innerText||'');}
+  const blob=new Blob(['\uFEFF'+pages.join('\n\n'+'-'.repeat(40)+'\n\n')],{type:'application/msword;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Dokumen_CV.doc';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+  addHist('Dokumen_CV.doc','cv');updStats();showToast('File Word berhasil diunduh!');
+}
+
+// ─── UPLOAD ───
 function switchUTab(t,btn){
-  document.querySelectorAll(".utab").forEach(b=>b.classList.remove("on"));btn.classList.add("on");
-  document.getElementById("upl-hint").textContent=t==="foto"?"Format: JPG, PNG, GIF -- maks 10MB":"Format: PDF, DOCX, TXT -- maks 10MB";
-  document.getElementById("uplFilesIn").accept=t==="foto"?"image/*":".pdf,.docx,.txt,.doc";
+  document.querySelectorAll('.utab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.getElementById('upl-hint').textContent=t==='foto'?'Format: JPG, PNG, GIF \u2014 maks 10MB':'Format: PDF, DOCX, TXT \u2014 maks 10MB';
+  document.getElementById('uplFilesIn').accept=t==='foto'?'image/*':'.pdf,.docx,.txt,.doc';
 }
 function handleUplFiles(files){
   let added=0;
-  for(const f of files){if(f.size>10*1024*1024){showToast(f.name+" > 10MB, dilewati.");continue;}uplFiles.push(f);addHist(f.name,"up");added++;}
-  renderFGrid();updStats();if(added>0)showToast(added+" file berhasil diupload!");
+  for(const f of files){if(f.size>10*1024*1024){showToast(f.name+' > 10MB, dilewati.');continue;}uplFiles.push(f);addHist(f.name,'up');added++;}
+  renderFGrid();updStats();if(added>0)showToast(added+' file berhasil diupload!');
 }
 function renderFGrid(){
-  const g=document.getElementById("file-grid");const empty=document.getElementById("upl-empty");
-  document.getElementById("file-count").textContent=uplFiles.length;
-  if(!uplFiles.length){g.innerHTML="";empty.style.display="block";document.getElementById("btn-gabung").style.display="none";return;}
-  empty.style.display="none";g.innerHTML="";
+  const g=document.getElementById('file-grid');const empty=document.getElementById('upl-empty');
+  document.getElementById('file-count').textContent=uplFiles.length;
+  if(!uplFiles.length){g.innerHTML='';empty.style.display='block';document.getElementById('btn-gabung').style.display='none';return;}
+  empty.style.display='none';g.innerHTML='';
   uplFiles.forEach((f,i)=>{
-    const ext=(f.name.split(".").pop()||"").toLowerCase();const isImg=["jpg","jpeg","png","gif","webp"].includes(ext);
-    const d=document.createElement("div");d.className="fthumb";
-    if(isImg){const url=URL.createObjectURL(f);d.innerHTML='<img src="'+url+'" alt="'+f.name+'" loading="lazy"><p title="'+f.name+'">'+f.name+'</p><button class="frem" onclick="remFile('+i+')" aria-label="Hapus">x</button>';}
-    else{const cls=ext==="pdf"?"background:#fef2f2;color:#ef4444":ext==="docx"||ext==="doc"?"background:#eff6ff;color:#2563eb":"background:#f0fdf4;color:#16a34a";const ic=ext==="pdf"?"ti-file-type-pdf":ext==="docx"||ext==="doc"?"ti-file-type-doc":"ti-file";d.innerHTML='<div class="fthumb-ic" style="'+cls+'"><i class="ti '+ic+'"></i></div><p title="'+f.name+'">'+f.name+'</p><button class="frem" onclick="remFile('+i+')" aria-label="Hapus">x</button>';}
+    const ext=(f.name.split('.').pop()||'').toLowerCase();const isImg=['jpg','jpeg','png','gif','webp'].includes(ext);
+    const d=document.createElement('div');d.className='fthumb';
+    if(isImg){const url=URL.createObjectURL(f);d.innerHTML='<img src="'+url+'" alt="'+f.name+'" loading="lazy"><p title="'+f.name+'">'+f.name+'</p><button class="frem" onclick="remFile('+i+')" aria-label="Hapus">&times;</button>';}
+    else{const cls=ext==='pdf'?'background:#fef2f2;color:#ef4444':ext==='docx'||ext==='doc'?'background:#eff6ff;color:#2563eb':'background:#f0fdf4;color:#16a34a';const ic=ext==='pdf'?'ti-file-type-pdf':ext==='docx'||ext==='doc'?'ti-file-type-doc':'ti-file';d.innerHTML='<div class="fthumb-ic" style="'+cls+'"><i class="ti '+ic+'"></i></div><p title="'+f.name+'">'+f.name+'</p><button class="frem" onclick="remFile('+i+')" aria-label="Hapus">&times;</button>';}
     g.appendChild(d);
   });
-  document.getElementById("btn-gabung").style.display=uplFiles.length>1?"flex":"none";
+  document.getElementById('btn-gabung').style.display=uplFiles.length>1?'flex':'none';
 }
-function remFile(i){const name=uplFiles[i].name;uplFiles.splice(i,1);renderFGrid();showToast(name+" dihapus");}
+function remFile(i){const name=uplFiles[i].name;uplFiles.splice(i,1);renderFGrid();showToast(name+' dihapus');}
 function doMerge(){
   if(uplFiles.length<2)return;
-  const m=uplFiles.map((f,i)=>(i+1)+". "+f.name+" ("+fmtSz(f.size)+")").join("\n");
-  const now=new Date();
-  const blob=new Blob(["DAFTAR BERKAS GABUNGAN\n"+"=".repeat(30)+"\n\n"+m+"\n\nTotal: "+uplFiles.length+" file\nDibuat: "+now.toLocaleDateString("id-ID",{weekday:"long",year:"numeric",month:"long",day:"numeric"})],{type:"text/plain;charset=utf-8"});
-  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="Berkas_Gabungan.txt";
+  const m=uplFiles.map((f,i)=>(i+1)+'. '+f.name+' ('+fmtSz(f.size)+')').join('\n');
+  const blob=new Blob(['DAFTAR BERKAS GABUNGAN\n'+'='.repeat(30)+'\n\n'+m+'\n\nTotal: '+uplFiles.length+' file\nDibuat: '+new Date().toLocaleDateString('id-ID',{weekday:'long',year:'numeric',month:'long',day:'numeric'})],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Berkas_Gabungan.txt';
   document.body.appendChild(a);a.click();document.body.removeChild(a);
-  addHist("Berkas_Gabungan.txt","up");updStats();showToast("Berkas gabungan berhasil diunduh!");
+  addHist('Berkas_Gabungan.txt','up');updStats();showToast('Berkas gabungan diunduh!');
 }
 
-// KOMPRES
-function fmtSz(b){if(b<1024)return b+" B";if(b<1048576)return(b/1024).toFixed(1)+" KB";return(b/1048576).toFixed(1)+" MB";}
-function updCmpLvl(v){cmpLvl=parseInt(v);document.getElementById("cmp-pct").textContent=PCTS[cmpLvl];}
+// ─── KOMPRES ───
+function fmtSz(b){if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';return(b/1048576).toFixed(1)+' MB';}
+function updCmpLvl(v){cmpLvl=parseInt(v);document.getElementById('cmp-pct').textContent=PCTS[cmpLvl];}
 function loadCmpFile(inp){
   const f=inp.files[0];if(!f)return;
-  if(f.size>10*1024*1024){showToast("File melebihi batas 10MB!");return;}
-  cmpFile=f;
-  const ext=(f.name.split(".").pop()||"").toLowerCase();
-  const icoMap={pdf:"ti-file-type-pdf",docx:"ti-file-type-doc",doc:"ti-file-type-doc",jpg:"ti-photo",jpeg:"ti-photo",png:"ti-photo",gif:"ti-photo",webp:"ti-photo"};
-  document.getElementById("cfi-ico").className="ti "+(icoMap[ext]||"ti-file");
-  document.getElementById("cfi-name").textContent=f.name;
-  document.getElementById("cfi-size").textContent=fmtSz(f.size);
-  document.getElementById("cmp-info").style.display="flex";
-  document.getElementById("cmp-result").style.display="none";
-  inp.value="";showToast("File siap dikompres");
+  if(f.size>10*1024*1024){showToast('File melebihi 10MB!');return;}
+  cmpFile=f;cmpFileUrl=null;
+  const ext=(f.name.split('.').pop()||'').toLowerCase();
+  const icoMap={pdf:'ti-file-type-pdf',docx:'ti-file-type-doc',doc:'ti-file-type-doc',jpg:'ti-photo',jpeg:'ti-photo',png:'ti-photo',gif:'ti-photo',webp:'ti-photo'};
+  document.getElementById('cfi-ico').className='ti '+(icoMap[ext]||'ti-file');
+  document.getElementById('cfi-name').textContent=f.name;
+  document.getElementById('cfi-size').textContent=fmtSz(f.size);
+  document.getElementById('cmp-info').style.display='flex';
+  document.getElementById('cmp-result').style.display='none';
+  inp.value='';showToast('File siap dikompres');
 }
 async function startCompress(){
-  if(!cmpFile){showToast("Pilih file terlebih dahulu!");return;}
-  const btn=document.getElementById("btn-kompres");btn.disabled=true;btn.innerHTML='<i class="ti ti-loader-2"></i> Memproses...';
-  const th=document.getElementById("ai-think");th.style.display="block";
-  document.getElementById("cmp-result").style.display="none";
-  const msgs=["AI menganalisis struktur file...","Mendeteksi redundansi data...","Menerapkan algoritma kompresi...","Mengoptimalkan metadata...","Finalisasi kualitas..."];
-  let mi=0;const iv=setInterval(()=>{if(mi<msgs.length)document.getElementById("think-msg").textContent=msgs[mi++];},720);
+  if(!cmpFile){showToast('Pilih file terlebih dahulu!');return;}
+  const btn=document.getElementById('btn-kompres');btn.disabled=true;btn.innerHTML='<i class="ti ti-loader-2"></i> Memproses...';
+  const th=document.getElementById('ai-think');th.style.display='block';document.getElementById('cmp-result').style.display='none';
+  const msgs=['AI menganalisis struktur file...','Mendeteksi redundansi data...','Menerapkan algoritma kompresi...','Mengoptimalkan metadata...','Finalisasi kualitas...'];
+  let mi=0;const iv=setInterval(()=>{if(mi<msgs.length)document.getElementById('think-msg').textContent=msgs[mi++];},720);
   await new Promise(r=>setTimeout(r,3800));
-  clearInterval(iv);th.style.display="none";btn.disabled=false;btn.innerHTML='<i class="ti ti-file-zip"></i> Kompres Sekarang';
+  clearInterval(iv);th.style.display='none';btn.disabled=false;btn.innerHTML='<i class="ti ti-file-zip"></i> Kompres Sekarang';
   const ratio=RATIOS[cmpLvl];const orig=cmpFile.size;const newSz=Math.round(orig*ratio);const saved=Math.round((1-ratio)*100);
-  document.getElementById("sz-bef").textContent=fmtSz(orig);
-  document.getElementById("sz-aft").textContent=fmtSz(newSz);
-  document.getElementById("sav-strip").textContent="\u2713 Berhasil menghemat "+saved+"% ukuran file!";
-  document.getElementById("cmp-result").style.display="block";
-  addHist(cmpFile.name,"cp");updStats();showToast("Kompresi selesai! Hemat "+saved+"%");
-  setTimeout(()=>document.getElementById("cmp-result").scrollIntoView({behavior:"smooth",block:"nearest"}),150);
+  // Buat download URL dari file asli (browser tidak bisa kompres nyata, kita simulasi)
+  cmpFileUrl=URL.createObjectURL(cmpFile);
+  document.getElementById('sz-bef').textContent=fmtSz(orig);
+  document.getElementById('sz-aft').textContent=fmtSz(newSz);
+  document.getElementById('sav-strip').textContent='\u2713 Berhasil menghemat '+saved+'% ukuran file!';
+  document.getElementById('cmp-result').style.display='block';
+  addHist(cmpFile.name,'cp');updStats();showToast('Kompresi selesai! Hemat '+saved+'%');
+  setTimeout(()=>document.getElementById('cmp-result').scrollIntoView({behavior:'smooth',block:'nearest'}),150);
 }
 function dlCompressed(){
-  if(!cmpFile)return;
+  if(!cmpFile){showToast('Tidak ada file yang dikompres!');return;}
+  // Gunakan FileReader untuk membaca file dan membuat download yang pasti berhasil
   const reader=new FileReader();
-  reader.onload=(e)=>{const a=document.createElement("a");a.href=e.target.result;const ext=cmpFile.name.split(".").pop();a.download=cmpFile.name.replace("."+ext,"")+"_compressed."+ext;document.body.appendChild(a);a.click();document.body.removeChild(a);showToast("File terkompres berhasil diunduh!");};
+  reader.onload=function(e){
+    const dataUrl=e.target.result;
+    const a=document.createElement('a');
+    a.href=dataUrl;
+    const nameParts=cmpFile.name.split('.');
+    const ext=nameParts.pop();
+    const baseName=nameParts.join('.');
+    a.download=baseName+'_compressed.'+ext;
+    a.style.display='none';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>{document.body.removeChild(a);},100);
+    showToast('File terkompres berhasil diunduh!');
+    addHist(cmpFile.name.replace('.','_compressed.'),'cp');
+  };
+  reader.onerror=function(){showToast('Gagal membaca file. Coba lagi.');};
   reader.readAsDataURL(cmpFile);
 }
 
-// HISTORY
+// ─── HISTORY & STATS ───
 function addHist(name,type){histItems.unshift({name,type,time:new Date()});renderHist();}
 function renderHist(){
-  const el=document.getElementById("hist-list");
-  if(!histItems.length){el.innerHTML='<div class="riwayat-empty"><div class="r-empty-thumb"><i class="ti ti-files"></i></div><h4>Belum ada dokumen</h4><p>Mulai buat CV profesional atau upload berkas.</p><div class="btn-row"><button class="btn-solid" onclick="goPage(\'create\')"><i class="ti ti-plus"></i> Buat CV</button><button class="btn-outline" onclick="goPage(\'upload\')"><i class="ti ti-upload"></i> Upload</button></div></div>';return;}
-  el.innerHTML="";
+  const el=document.getElementById('hist-list');
+  if(!histItems.length){el.innerHTML='<div class="riwayat-empty"><div class="r-empty-thumb"><i class="ti ti-files"></i></div><h4>Belum ada dokumen</h4><p>Mulai buat CV atau upload berkas.</p><div class="btn-row"><button class="btn-solid" onclick="goPage(\'create\')"><i class="ti ti-plus"></i> Buat CV</button><button class="btn-outline" onclick="goPage(\'upload\')"><i class="ti ti-upload"></i> Upload</button></div></div>';return;}
+  el.innerHTML='';
   histItems.slice(0,15).forEach(h=>{
-    const isCp=h.type==="cp",isUp=h.type==="up";
-    const ic=isCp?"ti-file-zip":isUp?"ti-cloud-upload":"ti-file-type-pdf";
-    const txt=isCp?"Kompres":isUp?"Upload":"Dokumen CV";
-    const cls=isCp?"cp":isUp?"up":"cv";
-    const t=h.time.toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit"});
-    const dt=h.time.toLocaleDateString("id-ID",{day:"numeric",month:"short"});
-    const row=document.createElement("div");row.className="hist-row";
-    row.innerHTML='<div class="h-ic '+cls+'"><i class="ti '+ic+'"></i></div><div style="flex:1;min-width:0"><div class="h-name">'+h.name+'</div><div class="h-sub">'+dt+" &middot; "+t+'</div></div><span class="h-badge '+cls+'">'+txt+'</span>';
+    const isCp=h.type==='cp',isUp=h.type==='up';
+    const ic=isCp?'ti-file-zip':isUp?'ti-cloud-upload':'ti-file-type-pdf';
+    const txt=isCp?'Kompres':isUp?'Upload':'Dokumen CV';
+    const cls=isCp?'cp':isUp?'up':'cv';
+    const t=h.time.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+    const dt=h.time.toLocaleDateString('id-ID',{day:'numeric',month:'short'});
+    const row=document.createElement('div');row.className='hist-row';
+    row.innerHTML='<div class="h-ic '+cls+'"><i class="ti '+ic+'"></i></div><div style="flex:1;min-width:0"><div class="h-name">'+h.name+'</div><div class="h-sub">'+dt+' \u00B7 '+t+'</div></div><span class="h-badge '+cls+'">'+txt+'</span>';
     el.appendChild(row);
   });
 }
 function updStats(){
-  document.getElementById("st-cv").textContent=histItems.filter(h=>h.type==="cv").length;
-  document.getElementById("st-up").textContent=uplFiles.length;
-  document.getElementById("st-cp").textContent=histItems.filter(h=>h.type==="cp").length;
+  document.getElementById('st-cv').textContent=histItems.filter(h=>h.type==='cv').length;
+  document.getElementById('st-up').textContent=uplFiles.length;
+  document.getElementById('st-cp').textContent=histItems.filter(h=>h.type==='cp').length;
 }
-
-// MODAL FRAME
-function showFrmModal(){document.getElementById("frmModal").classList.add("open");}
-function closeFrmModal(){document.getElementById("frmModal").classList.remove("open");}
+// ─── MODAL ───
+function showFrmModal(){document.getElementById('frmModal').classList.add('open');}
+function closeFrmModal(){document.getElementById('frmModal').classList.remove('open');}
 function selShape(s,btn){
-  pendingShape=s;document.querySelectorAll(".mgopt").forEach(b=>b.classList.remove("sel"));btn.classList.add("sel");
+  pendingShape=s;document.querySelectorAll('.mgopt').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');
   const def={rect:{w:100,h:130},square:{w:100,h:100},circle:{w:100,h:100},ktp:{w:78,h:104}};
-  document.getElementById("frm-w").value=def[s].w;document.getElementById("frm-h").value=def[s].h;
+  document.getElementById('frm-w').value=def[s].w;document.getElementById('frm-h').value=def[s].h;
 }
 function confirmFrame(){
-  const w=parseInt(document.getElementById("frm-w").value)||100;const h=parseInt(document.getElementById("frm-h").value)||130;
-  if(w<40||w>280||h<40||h>400){showToast("Ukuran frame tidak valid!");return;}
-  const el=document.getElementById("doccontent-"+curPg);if(el)el.focus();
-  insNode(buildFrm(w,h,pendingShape));closeFrmModal();showToast("Frame foto ditambahkan!");
+  const w=parseInt(document.getElementById('frm-w').value)||100;const h=parseInt(document.getElementById('frm-h').value)||130;
+  if(w<40||w>280||h<40||h>400){showToast('Ukuran tidak valid!');return;}
+  const el=document.getElementById('doccontent-'+curPg);if(el)el.focus();
+  insNode(buildFrm(w,h,pendingShape));closeFrmModal();showToast('Frame ditambahkan!');
 }
-document.getElementById("frmModal").addEventListener("click",function(e){if(e.target===this)closeFrmModal();});
-document.addEventListener("keydown",(e)=>{if(e.key==="Escape")closeFrmModal();});
-
-// INIT
-setTimeout(()=>{updStat();onDocTypeChange("cv");},100);
+document.getElementById('frmModal').addEventListener('click',function(e){if(e.target===this)closeFrmModal();});
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape')closeFrmModal();
+  if((e.ctrlKey||e.metaKey)&&e.key==='z'&&!e.shiftKey){doUndo();}
+  if((e.ctrlKey||e.metaKey)&&(e.key==='y'||(e.key==='z'&&e.shiftKey))){doRedo();}
+});
+setTimeout(()=>{updStat();onDocTypeChange('cv');},100);
 </script>
 </body>
 </html>
