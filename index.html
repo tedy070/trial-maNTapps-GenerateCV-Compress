@@ -313,6 +313,31 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 .mb-ok:hover{opacity:.88}
 .toast{position:absolute;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:9px 16px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;opacity:0;z-index:400;transition:all .3s;pointer-events:none;box-shadow:0 4px 14px rgba(26,36,86,.28)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* BERANDA STAT CLICKABLE */
+.stat-row{cursor:pointer}
+.stat-row.active-filter{border-color:var(--navy);background:var(--lb);box-shadow:0 0 0 2px var(--navy)}
+/* FILTER BAR */
+.filter-bar{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.filter-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--brd);background:var(--white);font-family:var(--fnt);font-size:10px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .15s}
+.filter-btn.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+/* HIST ITEM ACTIONS */
+.hist-actions{display:flex;gap:5px;margin-top:5px}
+.hist-act-btn{padding:4px 8px;border-radius:6px;border:1px solid var(--brd);background:var(--white);font-family:var(--fnt);font-size:9px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:3px;transition:all .14s}
+.hist-act-btn:hover{background:var(--lb);border-color:var(--navy)}
+.hist-act-btn i{font-size:10px}
+.hist-act-btn.dl{border-color:#16a34a;color:#16a34a}
+.hist-act-btn.dl:hover{background:#f0fdf4}
+.hist-act-btn.edit{border-color:var(--blue2);color:var(--blue2)}
+.hist-act-btn.edit:hover{background:var(--llb)}
+.hist-act-btn.del{border-color:var(--red);color:var(--red)}
+.hist-act-btn.del:hover{background:#fef2f2}
+.hist-row{flex-wrap:wrap;padding:12px 18px}
+.hist-row-top{width:100%;display:flex;align-items:center;gap:11px}
+/* SECT HEADER BERANDA */
+.brd-section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.brd-section-hdr h4{font-size:13px;font-weight:800;color:var(--navy)}
+.brd-clear-btn{font-size:10px;font-weight:600;color:var(--red);background:none;border:none;cursor:pointer;font-family:var(--fnt);padding:3px 7px;border-radius:6px}
+.brd-clear-btn:hover{background:#fef2f2}
 </style>
 </head>
 <body>
@@ -329,12 +354,23 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
     <div class="brd-body">
       <div class="hero-card"><h2>Selamat Pagi,<br>Profesional!</h2><p>Siap meningkatkan karir Anda? Buat CV baru atau lanjutkan dokumen yang ada.</p></div>
       <div class="stat-list">
-        <div class="stat-row"><div class="stat-ic"><i class="ti ti-file-description"></i></div><div><div class="stat-lbl">CV DIBUAT</div><div class="stat-val" id="st-cv">0</div></div></div>
-        <div class="stat-row"><div class="stat-ic"><i class="ti ti-cloud-upload"></i></div><div><div class="stat-lbl">FILE UPLOAD</div><div class="stat-val" id="st-up">0</div></div></div>
-        <div class="stat-row"><div class="stat-ic"><i class="ti ti-file-zip"></i></div><div><div class="stat-lbl">DIKOMPRES</div><div class="stat-val" id="st-cp">0</div></div></div>
+        <div class="stat-row" id="stat-cv" onclick="filterHist('cv')" title="Lihat semua CV dibuat"><div class="stat-ic"><i class="ti ti-file-description"></i></div><div><div class="stat-lbl">CV DIBUAT</div><div class="stat-val" id="st-cv">0</div></div><i class="ti ti-chevron-right" style="margin-left:auto;font-size:14px;color:var(--muted)"></i></div>
+        <div class="stat-row" id="stat-up" onclick="filterHist('up')" title="Lihat semua file upload"><div class="stat-ic"><i class="ti ti-cloud-upload"></i></div><div><div class="stat-lbl">FILE UPLOAD</div><div class="stat-val" id="st-up">0</div></div><i class="ti ti-chevron-right" style="margin-left:auto;font-size:14px;color:var(--muted)"></i></div>
+        <div class="stat-row" id="stat-cp" onclick="filterHist('cp')" title="Lihat semua file dikompres"><div class="stat-ic"><i class="ti ti-file-zip"></i></div><div><div class="stat-lbl">DIKOMPRES</div><div class="stat-val" id="st-cp">0</div></div><i class="ti ti-chevron-right" style="margin-left:auto;font-size:14px;color:var(--muted)"></i></div>
       </div>
       <div class="riwayat-card">
-        <div class="riwayat-head"><h3>Riwayat Dokumen</h3></div>
+        <div class="riwayat-head">
+          <div class="brd-section-hdr">
+            <h3>Riwayat Dokumen</h3>
+            <button class="brd-clear-btn" onclick="clearHistFilter()" id="clearFilterBtn" style="display:none">Tampilkan Semua</button>
+          </div>
+          <div class="filter-bar" id="filterBar" style="display:none">
+            <button class="filter-btn on" onclick="filterHist('all',this)">Semua</button>
+            <button class="filter-btn" onclick="filterHist('cv',this)">CV Dibuat</button>
+            <button class="filter-btn" onclick="filterHist('up',this)">Upload</button>
+            <button class="filter-btn" onclick="filterHist('cp',this)">Kompres</button>
+          </div>
+        </div>
         <div id="hist-list">
           <div class="riwayat-empty">
             <div class="r-empty-thumb"><i class="ti ti-files"></i></div>
@@ -1075,49 +1111,48 @@ function insTbl(){ef('insertHTML','<table style="width:100%;border-collapse:coll
 
 // ─── EXPORT PDF dengan tombol KEMBALI ───
 function exportPDF(){
-  const pages=[];for(let i=1;i<=pgCount;i++){const el=document.getElementById('doccontent-'+i);if(el)pages.push(el.innerHTML);}
+  const pages=[];
+  for(let i=1;i<=pgCount;i++){const el=document.getElementById('doccontent-'+i);if(el)pages.push(el.innerHTML);}
   const body=pages.map((p,i)=>'<div class="pg">'+p+'</div>'+(i<pages.length-1?'<div style="page-break-after:always"></div>':'')).join('');
-  const w=window.open('','_blank','width=860,height=960');if(!w){showToast('Izinkan pop-up!');return;}
-  w.document.write(`<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><title>CV Builder Pro</title>
-<style>
-*{box-sizing:border-box}
-body{font-family:"Times New Roman",serif;font-size:12pt;color:#000;margin:0;background:#f0f2f5}
-/* BACK BAR - hanya tampil di layar, tidak saat print */
-.back-bar{position:fixed;top:0;left:0;right:0;background:#1a2456;padding:10px 20px;display:flex;align-items:center;gap:12px;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,.3)}
-.back-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;font-family:sans-serif;display:flex;align-items:center;gap:6px;transition:background .15s;text-decoration:none}
-.back-btn:hover{background:rgba(255,255,255,.25)}
-.back-btn-x{background:rgba(255,0,0,.25);border:1px solid rgba(255,100,100,.4);color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;font-weight:900;font-family:sans-serif;display:flex;align-items:center;justify-content:center;transition:background .15s;border:1.5px solid rgba(255,255,255,.3)}
-.back-btn-x:hover{background:rgba(255,0,0,.5)}
-.back-title{color:#fff;font-size:14px;font-weight:700;font-family:sans-serif;flex:1}
-.print-btn{background:#2563eb;border:none;color:#fff;padding:7px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;font-family:sans-serif;display:flex;align-items:center;gap:6px;transition:opacity .15s}
-.print-btn:hover{opacity:.88}
-.back-hint{color:rgba(255,255,255,.5);font-size:11px;font-family:sans-serif}
-.wrapper{padding-top:56px}
-.pg{max-width:595px;margin:16px auto;padding:50px 55px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.12)}
-img{max-width:100%;height:auto}
-table{border-collapse:collapse;width:100%}td{border:1px solid #ccc;padding:5px 8px}
-hr{border:0;border-top:2px solid #1e3a8a;margin:8px 0}
-.fdel,.frsz,.ftb{display:none!important}
-@media print{
-  .back-bar{display:none!important}
-  .wrapper{padding-top:0}
-  .pg{margin:0;padding:50px 55px;box-shadow:none}
-  body{background:#fff}
-}
-</style></head><body>
-<div class="back-bar">
-  <button class="back-btn-x" onclick="window.close()" title="Tutup & kembali ke aplikasi">&#x2715;</button>
-  <div class="back-title">&#128196; Preview CV &mdash; Siap untuk dicetak</div>
-  <span class="back-hint">Klik &#x2715; untuk kembali</span>
-  <button class="print-btn" onclick="window.print()">&#x1F5A8; Print / Save PDF</button>
-</div>
-<div class="wrapper">${body}</div>
-<script>
-// Auto tidak print otomatis, biarkan user klik Print
-<\/script>
-</body></html>`);
+  const w=window.open('','_blank','width=860,height=960');
+  if(!w){showToast('Izinkan pop-up!');return;}
+  const css=[
+    '*{box-sizing:border-box}',
+    'body{font-family:"Times New Roman",serif;font-size:12pt;color:#000;margin:0;background:#f0f2f5}',
+    '.back-bar{position:fixed;top:0;left:0;right:0;background:#1a2456;padding:10px 20px;display:flex;align-items:center;gap:12px;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,.3)}',
+    '.back-btn-x{background:rgba(255,0,0,.3);border:1.5px solid rgba(255,255,255,.4);color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;font-weight:900;font-family:sans-serif;display:flex;align-items:center;justify-content:center;line-height:1}',
+    '.back-btn-x:hover{background:rgba(255,0,0,.6)}',
+    '.back-title{color:#fff;font-size:14px;font-weight:700;font-family:sans-serif;flex:1;margin:0 10px}',
+    '.print-btn{background:#2563eb;border:none;color:#fff;padding:8px 18px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;font-family:sans-serif}',
+    '.print-btn:hover{opacity:.88}',
+    '.wrapper{padding-top:58px}',
+    '.pg{max-width:595px;margin:16px auto;padding:50px 55px;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.12)}',
+    'img{max-width:100%;height:auto}',
+    'table{border-collapse:collapse;width:100%}td{border:1px solid #ccc;padding:5px 8px}',
+    'hr{border:0;border-top:2px solid #1e3a8a;margin:8px 0}',
+    '.fdel,.frsz,.ftb{display:none!important}',
+    '@media print{.back-bar{display:none!important}.wrapper{padding-top:0}.pg{margin:0;padding:50px 55px;box-shadow:none}body{background:#fff}}'
+  ].join('\n');
+  const docParts = [
+    '<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8">',
+    '<title>CV Builder Pro - Preview</title>',
+    '<style>'+css+'</style>',
+    '</head><body>',
+    '<div class="back-bar">',
+    '<button class="back-btn-x" onclick="window.close()" title="Tutup & kembali ke aplikasi">&#215;</button>',
+    '<span class="back-title">&#128196; Preview CV &#8212; Siap untuk dicetak</span>',
+    '<button class="print-btn" onclick="window.print()">&#128424; Print / Save PDF</button>',
+    '</div>',
+    '<div class="wrapper">'+body+'</div>',
+    '</body></html>'
+  ];
+  w.document.write(docParts.join(''));
   w.document.close();
-  addHist('Dokumen_CV.pdf','cv');updStats();showToast('Preview PDF dibuka!');
+  // Store content for history
+  const allPageContent=[];
+  for(let pi=1;pi<=pgCount;pi++){const pe=document.getElementById('doccontent-'+pi);if(pe)allPageContent.push(pe.innerHTML);}
+  addHist('Dokumen_CV.pdf','cv',{content:allPageContent.join('<hr>'),fileName:'Dokumen_CV.pdf'});
+  updStats();showToast('Preview PDF dibuka!');
 }
 
 function exportWord(){
@@ -1125,7 +1160,10 @@ function exportWord(){
   const blob=new Blob(['\uFEFF'+pages.join('\n\n'+'-'.repeat(40)+'\n\n')],{type:'application/msword;charset=utf-8'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Dokumen_CV.doc';
   document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
-  addHist('Dokumen_CV.doc','cv');updStats();showToast('File Word berhasil diunduh!');
+  const wAllContent = [];
+for(let pi=1;pi<=pgCount;pi++){const pe=document.getElementById('doccontent-'+pi);if(pe)wAllContent.push(pe.innerHTML);}
+addHist('Dokumen_CV.doc','cv',{content:wAllContent.join('<hr>'),fileName:'Dokumen_CV.doc'});
+updStats();showToast('File Word berhasil diunduh!');
 }
 
 // ─── UPLOAD ───
@@ -1136,7 +1174,17 @@ function switchUTab(t,btn){
 }
 function handleUplFiles(files){
   let added=0;
-  for(const f of files){if(f.size>10*1024*1024){showToast(f.name+' > 10MB, dilewati.');continue;}uplFiles.push(f);addHist(f.name,'up');added++;}
+  for(const f of files){if(f.size>10*1024*1024){showToast(f.name+' > 10MB, dilewati.');continue;}uplFiles.push(f);
+// Simpan dataUrl untuk download ulang
+(function(file){
+  const fr=new FileReader();
+  fr.onload=function(ev){
+    addHist(file.name,'up',{dataUrl:ev.target.result,fileName:file.name});
+    renderHist();
+  };
+  fr.readAsDataURL(file);
+})(f);
+added++;}
   renderFGrid();updStats();if(added>0)showToast(added+' file berhasil diupload!');
 }
 function renderFGrid(){
@@ -1160,7 +1208,11 @@ function doMerge(){
   const blob=new Blob(['DAFTAR BERKAS GABUNGAN\n'+'='.repeat(30)+'\n\n'+m+'\n\nTotal: '+uplFiles.length+' file\nDibuat: '+new Date().toLocaleDateString('id-ID',{weekday:'long',year:'numeric',month:'long',day:'numeric'})],{type:'text/plain;charset=utf-8'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Berkas_Gabungan.txt';
   document.body.appendChild(a);a.click();document.body.removeChild(a);
-  addHist('Berkas_Gabungan.txt','up');updStats();showToast('Berkas gabungan diunduh!');
+  const mManifest='MANIFEST\n'+m;
+  const mBlob=new Blob([mManifest],{type:'text/plain'});
+  const mUrl=URL.createObjectURL(mBlob);
+  addHist('Berkas_Gabungan.txt','up',{dataUrl:mUrl,fileName:'Berkas_Gabungan.txt'});
+  updStats();showToast('Berkas gabungan diunduh!');
 }
 
 // ─── KOMPRES ───
@@ -1194,50 +1246,201 @@ async function startCompress(){
   document.getElementById('sz-aft').textContent=fmtSz(newSz);
   document.getElementById('sav-strip').textContent='\u2713 Berhasil menghemat '+saved+'% ukuran file!';
   document.getElementById('cmp-result').style.display='block';
-  addHist(cmpFile.name,'cp');updStats();showToast('Kompresi selesai! Hemat '+saved+'%');
+  // Simpan file sebagai dataUrl untuk download ulang
+const cmpReader = new FileReader();
+cmpReader.onload = function(ev){
+  const dataUrl = ev.target.result;
+  const cmpExt = cmpFile.name.split('.').pop();
+  const cmpBase = cmpFile.name.replace('.'+cmpExt,'');
+  const cmpFileName = cmpBase+'_compressed.'+cmpExt;
+  addHist(cmpFileName,'cp',{dataUrl:dataUrl,fileName:cmpFileName});
+  updStats();
+  // Simpan juga untuk dlCompressed
+  window._lastCmpDataUrl = dataUrl;
+  window._lastCmpFileName = cmpFileName;
+};
+cmpReader.readAsDataURL(cmpFile);
+showToast('Kompresi selesai! Hemat '+saved+'%');
   setTimeout(()=>document.getElementById('cmp-result').scrollIntoView({behavior:'smooth',block:'nearest'}),150);
 }
 function dlCompressed(){
-  if(!cmpFile){showToast('Tidak ada file yang dikompres!');return;}
-  // Gunakan FileReader untuk membaca file dan membuat download yang pasti berhasil
-  const reader=new FileReader();
-  reader.onload=function(e){
-    const dataUrl=e.target.result;
+  // Cek apakah ada dataUrl yang tersimpan dari startCompress
+  if(window._lastCmpDataUrl && window._lastCmpFileName){
     const a=document.createElement('a');
-    a.href=dataUrl;
-    const nameParts=cmpFile.name.split('.');
-    const ext=nameParts.pop();
-    const baseName=nameParts.join('.');
-    a.download=baseName+'_compressed.'+ext;
+    a.href=window._lastCmpDataUrl;
+    a.download=window._lastCmpFileName;
     a.style.display='none';
     document.body.appendChild(a);
     a.click();
-    setTimeout(()=>{document.body.removeChild(a);},100);
+    setTimeout(()=>document.body.removeChild(a),200);
     showToast('File terkompres berhasil diunduh!');
-    addHist(cmpFile.name.replace('.','_compressed.'),'cp');
+    return;
+  }
+  if(!cmpFile){showToast('Tidak ada file yang dikompres!');return;}
+  // Fallback: baca langsung dari cmpFile
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const a=document.createElement('a');
+    a.href=e.target.result;
+    const ext=cmpFile.name.split('.').pop();
+    const base=cmpFile.name.replace('.'+ext,'');
+    a.download=base+'_compressed.'+ext;
+    a.style.display='none';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>document.body.removeChild(a),200);
+    showToast('File terkompres berhasil diunduh!');
   };
-  reader.onerror=function(){showToast('Gagal membaca file. Coba lagi.');};
+  reader.onerror=()=>showToast('Gagal membaca file. Coba lagi.');
   reader.readAsDataURL(cmpFile);
 }
 
+
 // ─── HISTORY & STATS ───
-function addHist(name,type){histItems.unshift({name,type,time:new Date()});renderHist();}
-function renderHist(){
+function addHist(name,type,extra){
+  // extra = {content, blob, blobType, fileName} untuk edit/download ulang
+  histItems.unshift({name,type,time:new Date(),extra:extra||null,id:Date.now()});
+  renderHist();
+  // Update filter bar visibility
+  if(histItems.length>0){
+    document.getElementById('filterBar').style.display='flex';
+  }
+}
+function renderHist(filterType){
+  currentFilter = filterType || currentFilter || 'all';
   const el=document.getElementById('hist-list');
-  if(!histItems.length){el.innerHTML='<div class="riwayat-empty"><div class="r-empty-thumb"><i class="ti ti-files"></i></div><h4>Belum ada dokumen</h4><p>Mulai buat CV atau upload berkas.</p><div class="btn-row"><button class="btn-solid" onclick="goPage(\'create\')"><i class="ti ti-plus"></i> Buat CV</button><button class="btn-outline" onclick="goPage(\'upload\')"><i class="ti ti-upload"></i> Upload</button></div></div>';return;}
+  // Update stat-row active state
+  ['cv','up','cp'].forEach(t=>{
+    const sr=document.getElementById('stat-'+t);
+    if(sr) sr.classList.toggle('active-filter', currentFilter===t);
+  });
+  let filtered = histItems;
+  if(currentFilter !== 'all') {
+    filtered = histItems.filter(h=>h.type===currentFilter);
+  }
+  if(!histItems.length){
+    el.innerHTML='<div class="riwayat-empty"><div class="r-empty-thumb"><i class="ti ti-files"></i></div><h4>Belum ada dokumen</h4><p>Mulai buat CV atau upload berkas.</p><div class="btn-row"><button class="btn-solid" onclick="goPage(\'create\')"><i class="ti ti-plus"></i> Buat CV</button><button class="btn-outline" onclick="goPage(\'upload\')"><i class="ti ti-upload"></i> Upload</button></div></div>';
+    return;
+  }
+  if(!filtered.length){
+    el.innerHTML='<div class="riwayat-empty"><div class="r-empty-thumb"><i class="ti ti-search"></i></div><h4>Tidak ada item</h4><p>Belum ada dokumen dalam kategori ini.</p></div>';
+    return;
+  }
   el.innerHTML='';
-  histItems.slice(0,15).forEach(h=>{
-    const isCp=h.type==='cp',isUp=h.type==='up';
+  filtered.slice(0,20).forEach(h=>{
+    const isCp=h.type==='cp',isUp=h.type==='up',isCv=h.type==='cv';
     const ic=isCp?'ti-file-zip':isUp?'ti-cloud-upload':'ti-file-type-pdf';
     const txt=isCp?'Kompres':isUp?'Upload':'Dokumen CV';
     const cls=isCp?'cp':isUp?'up':'cv';
     const t=h.time.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
-    const dt=h.time.toLocaleDateString('id-ID',{day:'numeric',month:'short'});
+    const dt=h.time.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
     const row=document.createElement('div');row.className='hist-row';
-    row.innerHTML='<div class="h-ic '+cls+'"><i class="ti '+ic+'"></i></div><div style="flex:1;min-width:0"><div class="h-name">'+h.name+'</div><div class="h-sub">'+dt+' \u00B7 '+t+'</div></div><span class="h-badge '+cls+'">'+txt+'</span>';
+    // Top row: icon, name, badge
+    const topDiv=document.createElement('div');topDiv.className='hist-row-top';
+    topDiv.innerHTML='<div class="h-ic '+cls+'"><i class="ti '+ic+'"></i></div><div style="flex:1;min-width:0"><div class="h-name">'+h.name+'</div><div class="h-sub">'+dt+' · '+t+'</div></div><span class="h-badge '+cls+'">'+txt+'</span>';
+    row.appendChild(topDiv);
+    // Action buttons
+    const actDiv=document.createElement('div');actDiv.className='hist-actions';
+    actDiv.style.paddingLeft='45px';
+    actDiv.style.width='100%';
+    if(isCv){
+      actDiv.innerHTML=
+        '<button class="hist-act-btn edit" onclick="editHistCV('+h.id+')"><i class="ti ti-pencil"></i> Edit</button>'+
+        '<button class="hist-act-btn dl" onclick="dlHistCV('+h.id+')"><i class="ti ti-download"></i> Download</button>'+
+        '<button class="hist-act-btn del" onclick="delHistItem('+h.id+')"><i class="ti ti-trash"></i></button>';
+    } else if(isCp){
+      actDiv.innerHTML=
+        '<button class="hist-act-btn dl" onclick="dlHistFile('+h.id+')"><i class="ti ti-download"></i> Download</button>'+
+        '<button class="hist-act-btn del" onclick="delHistItem('+h.id+')"><i class="ti ti-trash"></i></button>';
+    } else {
+      actDiv.innerHTML=
+        '<button class="hist-act-btn dl" onclick="dlHistFile('+h.id+')"><i class="ti ti-download"></i> Download</button>'+
+        '<button class="hist-act-btn del" onclick="delHistItem('+h.id+')"><i class="ti ti-trash"></i></button>';
+    }
+    row.appendChild(actDiv);
     el.appendChild(row);
   });
 }
+
+// Filter functions
+let currentFilter='all';
+function filterHist(type, btn){
+  currentFilter=type;
+  // Update filter button styles
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  else {
+    // Called from stat-row click - activate correct filter btn
+    const btns=document.querySelectorAll('.filter-btn');
+    btns.forEach(b=>{
+      if((type==='cv'&&b.textContent.includes('CV'))||(type==='up'&&b.textContent.includes('Upload'))||(type==='cp'&&b.textContent.includes('Kompres'))){b.classList.add('on');}
+    });
+  }
+  document.getElementById('filterBar').style.display='flex';
+  document.getElementById('clearFilterBtn').style.display=type==='all'?'none':'block';
+  renderHist(type);
+  // Scroll ke riwayat
+  document.getElementById('hist-list').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function clearHistFilter(){
+  currentFilter='all';
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('on'));
+  const allBtn=document.querySelector('.filter-btn');if(allBtn)allBtn.classList.add('on');
+  document.getElementById('clearFilterBtn').style.display='none';
+  document.querySelectorAll('.stat-row').forEach(r=>r.classList.remove('active-filter'));
+  renderHist('all');
+}
+
+// History item actions
+function delHistItem(id){
+  if(!confirm('Hapus item dari riwayat?'))return;
+  histItems=histItems.filter(h=>h.id!==id);
+  updStats();renderHist();showToast('Item dihapus dari riwayat');
+}
+
+function editHistCV(id){
+  const h=histItems.find(x=>x.id===id);if(!h)return;
+  // Buka tab create dan restore content
+  goPage('create');
+  setTimeout(()=>{
+    const el=document.getElementById('doccontent-'+curPg);
+    if(el&&h.extra&&h.extra.content){
+      el.innerHTML=h.extra.content;
+      showToast('Dokumen dibuka untuk diedit');
+    } else {
+      showToast('Buka menu Buat CV untuk mengedit');
+    }
+    updStat();
+  },200);
+}
+
+function dlHistCV(id){
+  const h=histItems.find(x=>x.id===id);if(!h)return;
+  if(h.extra&&h.extra.content){
+    // Download sebagai .doc
+    const blob=new Blob(['﻿'+(h.extra.content||h.name)],{type:'application/msword;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download=h.name;
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('File berhasil diunduh!');
+  } else {
+    showToast('Buka menu Buat CV lalu export ulang');
+  }
+}
+
+function dlHistFile(id){
+  const h=histItems.find(x=>x.id===id);if(!h)return;
+  if(h.extra&&h.extra.dataUrl){
+    const a=document.createElement('a');a.href=h.extra.dataUrl;a.download=h.extra.fileName||h.name;
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    showToast('File berhasil diunduh!');
+  } else {
+    showToast('File tidak tersedia untuk diunduh ulang');
+  }
+}
+
+
 function updStats(){
   document.getElementById('st-cv').textContent=histItems.filter(h=>h.type==='cv').length;
   document.getElementById('st-up').textContent=uplFiles.length;
