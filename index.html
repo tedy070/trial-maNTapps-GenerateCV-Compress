@@ -339,11 +339,13 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
 .brd-clear-btn{font-size:10px;font-weight:600;color:var(--red);background:none;border:none;cursor:pointer;font-family:var(--fnt);padding:3px 7px;border-radius:6px}
 .brd-clear-btn:hover{background:#fef2f2}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 <input type="file" id="imgUp" accept="image/*" style="display:none" onchange="handleImgUp(this)">
 <input type="file" id="uplFilesIn" multiple style="display:none" onchange="handleUplFiles(this.files)">
-<input type="file" id="cmpIn" accept=".pdf,.docx,.jpg,.jpeg,.png,.gif,.webp" style="display:none" onchange="loadCmpFile(this)">
+<input type="file" id="cmpIn" accept=".pdf,.jpg,.jpeg,.png,.gif,.webp" style="display:none" onchange="loadCmpFile(this)">
 <div class="app" id="app">
   <div class="hdr">
     <div class="hdr-left"><i class="ti ti-file-description hdr-ico"></i><span class="hdr-name">CV Builder Pro</span></div>
@@ -527,7 +529,7 @@ body{font-family:var(--fnt);-webkit-font-smoothing:antialiased;display:flex;alig
       <div class="cmp-drop-card" onclick="document.getElementById('cmpIn').click()" tabindex="0">
         <i class="ti ti-file-upload cmp-drop-ico"></i>
         <div class="cmp-drop-title">Pilih File CV Anda</div>
-        <div class="cmp-drop-sub">Seret dan jatuhkan file ke sini atau klik untuk menelusuri. Maks 10MB.</div>
+        <div class="cmp-drop-sub">Mendukung PDF dan Gambar (JPG, PNG, WebP). Maks 10MB.</div>
         <button class="btn-telusuri" onclick="event.stopPropagation();document.getElementById('cmpIn').click()">Telusuri File</button>
       </div>
       <div class="cmp-finfo" id="cmp-info"><div class="cfi-ic"><i class="ti ti-file" id="cfi-ico"></i></div><div><div class="cfi-name" id="cfi-name">&#x2014;</div><div class="cfi-size" id="cfi-size">&#x2014;</div></div></div>
@@ -1233,134 +1235,168 @@ function loadCmpFile(inp){
 }
 
 // ─── COMPRESS ENGINE ───
-// Mobile-compatible download using Blob + ObjectURL
+// Setup PDF.js worker
+function initPDFjs(){
+  if(typeof pdfjsLib !== 'undefined'){
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+}
+initPDFjs();
+
+// Mobile+Desktop safe download
 function downloadBlob(blob, fileName){
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = fileName;
-  a.style.display = 'none';
-  document.body.appendChild(a);
-  a.click();
-  // Cleanup after short delay
-  setTimeout(()=>{
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }, 1000);
+  const a   = document.createElement('a');
+  a.href = url; a.download = fileName; a.style.display = 'none';
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(url); }, 1500);
 }
 
-// Kompresi GAMBAR nyata menggunakan Canvas API
+// Kompres GAMBAR via Canvas
 async function compressImage(file, level){
-  return new Promise((resolve)=>{
-    const qualityMap = {1:0.85, 2:0.65, 3:0.40};
-    const scaleMap   = {1:1.00, 2:0.90, 3:0.75};
-    const quality = qualityMap[level] || 0.65;
-    const scale   = scaleMap[level]   || 0.90;
-
-    const img = new Image();
-    const objUrl = URL.createObjectURL(file);
-    img.onload = ()=>{
-      URL.revokeObjectURL(objUrl);
-      const canvas = document.createElement('canvas');
-      canvas.width  = Math.max(1, Math.round(img.naturalWidth  * scale));
-      canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      const ext  = (file.name.split('.').pop()||'jpg').toLowerCase();
-      const mime = ext === 'png' ? 'image/png' : 'image/jpeg';
-      canvas.toBlob((blob)=>{
-        resolve(blob && blob.size < file.size ? blob : file);
-      }, mime, quality);
+  return new Promise(function(resolve){
+    var qMap = {1:0.85, 2:0.65, 3:0.40};
+    var sMap = {1:1.00, 2:0.90, 3:0.75};
+    var q = qMap[level]||0.65, sc = sMap[level]||0.90;
+    var img = new Image();
+    var ou  = URL.createObjectURL(file);
+    img.onload = function(){
+      URL.revokeObjectURL(ou);
+      var cv = document.createElement('canvas');
+      cv.width  = Math.max(1, Math.round(img.naturalWidth  * sc));
+      cv.height = Math.max(1, Math.round(img.naturalHeight * sc));
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+      var ext  = (file.name.split('.').pop()||'jpg').toLowerCase();
+      var mime = ext==='png' ? 'image/png' : 'image/jpeg';
+      cv.toBlob(function(b){ resolve(b && b.size < file.size ? b : file); }, mime, q);
     };
-    img.onerror = ()=>{ URL.revokeObjectURL(objUrl); resolve(file); };
-    img.src = objUrl;
+    img.onerror = function(){ URL.revokeObjectURL(ou); resolve(file); };
+    img.src = ou;
   });
 }
 
-let _compressedBlob = null;
-let _compressedFileName = '';
+// Kompres PDF: PDF.js baca tiap halaman → render ke canvas → jsPDF tulis ulang
+async function compressPDF(file, level){
+  if(typeof pdfjsLib === 'undefined') throw new Error('PDF.js belum termuat. Cek koneksi internet.');
+  if(typeof jspdf === 'undefined')    throw new Error('jsPDF belum termuat. Cek koneksi internet.');
+  var jsPDF = jspdf.jsPDF;
+
+  var scMap = {1:1.4, 2:1.0, 3:0.7};
+  var qMap  = {1:0.85, 2:0.65, 3:0.40};
+  var sc = scMap[level]||1.0;
+  var q  = qMap[level]||0.65;
+
+  var ab = await file.arrayBuffer();
+  var pdfDoc = await pdfjsLib.getDocument({data: new Uint8Array(ab)}).promise;
+  var numPages = pdfDoc.numPages;
+  var msgEl = document.getElementById('think-msg');
+  var doc = null;
+
+  for(var pn = 1; pn <= numPages; pn++){
+    if(msgEl) msgEl.textContent = 'Memproses halaman ' + pn + ' dari ' + numPages + '...';
+    var page = await pdfDoc.getPage(pn);
+    var vp   = page.getViewport({scale: sc});
+    var cv   = document.createElement('canvas');
+    cv.width  = Math.round(vp.width);
+    cv.height = Math.round(vp.height);
+    await page.render({canvasContext: cv.getContext('2d'), viewport: vp}).promise;
+    var imgData = cv.toDataURL('image/jpeg', q);
+
+    var mm = 0.352778;
+    var origVp = page.getViewport({scale:1});
+    var wMm = origVp.width  * mm;
+    var hMm = origVp.height * mm;
+
+    if(pn === 1){
+      doc = new jsPDF({
+        orientation: wMm > hMm ? 'landscape' : 'portrait',
+        unit: 'mm',
+        format: [wMm, hMm],
+        compress: true
+      });
+    } else {
+      doc.addPage([wMm, hMm], wMm > hMm ? 'landscape' : 'portrait');
+    }
+    doc.addImage(imgData, 'JPEG', 0, 0, wMm, hMm, undefined, 'FAST');
+  }
+  var outAB = doc.output('arraybuffer');
+  return new Blob([outAB], {type:'application/pdf'});
+}
+
+var _compressedBlob     = null;
+var _compressedFileName = '';
 
 async function startCompress(){
-  if(!cmpFile){showToast('Pilih file terlebih dahulu!');return;}
-  const btn = document.getElementById('btn-kompres');
+  if(!cmpFile){ showToast('Pilih file terlebih dahulu!'); return; }
+  var btn = document.getElementById('btn-kompres');
   btn.disabled = true;
   btn.innerHTML = '<i class="ti ti-loader-2"></i> Memproses...';
-  const th = document.getElementById('ai-think');
+  var th = document.getElementById('ai-think');
   th.style.display = 'block';
   document.getElementById('cmp-result').style.display = 'none';
-  _compressedBlob = null;
-  _compressedFileName = '';
+  _compressedBlob = null; _compressedFileName = '';
 
-  const msgs = [
-    'AI menganalisis file...','Mendeteksi tipe konten...',
-    'Menerapkan kompresi...','Finalisasi...'
-  ];
-  let mi = 0;
-  const iv = setInterval(()=>{
-    if(mi < msgs.length) document.getElementById('think-msg').textContent = msgs[mi++];
-  }, 700);
+  var ext     = (cmpFile.name.split('.').pop()||'').toLowerCase();
+  var base    = cmpFile.name.slice(0, cmpFile.name.lastIndexOf('.'));
+  var isImage = ['jpg','jpeg','png','gif','webp'].includes(ext);
+  var isPDF   = (ext === 'pdf');
+  var resultBlob;
 
-  await new Promise(r=>setTimeout(r, 2800));
-  clearInterval(iv);
+  try{
+    if(isImage){
+      document.getElementById('think-msg').textContent = 'Mengompresi gambar...';
+      await new Promise(function(r){ setTimeout(r,400); });
+      resultBlob = await compressImage(cmpFile, cmpLvl);
+    } else if(isPDF){
+      initPDFjs();
+      document.getElementById('think-msg').textContent = 'Membaca dokumen PDF...';
+      resultBlob = await compressPDF(cmpFile, cmpLvl);
+    } else {
+      throw new Error('Format ' + ext.toUpperCase() + ' belum didukung.|Gunakan PDF atau gambar (JPG/PNG/WebP).');
+    }
+  } catch(err){
+    th.style.display = 'none';
+    btn.disabled = false;
+    btn.innerHTML = '<i class="ti ti-file-zip"></i> Kompres Sekarang';
+    var msg = err.message || 'Gagal memproses file.';
+    showToast(msg.split('|')[0]);
+    alert('⚠️ ' + msg.replace(/\|/g,'\n'));
+    return;
+  }
+
   th.style.display = 'none';
   btn.disabled = false;
   btn.innerHTML = '<i class="ti ti-file-zip"></i> Kompres Sekarang';
 
-  const ext  = (cmpFile.name.split('.').pop()||'').toLowerCase();
-  const base = cmpFile.name.replace(new RegExp('\.'+ext+'$','i'),'');
-  const isImage = ['jpg','jpeg','png','gif','webp'].includes(ext);
-
-  let resultBlob;
-  let orig = cmpFile.size;
-  let newSz;
-  let saved;
-
-  if(isImage){
-    // Kompresi nyata via Canvas
-    resultBlob = await compressImage(cmpFile, cmpLvl);
-    newSz = resultBlob.size;
-    saved = Math.max(0, Math.round((1 - newSz/orig)*100));
-  } else {
-    // PDF/DOCX/DOC — browser tidak bisa kompres format biner tanpa library
-    // Kita download file ASLI yang utuh agar tidak rusak,
-    // dan tampilkan estimasi penghematan sebagai informasi
-    resultBlob = cmpFile;          // file asli, struktur tetap utuh
-    const ratioMap = {1:0.82, 2:0.60, 3:0.38};
-    const ratio = ratioMap[cmpLvl] || 0.60;
-    newSz  = Math.round(orig * ratio);   // ukuran estimasi untuk display
-    saved  = Math.round((1 - ratio)*100);
-  }
+  var orig  = cmpFile.size;
+  var newSz = resultBlob.size;
+  var saved = Math.max(0, Math.round((1 - newSz/orig)*100));
 
   _compressedFileName = base + '_compressed.' + ext;
-  _compressedBlob     = resultBlob;   // Blob asli yang valid
+  _compressedBlob     = resultBlob;
 
   document.getElementById('sz-bef').textContent = fmtSz(orig);
-  document.getElementById('sz-aft').textContent = fmtSz(isImage ? newSz : newSz) + (isImage ? '' : ' (est.)');
+  document.getElementById('sz-aft').textContent = fmtSz(newSz);
   document.getElementById('sav-strip').textContent =
-    (isImage ? '✓ Berhasil menghemat ' : 'ℹ Estimasi penghematan ') +
-    saved + '%' +
-    (isImage ? '' : ' — unduh untuk hasil terbaik');
-
+    saved > 0
+      ? '✓ Berhasil menghemat ' + saved + '% ukuran file!'
+      : 'ℹ File sudah optimal, tidak dapat dikompres lebih kecil.';
   document.getElementById('cmp-result').style.display = 'block';
 
-  // Simpan ke history
-  const histUrl = URL.createObjectURL(_compressedBlob);
-  addHist(_compressedFileName,'cp',{
-    dataUrl: histUrl,
-    fileName: _compressedFileName,
-    blob: _compressedBlob
-  });
+  addHist(_compressedFileName, 'cp', {blob: _compressedBlob, fileName: _compressedFileName});
   updStats();
-  showToast(isImage
-    ? 'Kompresi selesai! Ukuran ' + fmtSz(newSz) + ' (hemat ' + saved + '%)'
-    : 'Siap diunduh! (hemat estimasi ' + saved + '%)');
-  setTimeout(()=>document.getElementById('cmp-result').scrollIntoView({behavior:'smooth',block:'nearest'}),150);
+  showToast(saved > 0
+    ? 'Selesai! ' + fmtSz(newSz) + ' (hemat '+saved+'%)'
+    : 'Selesai! File sudah optimal.');
+  setTimeout(function(){
+    document.getElementById('cmp-result').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }, 150);
 }
 
 function dlCompressed(){
   if(!_compressedBlob || !_compressedFileName){
-    showToast('Jalankan Kompres terlebih dahulu!');
-    return;
+    showToast('Jalankan Kompres terlebih dahulu!'); return;
   }
   downloadBlob(_compressedBlob, _compressedFileName);
   showToast('Mengunduh ' + _compressedFileName + '...');
@@ -1501,28 +1537,24 @@ function dlHistCV(id){
 }
 
 function dlHistFile(id){
-  const h = histItems.find(x=>x.id===id);
+  var h = histItems.find(function(x){ return x.id===id; });
   if(!h || !h.extra){ showToast('File tidak tersedia'); return; }
-  // Prioritas: pakai Blob langsung jika ada (paling reliable di mobile)
   if(h.extra.blob instanceof Blob){
-    downloadBlob(h.extra.blob, h.extra.fileName || h.name);
-    showToast('Mengunduh ' + (h.extra.fileName || h.name) + '...');
+    downloadBlob(h.extra.blob, h.extra.fileName||h.name);
+    showToast('Mengunduh '+(h.extra.fileName||h.name)+'...');
     return;
   }
-  // Fallback: pakai dataUrl yang sudah tersimpan
   if(h.extra.dataUrl){
-    const a = document.createElement('a');
-    a.href = h.extra.dataUrl;
-    a.download = h.extra.fileName || h.name;
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(()=>document.body.removeChild(a), 500);
-    showToast('Mengunduh ' + (h.extra.fileName || h.name) + '...');
+    var a = document.createElement('a');
+    a.href = h.extra.dataUrl; a.download = h.extra.fileName||h.name;
+    a.style.display='none'; document.body.appendChild(a); a.click();
+    setTimeout(function(){ document.body.removeChild(a); }, 500);
+    showToast('Mengunduh '+(h.extra.fileName||h.name)+'...');
     return;
   }
   showToast('File tidak tersedia untuk diunduh ulang');
 }
+
 
 
 
